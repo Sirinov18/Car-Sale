@@ -1,0 +1,487 @@
+/* responsive.css - Desktop normal, mobile toggle menu */
+
+/* Desktop görünüş - həmə şey normal */
+@media screen and (min-width: 769px) {
+    .mobile-toggle {
+        display: none !important;
+    }
+
+    .mobile-dropdown {
+        display: none !important;
+    }
+
+    /* Desktop linklər normal görünür */
+    .nav-element li {
+        display: list-item;
+    }
+
+    .nav-element {
+        display: flex;
+    }
+
+    /* Search container desktop-də görünür */
+    .search-container {
+        display: flex !important;
+        align-items: center;
+    }
+
+    #search-box {
+        display: block !important;
+        width: 200px;
+        height: 40px;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    /* Toggle container desktop-də gizli */
+    .mobile-toggle-container {
+        display: none !important;
+    }
+
+    /* Search and filter dropdowns desktop */
+    .search-dropdown {
+        width: 250px;
+    }
+    
+    .filter-dropdown {
+        width: 320px;
+    }
+}
+
+/* Hamburger menu button - əsas CSS-də görünməz */
+.mobile-toggle {
+    display: none;
+    color: #FFF;
+    font-size: 25px;
+    cursor: pointer;
+    padding: 10px;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+.mobile-toggle:hover {
+    color: #fff;
+    background: rgba(255, 165, 0, 0.1);
+}
+
+/* Mobile dropdown menu */
+.mobile-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 200px;
+    background: linear-gradient(145deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 20, 0.95));
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 165, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    overflow: hidden;
+    animation: slideDown 0.3s ease;
+}
+
+.mobile-dropdown.show {
+    display: block;
+}
+
+.mobile-dropdown a {
+    display: block;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 300;
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 165, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.mobile-dropdown a:hover {
+    color: #fff;
+    background: rgba(255, 165, 0, 0.15);
+    padding-left: 25px;
+}
+
+.mobile-dropdown a:last-child {
+    border-bottom: none;
+}
+
+.mobile-dropdown a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 3px;
+    height: 0;
+    background: #FFF;
+    transition: height 0.3s ease;
+    transform: translateY(-50%);
+}
+
+.mobile-dropdown a:hover::before {
+    height: 60%;
+}
+
+/* Slide down animasiyası */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Tablet (768px və aşağı) - Toggle menu aktivləşir */
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding-left: 4%;
+        padding-right: 4%;
+        height: auto;
+        min-height: 70px;
+        align-items: center;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logo h1 a {
+        font-size: 35px;
+    }
+
+    /* Toggle button göstər - sağda */
+    .mobile-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Search box mobile görünüş - solda */
+    #search-box {
+        display: block;
+        width: 150px;
+        height: 35px;
+        padding: 6px 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        margin: 0;
+    }
+
+    /* Search and filter icons mobile */
+    .search-container i {
+        font-size: 16px;
+        margin-left: 5px;
+    }
+
+    /* Mobile dropdowns */
+    .search-dropdown {
+        width: 200px;
+        left: 10px;
+    }
+    
+    .filter-dropdown {
+        width: 280px;
+        right: 10px;
+    }
+
+    /* Nav element düzenleme */
+    .nav-element {
+        position: static;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        order: 2;
+    }
+
+    /* Search container solda */
+    .search-container {
+        order: 1;
+        margin-right: auto;
+        padding: 10px 15px;
+        /* Uniform padding */
+        font-size: 15px;
+        font-weight: 150;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        /* Center icon and text */
+        gap: 8px;
+        /* Space between icon and text */
+    }
+
+    /* Toggle container sağda */
+    .mobile-toggle-container {
+        order: 2;
+        margin-left: auto;
+    }
+
+    /* Logo mərkəzdə */
+    .logo {
+        order: 1;
+        flex: 1;
+        text-align: center;
+    }
+
+    /* Desktop nav linklərini gizlə, ancaq toggle və search göstər */
+    .nav-element li:not(.mobile-toggle-container):not(.search-container) {
+        display: none;
+    }
+}
+
+/* Mobile (480px və aşağı) */
+@media screen and (max-width: 480px) {
+    .navbar {
+        padding-left: 3%;
+        padding-right: 3%;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        min-height: 60px;
+    }
+
+    .logo h1 a {
+        font-size: 28px;
+    }
+
+    .mobile-toggle {
+        font-size: 22px;
+        padding: 8px;
+    }
+
+    #search-box {
+        width: 120px;
+        height: 32px;
+        padding: 5px 8px;
+        font-size: 13px;
+        margin: 0;
+    }
+
+    /* Search and filter icons smaller */
+    .search-container i {
+        font-size: 14px;
+        margin-left: 4px;
+        padding: 3px;
+    }
+
+    /* Mobile dropdowns smaller */
+    .search-dropdown {
+        width: 180px;
+        left: 5px;
+        font-size: 12px;
+    }
+    
+    .filter-dropdown {
+        width: 250px;
+        right: 5px;
+        max-height: 350px;
+    }
+
+    .filter-dropdown .filter-section {
+        padding: 12px;
+    }
+
+    .filter-dropdown h4 {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .filter-option {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+
+    .year-input {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+
+    .apply-btn, .clear-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .mobile-dropdown {
+        right: 10px;
+        min-width: 180px;
+    }
+
+    .mobile-dropdown a {
+        font-size: 16px;
+        padding: 12px 18px;
+    }
+}
+
+/* Çox kiçik mobil (360px və aşağı) */
+@media screen and (max-width: 360px) {
+    .navbar {
+        padding-left: 2%;
+        padding-right: 2%;
+        min-height: 55px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo h1 a {
+        font-size: 24px;
+    }
+
+    .mobile-toggle {
+        font-size: 20px;
+        padding: 6px;
+    }
+
+    #search-box {
+        width: 100px;
+        height: 30px;
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    /* Extra small search and filter icons */
+    .search-container i {
+        font-size: 12px;
+        margin-left: 3px;
+        padding: 2px;
+    }
+
+    /* Extra small dropdowns */
+    .search-dropdown {
+        width: 150px;
+        left: 2px;
+        font-size: 11px;
+    }
+    
+    .filter-dropdown {
+        width: 220px;
+        right: 2px;
+        max-height: 300px;
+    }
+
+    .filter-dropdown .filter-section {
+        padding: 10px;
+    }
+
+    .filter-dropdown h4 {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+
+    .filter-option {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+
+    .year-input {
+        padding: 5px 6px;
+        font-size: 11px;
+        width: 60px;
+    }
+
+    .apply-btn, .clear-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+
+    .mobile-dropdown {
+        right: 5px;
+        min-width: 160px;
+    }
+
+    .mobile-dropdown a {
+        font-size: 15px;
+        padding: 10px 15px;
+    }
+}
+
+/* Landscape mobil cihazlar */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .navbar {
+        padding-top: 1%;
+        padding-bottom: 1%;
+        min-height: 45px;
+    }
+
+    .logo h1 a {
+        font-size: 24px;
+    }
+
+    .mobile-toggle {
+        font-size: 18px;
+        padding: 6px;
+    }
+
+    #search-box {
+        height: 28px;
+        padding: 4px 8px;
+        font-size: 12px;
+        margin: 5px 0;
+    }
+
+    .search-container i {
+        font-size: 14px;
+    }
+
+    .mobile-dropdown a {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    /* Landscape dropdowns */
+    .search-dropdown {
+        max-height: 150px;
+    }
+    
+    .filter-dropdown {
+        max-height: 200px;
+    }
+}
+/* Modal responsive */
+@media screen and (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-width: 400px;
+        padding: 15px;
+    }
+
+    .modal-content h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .modal-content ul.car-details li {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .modal-img {
+        max-height: 200px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .modal-content {
+        width: 90%;
+        max-width: 320px;
+        padding: 10px;
+    }
+
+    .modal-content h2 {
+        font-size: 16px;
+    }
+
+    .modal-content ul.car-details li {
+        font-size: 12px;
+    }
+
+    .modal-img {
+        max-height: 150px;
+    }
+}

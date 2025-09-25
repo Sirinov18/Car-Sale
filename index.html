@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>CarSale</title>
+    <link rel="icon" href="../image/car-logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="logo">
+                <h1><a href="index.html">Cars.com</a></h1>
+            </div>
+            <ul class="nav-element">
+                <!-- Search box solda (mobile-da) -->
+                <li class="search-container">
+                    <input type="search" placeholder="search" id="search-box">
+                    <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
+                    <i class="fa-solid fa-list" id="filterIcon"></i>
+                    <!-- Search results dropdown -->
+                    <div class="search-dropdown" id="searchDropdown"></div>
+                    <!-- Enhanced Filter dropdown with hierarchical structure -->
+                    <div class="filter-dropdown" id="filterDropdown">
+                        <div class="filter-section">
+                            <h4>Brand</h4>
+                            <div class="filter-options" id="brandOptions"></div>
+                        </div>
+                        <div class="filter-section">
+                            <h4>Fuel Type</h4>
+                            <div class="filter-options" id="fuelOptions"></div>
+                        </div>
+                        <div class="filter-section">
+                            <h4>Body Type</h4>
+                            <div class="filter-options" id="bodyOptions"></div>
+                        </div>
+                        <div class="filter-section">
+                            <h4>Year</h4>
+                            <div class="year-range">
+                                <input type="number" placeholder="Min" id="minYear" class="year-input">
+                                <input type="number" placeholder="Max" id="maxYear" class="year-input">
+                            </div>
+                        </div>
+                        <div class="filter-buttons">
+                            <button class="apply-btn" id="applyFilters">Apply</button>
+                            <button class="clear-btn" id="clearFilters">Clear</button>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#"><i class="fa-solid fa-house"></i>Home</a></li>
+                <li><a href="#"><i class="fa-solid fa-user"></i>Account</a></li>
+                <li><a href="#"><i class="fa-solid fa-heart"></i>Like</a></li>
+                <li><a href="#"><i class="fa-solid fa-phone"></i>Contact</a></li>
+                <!-- Toggle button sağda (mobile-da) -->
+                <li class="mobile-toggle-container">
+                    <div class="mobile-toggle" id="mobileToggle">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </li>
+            </ul>
+            <!-- Mobile dropdown menu -->
+            <div class="mobile-dropdown" id="mobileDropdown">
+                <a href="#"><i class="fa-solid fa-house"></i>Home</a>
+                <a href="#"><i class="fa-solid fa-user"></i>Account</a>
+                <a href="#"><i class="fa-solid fa-heart"></i>Like</a>
+                <a href="#"><i class="fa-solid fa-phone"></i>Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- New Image Carousel Section -->
+    <section class="hero-carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide active" data-slide="0">
+                <img src="../image/Premium.png" alt="Luxury Cars">
+                <div class="carousel-content">
+                    <h2>Premium Luxury Cars</h2>
+                    <p>Discover our exclusive collection of luxury vehicles</p>
+                </div>
+            </div>
+            <div class="carousel-slide" data-slide="1">
+                <img src="../image/luxury.png" alt="Sports Cars">
+                <div class="carousel-content">
+                    <h2>High Performance Sports Cars</h2>
+                    <p>Experience the thrill of speed and precision</p>
+                </div>
+            </div>
+            <div class="carousel-slide" data-slide="2">
+                <img src="../image/Vip.png" alt="SUVs">
+                <div class="carousel-content">
+                    <h2>Powerful SUVs</h2>
+                    <p>Adventure awaits with our premium SUV collection</p>
+                </div>
+            </div>
+            <div class="carousel-slide" data-slide="3">
+                <img src="../image/Future.png" alt="Electric Cars">
+                <div class="carousel-content">
+                    <h2>Future of Driving</h2>
+                    <p>Explore our eco-friendly electric vehicle range</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel Navigation -->
+        <div class="carousel-nav">
+            <button class="carousel-btn prev-btn" id="prevBtn">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn next-btn" id="nextBtn">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+            <span class="indicator" data-slide="3"></span>
+        </div>
+    </section>
+
+    <section>
+        <div id="carList" class="car-container"></div>
+        <div id="carModal" class="modal">
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <h2 id="modalTitle"></h2>
+                <img id="modalImage" src="" alt="" class="modal-img">
+
+                <ul class="car-details">
+                    <li><strong>Full name:</strong> <span id="modalName"></span></li>
+                    <li><strong>Year:</strong> <span id="modalYear"></span></li>
+                    <li><strong>Fuel Type:</strong> <span id="modalFuel"></span></li>
+                    <li><strong>Ban Type:</strong> <span id="modalBan"></span></li>
+                    <li><strong>Gear Type:</strong> <span id="modalGear"></span></li>
+                    <li><strong>Mileage:</strong> <span id="modalMilage"></span></li>
+                    <li><strong>Condition:</strong> <span id="modalCondition"></span></li>
+                    <li><strong>Engine Capacity:</strong> <span id="modalEngine"></span></li>
+                    <li><strong>Power:</strong> <span id="modalPower"></span></li>
+                    <li><strong>Transmission:</strong> <span id="modalTransmission"></span></li>
+                    <li><strong>Equipment:</strong> <span id="modalEquipment"></span></li>
+                    <li><strong>Price:</strong> <span id="modalPrice"></span></li>
+                    <li><strong>Color:</strong> <span id="modalColor"></span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="car-area">
+            <div id="carList" class="car-container"></div>
+        </div>
+    </section>
+    <footer>
+        <p style="text-align:center; padding:20px; background:#333; color:white;">
+            &copy; 2025 Cars.com - All rights reserved
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
