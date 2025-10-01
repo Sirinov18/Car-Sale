@@ -1078,7 +1078,7 @@
         "Price": 19500,
         "Color": "Red",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJMdyzxEua4oTBUq0fOR14DszncWBC3JzYoA&s"
-    }, 
+    },
     {
         "Marks": "Nissan",
         "Model": "Kicks",
@@ -2050,7 +2050,23 @@
         "Price": 41000,
         "Color": "Blue",
         "image": "https://hips.hearstapps.com/hmg-prod/images/volvo-xc60-t6-r-design-awd-104-1544551689.jpg?crop=0.737xw:0.681xh;0.143xw,0.149xh&resize=2048:*"
+    },
+    {
+        "Marks": "Mercedes",
+        "Model": "Cls-class",
+        "Name": "Mercedes cls63s amg",
+        "Year": "2018",
+        "FuelType": "Petrol",
+        "BanType": "Coupe",
+        "GearType": "Automatic",
+        "Milage": "24000km",
+        "Condition": "Second hand",
+        "EngineCapacity": "6.3L",
+        "PowerHp": "1000hp+",
+        "Transmission": "Rear",
+        "Equipment": "Carbon fiber trim,Alloy wheels,Leather seats,Navigation,Heated seats,Air conditioning,Parking sensors,ABS",
+        "Price": 100000,
+        "Color": "Black",
+        "image": "https://manqanebi.ge/assets/uploads/homes/60375/thumbnail/b40818be086b988159058d62fff62e7e14085.jpeg"
     }
-
-
 ]

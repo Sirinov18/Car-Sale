@@ -21,7 +21,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* This centers all navbar items vertically */
     width: 100%;
     padding-left: 8%;
     padding-right: 8%;
@@ -39,9 +38,7 @@
 #search-box {
     color: black;
     width: 200px;
-    /* Fixed width for desktop */
     height: 40px;
-    /* Set a specific height */
     padding: 8px 12px;
     border: none;
     border-radius: 5px;
@@ -51,30 +48,23 @@
 .navbar ul {
     display: flex;
     align-items: center;
-    /* Align nav items vertically */
     margin: 0;
-    /* Remove margin-top */
     gap: 0;
-    /* Remove gap between items */
 }
 
 .navbar ul li {
     display: flex;
     align-items: center;
-    /* Center each nav item */
 }
 
 .navbar ul li a {
     padding: 15px 20px;
-    /* Uniform padding */
     font-size: 25px;
     font-weight: 150;
     color: #fff;
     display: flex;
     align-items: center;
-    /* Center icon and text */
     gap: 8px;
-    /* Space between icon and text */
 }
 
 .navbar ul li a:hover {
@@ -84,7 +74,6 @@
 
 .navbar ul li a i {
     font-size: 20px;
-    /* Slightly smaller icons for better proportion */
 }
 
 /* Search container styling */
@@ -93,7 +82,6 @@
     display: flex;
     align-items: center;
     padding: 10px 15px;
-    /* Uniform padding */
     font-size: 20px;
     font-weight: 150;
     color: #fff;
@@ -158,14 +146,14 @@
     position: absolute;
     top: 100%;
     right: 15px;
-    width: 320px; /* Back to original width */
+    width: 320px;
     background: white;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     z-index: 1000;
     display: none;
-    max-height: 400px; /* Back to original height */
+    max-height: 400px;
     overflow-y: auto;
 }
 
@@ -438,65 +426,6 @@
     background: rgba(255, 255, 255, 0.7);
 }
 
-/* Responsive carousel */
-@media screen and (max-width: 768px) {
-    .hero-carousel {
-        height: 300px;
-    }
-    
-    .carousel-content {
-        padding: 20px;
-    }
-    
-    .carousel-content h2 {
-        font-size: 1.8rem;
-    }
-    
-    .carousel-content p {
-        font-size: 1rem;
-    }
-    
-    .carousel-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-    }
-    
-    .carousel-nav {
-        padding: 0 15px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .hero-carousel {
-        height: 250px;
-    }
-    
-    .carousel-content {
-        padding: 15px;
-    }
-    
-    .carousel-content h2 {
-        font-size: 1.5rem;
-        margin-bottom: 5px;
-    }
-    
-    .carousel-content p {
-        font-size: 0.9rem;
-    }
-    
-    .carousel-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 14px;
-    }
-    
-    .indicator {
-        width: 10px;
-        height: 10px;
-    }
-}
-
 /* Mobile toggle container */
 .mobile-toggle-container {
     margin-right: 20px;
@@ -504,34 +433,17 @@
 
 .car-container {
     display: flex;
-    justify-content: space-between; /* Default layout for unfiltered data */
-    flex-wrap: wrap; /* Kartlar sətirə sığmasa altına keçsin */
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
-    /* Kart sahəsi üçün scrollable hündürlük */
-    max-height: 600px; /* İstəyə görə hündürlük */
+    max-height: 600px;
     overflow-y: auto;
-    background: #f5f5f5; /* İstəyə görə vizual ayrıcı */
+    background: #f5f5f5;
 }
 
 .car-card {
-    background: #333;
-    padding: 10px;
-    border-radius: 10px;
-    width: 250px;
-    color: white;
-    text-align: center;
-}
-
-.car-card img {
-    width: 100%;
-    border-radius: 10px;
-    margin-top: 10px;
-}
-
-/* Car card yeni stil */
-.car-card {
-    background:rgb(10, 10, 21);
+    background: rgb(81, 76, 76);
     border-radius: 10px;
     width: 250px;
     color: white;
@@ -693,132 +605,4 @@
 .close:hover {
     background: #f0f0f0;
     color: orange;
-}
-
-/* Tablet responsive */
-@media screen and (max-width: 768px) {
-    .modal {
-        padding: 15px;
-    }
-    
-    .modal-content {
-        padding: 20px;
-        max-width: 100%;
-        margin: 0;
-    }
-
-    .modal-content h2 {
-        font-size: 20px;
-        margin-bottom: 15px;
-    }
-
-    .modal-img {
-        max-height: 200px;
-        margin-bottom: 15px;
-    }
-
-    .car-details li {
-        padding: 10px 0;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .car-details strong {
-        min-width: auto;
-        margin-bottom: 5px;
-        margin-right: 0;
-    }
-    
-    .car-details span {
-        text-align: left;
-        padding-left: 0;
-    }
-    
-    .close {
-        top: 10px;
-        right: 15px;
-        font-size: 24px;
-        width: 25px;
-        height: 25px;
-    }
-}
-
-/* Mobile responsive */
-@media screen and (max-width: 480px) {
-    .modal {
-        padding: 10px;
-    }
-    
-    .modal-content {
-        padding: 15px;
-        border-radius: 10px;
-        max-height: 95vh;
-    }
-
-    .modal-content h2 {
-        font-size: 18px;
-        margin-bottom: 12px;
-    }
-
-    .modal-img {
-        max-height: 150px;
-        margin-bottom: 12px;
-    }
-
-    .car-details li {
-        padding: 8px 0;
-        font-size: 14px;
-    }
-    
-    .car-details strong {
-        font-size: 14px;
-        margin-bottom: 3px;
-    }
-    
-    .car-details span {
-        font-size: 13px;
-    }
-    
-    .close {
-        top: 8px;
-        right: 12px;
-        font-size: 20px;
-        width: 22px;
-        height: 22px;
-    }
-}
-
-/* Very small mobile */
-@media screen and (max-width: 360px) {
-    .modal {
-        padding: 5px;
-    }
-    
-    .modal-content {
-        padding: 12px;
-        max-height: 98vh;
-    }
-
-    .modal-content h2 {
-        font-size: 16px;
-        margin-bottom: 10px;
-    }
-
-    .modal-img {
-        max-height: 120px;
-        margin-bottom: 10px;
-    }
-
-    .car-details li {
-        padding: 6px 0;
-        font-size: 13px;
-    }
-    
-    .car-details strong {
-        font-size: 13px;
-    }
-    
-    .car-details span {
-        font-size: 12px;
-    }
 }
