@@ -56,7 +56,12 @@
                 </li>
                 <li><a href="#"><i class="fa-solid fa-house"></i>Home</a></li>
                 <li><a href="#"><i class="fa-solid fa-user"></i>Account</a></li>
-                <li><a href="#"><i class="fa-solid fa-heart"></i>Like</a></li>
+                <li>
+                    <a href="#" id="likeLink">
+                        <i class="fa-solid fa-heart"></i>Like
+                        <span class="like-counter" id="likeCounter">0</span>
+                    </a>
+                </li>
                 <li><a href="#"><i class="fa-solid fa-phone"></i>Contact</a></li>
                 <!-- Toggle button sağda (mobile-da) -->
                 <li class="mobile-toggle-container">
@@ -69,7 +74,7 @@
             <div class="mobile-dropdown" id="mobileDropdown">
                 <a href="#"><i class="fa-solid fa-house"></i>Home</a>
                 <a href="#"><i class="fa-solid fa-user"></i>Account</a>
-                <a href="#"><i class="fa-solid fa-heart"></i>Like</a>
+                <a href="#" id="mobileLikeLink"><i class="fa-solid fa-heart"></i>Like</a>
                 <a href="#"><i class="fa-solid fa-phone"></i>Contact</a>
             </div>
         </div>
@@ -128,34 +133,45 @@
     </section>
 
     <section>
-        <div id="carList" class="car-container"></div>
-        <div id="carModal" class="modal">
-            <div class="modal-content">
-                <span id="closeModal" class="close">&times;</span>
-                <h2 id="modalTitle"></h2>
-                <img id="modalImage" src="" alt="" class="modal-img">
-
-                <ul class="car-details">
-                    <li><strong>Full name:</strong> <span id="modalName"></span></li>
-                    <li><strong>Year:</strong> <span id="modalYear"></span></li>
-                    <li><strong>Fuel Type:</strong> <span id="modalFuel"></span></li>
-                    <li><strong>Ban Type:</strong> <span id="modalBan"></span></li>
-                    <li><strong>Gear Type:</strong> <span id="modalGear"></span></li>
-                    <li><strong>Mileage:</strong> <span id="modalMilage"></span></li>
-                    <li><strong>Condition:</strong> <span id="modalCondition"></span></li>
-                    <li><strong>Engine Capacity:</strong> <span id="modalEngine"></span></li>
-                    <li><strong>Power:</strong> <span id="modalPower"></span></li>
-                    <li><strong>Transmission:</strong> <span id="modalTransmission"></span></li>
-                    <li><strong>Equipment:</strong> <span id="modalEquipment"></span></li>
-                    <li><strong>Price:</strong> <span id="modalPrice"></span></li>
-                    <li><strong>Color:</strong> <span id="modalColor"></span></li>
-                </ul>
-            </div>
-        </div>
         <div class="car-area">
             <div id="carList" class="car-container"></div>
         </div>
     </section>
+
+    <!-- Car Details Modal -->
+    <div id="carModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <img id="modalImage" src="" alt="" class="modal-img">
+
+            <ul class="car-details">
+                <li><strong>Full name:</strong> <span id="modalName"></span></li>
+                <li><strong>Year:</strong> <span id="modalYear"></span></li>
+                <li><strong>Fuel Type:</strong> <span id="modalFuel"></span></li>
+                <li><strong>Ban Type:</strong> <span id="modalBan"></span></li>
+                <li><strong>Gear Type:</strong> <span id="modalGear"></span></li>
+                <li><strong>Mileage:</strong> <span id="modalMilage"></span></li>
+                <li><strong>Condition:</strong> <span id="modalCondition"></span></li>
+                <li><strong>Engine Capacity:</strong> <span id="modalEngine"></span></li>
+                <li><strong>Power:</strong> <span id="modalPower"></span></li>
+                <li><strong>Transmission:</strong> <span id="modalTransmission"></span></li>
+                <li><strong>Equipment:</strong> <span id="modalEquipment"></span></li>
+                <li><strong>Price:</strong> <span id="modalPrice"></span></li>
+                <li><strong>Color:</strong> <span id="modalColor"></span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Liked Cars Modal -->
+    <div id="likedModal" class="modal">
+        <div class="modal-content">
+            <span id="closeLikedModal" class="close">&times;</span>
+            <h2>Liked Cars (<span id="likedCount">0</span>)</h2>
+            <div id="likedCarsList" class="liked-cars-grid"></div>
+        </div>
+    </div>
+
     <footer>
         <p style="text-align:center; padding:20px; background:#333; color:white;">
             &copy; 2025 Cars.com - All rights reserved
