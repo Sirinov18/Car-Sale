@@ -913,7 +913,11 @@
         max-height: 200px;
     }
 }
-@media screen and (max-width: 220px) {
+
+
+
+/* 327px və aşağı üçün 220px görünüşü və başlıq hündürlüyü düzəlişi */
+@media screen and (max-width: 327px) {
     .navbar {
         padding: 2px 1%;
         min-height: 35px;
@@ -924,6 +928,9 @@
         font-size: 12px;
         padding: 0;
         margin: 0;
+        line-height: 20px; /* Başlıq hündürlüyü digərləri ilə eyni */
+        height: 35px;
+        display: inline-block;
     }
     .nav-element {
         margin-left: 1px;
