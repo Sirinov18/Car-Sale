@@ -93,18 +93,57 @@ document.addEventListener('DOMContentLoaded', function() {
     loadLikedCars();
 });
 
-// Toggle dropdown menu
+// Enhanced mobile menu functionality
 const mobileToggle = document.getElementById('mobileToggle');
 const mobileDropdown = document.getElementById('mobileDropdown');
 
+// Function to close mobile menu (global scope)
+function closeMobileMenu() {
+    if (mobileDropdown && mobileToggle) {
+        mobileDropdown.classList.remove('show');
+        const icon = mobileToggle.querySelector('i');
+        if (icon) {
+            icon.classList.replace('fa-times', 'fa-bars');
+        }
+        mobileToggle.classList.remove('active');
+    }
+}
+
 if (mobileToggle && mobileDropdown) {
-    mobileToggle.addEventListener('click', () => {
+    // Toggle mobile menu
+    mobileToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
         mobileDropdown.classList.toggle('show');
         const icon = mobileToggle.querySelector('i');
+        
         if (mobileDropdown.classList.contains('show')) {
             icon.classList.replace('fa-bars', 'fa-times');
+            // Add active state to toggle button
+            mobileToggle.classList.add('active');
         } else {
             icon.classList.replace('fa-times', 'fa-bars');
+            mobileToggle.classList.remove('active');
+        }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!mobileToggle.contains(e.target) && !mobileDropdown.contains(e.target)) {
+            closeMobileMenu();
+        }
+    });
+
+    // Close mobile menu when clicking on menu items
+    mobileDropdown.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            closeMobileMenu();
+        }
+    });
+
+    // Close mobile menu on window resize to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            closeMobileMenu();
         }
     });
 }
@@ -559,6 +598,10 @@ if (mobileLikeLink) {
     mobileLikeLink.addEventListener('click', function(e) {
         e.preventDefault();
         showLikedCarsModal();
+        // Close mobile menu after clicking
+        if (mobileDropdown && mobileDropdown.classList.contains('show')) {
+            closeMobileMenu();
+        }
     });
 }
 

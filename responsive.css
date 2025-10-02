@@ -38,7 +38,9 @@
 }
 
 .mobile-dropdown a {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     color: #FFF;
     font-size: 18px;
     font-weight: 300;
@@ -47,16 +49,25 @@
     border-bottom: 1px solid rgba(255, 165, 0, 0.1);
     transition: all 0.3s ease;
     position: relative;
+    text-decoration: none;
+    min-height: 50px; /* Touch-friendly height */
 }
 
-.mobile-dropdown a:hover {
-    color: #fff;
+.mobile-dropdown a:hover,
+.mobile-dropdown a:active {
+    color: orange;
     background: rgba(255, 165, 0, 0.15);
-    padding-left: 25px;
+    transform: translateX(5px);
 }
 
 .mobile-dropdown a:last-child {
     border-bottom: none;
+}
+
+.mobile-dropdown a i {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
 }
 
 .mobile-dropdown a::before {
@@ -66,7 +77,7 @@
     top: 50%;
     width: 3px;
     height: 0;
-    background: #FFF;
+    background: orange;
     transition: height 0.3s ease;
     transform: translateY(-50%);
 }
@@ -142,31 +153,51 @@
 /* Tablet (768px və aşağı) - Toggle menu aktivləşir */
 @media screen and (max-width: 768px) {
     .navbar {
-        padding-left: 4%;
-        padding-right: 4%;
+        padding: 15px 4%;
         height: auto;
         min-height: 70px;
         align-items: center;
         position: relative;
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        order: 1;
+        flex: 0 0 auto;
     }
 
     .logo h1 a {
-        font-size: 35px;
+        font-size: 32px;
     }
 
-    /* Toggle button göstər - sağda */
-    .mobile-toggle {
+    /* Nav element container */
+    .nav-element {
+        order: 2;
         display: flex;
         align-items: center;
-        justify-content: center;
+        gap: 15px;
+        flex: 1;
+        justify-content: space-between;
+        margin-left: 20px;
     }
 
-    /* Search box mobile görünüş - solda */
+    /* Search container - left side */
+    .search-container {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        font-size: 15px;
+        color: #fff;
+        gap: 8px;
+        order: 1;
+    }
+
+    /* Search box mobile görünüş */
     #search-box {
         display: block;
-        width: 150px;
+        width: 140px;
         height: 35px;
         padding: 6px 10px;
         border: none;
@@ -179,6 +210,14 @@
     .search-container i {
         font-size: 16px;
         margin-left: 5px;
+        padding: 5px;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+
+    .search-container i:hover {
+        background: rgba(255, 165, 0, 0.2);
+        color: orange;
     }
 
     /* Mobile dropdowns */
@@ -192,39 +231,45 @@
         right: 10px;
     }
 
-    /* Nav element düzenleme */
-    .nav-element {
-        position: static;
-        margin-top: 0;
-        display: flex;
-        align-items: center;
-        order: 2;
-    }
-
-    /* Search container solda */
-    .search-container {
-        order: 1;
-        margin-right: auto;
-        padding: 10px 15px;
-        font-size: 15px;
-        font-weight: 150;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    /* Toggle container sağda */
+    /* Toggle container - right side */
     .mobile-toggle-container {
         order: 2;
+        display: flex !important;
+        align-items: center;
         margin-left: auto;
     }
 
-    /* Logo mərkəzdə */
-    .logo {
-        order: 1;
-        flex: 1;
-        text-align: center;
+    /* Toggle button göstər */
+    .mobile-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        color: #FFF;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 8px;
+        transition: all 0.3s ease;
+        border-radius: 5px;
+    }
+
+    .mobile-toggle:hover {
+        background: rgba(255, 165, 0, 0.2);
+        color: orange;
+    }
+
+    .mobile-toggle.active {
+        background: rgba(255, 165, 0, 0.3);
+        color: orange;
+    }
+
+    /* Mobile dropdown positioning */
+    .mobile-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 4%;
+        min-width: 200px;
+        margin-top: 10px;
+        z-index: 1001;
     }
 
     /* Desktop nav linklərini gizlə, ancaq toggle və search göstər */
@@ -371,24 +416,33 @@
 /* Mobile (480px və aşağı) */
 @media screen and (max-width: 480px) {
     .navbar {
-        padding-left: 3%;
-        padding-right: 3%;
-        padding-top: 3%;
-        padding-bottom: 3%;
+        padding: 12px 3%;
         min-height: 60px;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        flex: 0 0 auto;
     }
 
     .logo h1 a {
-        font-size: 28px;
+        font-size: 26px;
     }
 
-    .mobile-toggle {
-        font-size: 22px;
-        padding: 8px;
+    /* Nav element mobile layout */
+    .nav-element {
+        margin-left: 15px;
+        gap: 10px;
+    }
+
+    /* Search container mobile */
+    .search-container {
+        padding: 6px 8px;
+        font-size: 14px;
     }
 
     #search-box {
-        width: 120px;
+        width: 110px;
         height: 32px;
         padding: 5px 8px;
         font-size: 13px;
@@ -402,15 +456,33 @@
         padding: 3px;
     }
 
+    /* Mobile toggle button */
+    .mobile-toggle {
+        font-size: 22px;
+        padding: 6px;
+    }
+
+    /* Mobile dropdown */
+    .mobile-dropdown {
+        right: 3%;
+        min-width: 180px;
+        margin-top: 8px;
+    }
+
+    .mobile-dropdown a {
+        font-size: 16px;
+        padding: 12px 16px;
+    }
+
     /* Mobile dropdowns smaller */
     .search-dropdown {
-        width: 180px;
+        width: 170px;
         left: 5px;
         font-size: 12px;
     }
     
     .filter-dropdown {
-        width: 250px;
+        width: 240px;
         right: 5px;
         max-height: 350px;
     }
@@ -437,16 +509,6 @@
     .apply-btn, .clear-btn {
         padding: 8px 12px;
         font-size: 12px;
-    }
-
-    .mobile-dropdown {
-        right: 10px;
-        min-width: 180px;
-    }
-
-    .mobile-dropdown a {
-        font-size: 16px;
-        padding: 12px 18px;
     }
 
     /* Carousel responsive */
@@ -588,26 +650,35 @@
 /* Çox kiçik mobil (360px və aşağı) */
 @media screen and (max-width: 360px) {
     .navbar {
-        padding-left: 2%;
-        padding-right: 2%;
+        padding: 10px 2%;
         min-height: 55px;
-        justify-content: space-between;
-        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        flex: 0 0 auto;
     }
 
     .logo h1 a {
-        font-size: 24px;
+        font-size: 22px;
     }
 
-    .mobile-toggle {
-        font-size: 20px;
-        padding: 6px;
+    /* Nav element extra small */
+    .nav-element {
+        margin-left: 10px;
+        gap: 8px;
+    }
+
+    /* Search container extra small */
+    .search-container {
+        padding: 4px 6px;
+        font-size: 13px;
     }
 
     #search-box {
-        width: 100px;
+        width: 90px;
         height: 30px;
-        padding: 4px 8px;
+        padding: 4px 6px;
         font-size: 12px;
     }
 
@@ -618,15 +689,33 @@
         padding: 2px;
     }
 
+    /* Mobile toggle button extra small */
+    .mobile-toggle {
+        font-size: 20px;
+        padding: 5px;
+    }
+
+    /* Mobile dropdown extra small */
+    .mobile-dropdown {
+        right: 2%;
+        min-width: 160px;
+        margin-top: 6px;
+    }
+
+    .mobile-dropdown a {
+        font-size: 15px;
+        padding: 10px 14px;
+    }
+
     /* Extra small dropdowns */
     .search-dropdown {
-        width: 150px;
+        width: 140px;
         left: 2px;
         font-size: 11px;
     }
     
     .filter-dropdown {
-        width: 220px;
+        width: 200px;
         right: 2px;
         max-height: 300px;
     }
@@ -654,16 +743,6 @@
     .apply-btn, .clear-btn {
         padding: 6px 10px;
         font-size: 11px;
-    }
-
-    .mobile-dropdown {
-        right: 5px;
-        min-width: 160px;
-    }
-
-    .mobile-dropdown a {
-        font-size: 15px;
-        padding: 10px 15px;
     }
 
     /* Very small mobile modal */
