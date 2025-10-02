@@ -913,3 +913,45 @@
         max-height: 200px;
     }
 }
+@media screen and (max-width: 220px) {
+    .navbar {
+        padding: 2px 1%;
+        min-height: 35px;
+        flex-wrap: wrap;
+        gap: 1px;
+    }
+    .logo h1 a {
+        font-size: 12px;
+        padding: 0;
+        margin: 0;
+    }
+    .nav-element {
+        margin-left: 1px;
+        gap: 1px;
+    }
+    .search-container {
+        padding: 1px 1px;
+        font-size: 9px;
+        gap: 1px;
+    }
+    #search-box {
+        width: 40px;
+        height: 15px;
+        padding: 1px 2px;
+        font-size: 9px;
+    }
+    .mobile-toggle {
+        font-size: 12px;
+        padding: 1px;
+        margin-left: 1px;
+    }
+    .mobile-dropdown {
+        right: 1%;
+        min-width: 70px;
+        margin-top: 1px;
+    }
+    .mobile-dropdown a {
+        font-size: 9px;
+        padding: 4px 6px;
+    }
+}
