@@ -962,3 +962,61 @@
         padding: 4px 6px;
     }
 }
+
+
+/* 360px - 390px arası responsive düzəliş */
+@media screen and (min-width: 361px) and (max-width: 390px) {
+    .navbar {
+        padding: 10px 2.5%;
+        min-height: 55px;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        flex: 0 0 auto;
+    }
+
+    .logo h1 a {
+        font-size: 18px;
+        line-height: 30px;
+        height: 35px;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-element {
+        margin-left: 8px;
+        gap: 6px;
+    }
+
+    .search-container {
+        padding: 4px 6px;
+        font-size: 12px;
+        gap: 4px;
+    }
+
+    #search-box {
+        width: 70px;
+        height: 22px;
+        padding: 3px 5px;
+        font-size: 11px;
+    }
+
+    .mobile-toggle {
+        font-size: 16px;
+        padding: 3px;
+        margin-left: 2px;
+    }
+
+    .mobile-dropdown {
+        right: 2%;
+        min-width: 110px;
+        margin-top: 4px;
+    }
+
+    .mobile-dropdown a {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+}
