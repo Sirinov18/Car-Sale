@@ -304,6 +304,68 @@
         width: 25px;
         height: 25px;
     }
+
+    /* Liked modal responsive */
+    .liked-cars-grid {
+        justify-content: flex-start;
+        gap: 15px;
+        max-height: 55vh;
+        padding: 15px;
+    }
+
+    .liked-cars-grid .delete-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+        top: 8px;
+        right: 8px;
+    }
+
+    /* Inline details responsive */
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .inline-details-content {
+        padding: 15px;
+    }
+
+    .details-header h3 {
+        font-size: 18px;
+    }
+
+    .close-details-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    .inline-details .detail-item {
+        padding: 6px 10px;
+    }
+
+    .inline-details .detail-item strong {
+        min-width: 100px;
+        font-size: 14px;
+    }
+
+    .equipment-section {
+        padding: 12px;
+    }
+
+    /* Liked modal header responsive */
+    .liked-modal-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .clear-all-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+        align-self: flex-end;
+    }
 }
 
 /* Mobile (480px və aşağı) */
@@ -458,6 +520,69 @@
         width: 22px;
         height: 22px;
     }
+
+    /* Mobile liked modal */
+    .liked-cars-grid {
+        justify-content: center;
+        gap: 15px;
+        max-height: 50vh;
+        padding: 15px;
+    }
+
+    .liked-cars-grid .delete-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
+        top: 6px;
+        right: 6px;
+    }
+
+    /* Mobile inline details */
+    .inline-details-content {
+        padding: 12px;
+    }
+
+    .details-header h3 {
+        font-size: 16px;
+    }
+
+    .close-details-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
+    }
+
+    .inline-details .detail-item {
+        padding: 5px 8px;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .inline-details .detail-item strong {
+        min-width: auto;
+        font-size: 13px;
+        margin-bottom: 3px;
+    }
+
+    .inline-details .detail-item span {
+        text-align: left;
+        font-size: 12px;
+    }
+
+    .equipment-section {
+        padding: 10px;
+    }
+
+    .equipment-section strong {
+        font-size: 14px;
+    }
+
+    /* Mobile clear all button */
+    .clear-all-btn {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
 }
 
 /* Çox kiçik mobil (360px və aşağı) */
@@ -572,6 +697,98 @@
     
     .car-details span {
         font-size: 12px;
+    }
+
+    /* Extra small mobile liked modal */
+    .liked-cars-grid {
+        justify-content: center;
+        gap: 12px;
+        max-height: 45vh;
+        padding: 10px;
+    }
+
+    .inline-details-content {
+        padding: 10px;
+    }
+
+    .details-header h3 {
+        font-size: 14px;
+    }
+
+    .close-details-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+    }
+
+    .inline-details .detail-item {
+        padding: 4px 6px;
+    }
+
+    .inline-details .detail-item strong {
+        font-size: 12px;
+    }
+
+    .inline-details .detail-item span {
+        font-size: 11px;
+    }
+
+    .equipment-section {
+        padding: 8px;
+    }
+
+    .liked-cars-grid .delete-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+        top: 5px;
+        right: 5px;
+    }
+
+    .delete-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+        top: 10px;
+        right: 10px;
+    }
+
+    .liked-card-content h3 {
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+
+    .liked-card-content .car-price {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .quick-details {
+        padding: 8px;
+        margin: 8px 0;
+    }
+
+    .detail-row {
+        margin-bottom: 4px;
+    }
+
+    .detail-label {
+        font-size: 8px;
+    }
+
+    .detail-value {
+        font-size: 10px;
+    }
+
+    .liked-car-card .details-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    /* Extra small clear all button */
+    .clear-all-btn {
+        padding: 4px 8px;
+        font-size: 10px;
     }
 }
 

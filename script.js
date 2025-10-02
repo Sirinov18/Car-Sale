@@ -1,16 +1,17 @@
 // Global variables
 let allCarsData = [];
 let filteredCarsData = [];
+let likedCars = []; // Store liked cars
 let activeFilters = {
     brands: [],
-    models: [], // New: selected models
-    selectedBrandModels: {}, // New: track which models are selected for each brand
+    models: [],
+    selectedBrandModels: {},
     fuelTypes: [],
     bodyTypes: [],
     minYear: null,
     maxYear: null
 };
-let brandModelHierarchy = {}; // New: store brand-model relationships
+let brandModelHierarchy = {};
 
 // Carousel functionality
 let currentSlide = 0;
@@ -19,11 +20,9 @@ const indicators = document.querySelectorAll('.indicator');
 const totalSlides = slides.length;
 
 function showSlide(index) {
-    // Remove active class from all slides and indicators
     slides.forEach(slide => slide.classList.remove('active'));
     indicators.forEach(indicator => indicator.classList.remove('active'));
     
-    // Add active class to current slide and indicator
     if (slides[index]) {
         slides[index].classList.add('active');
     }
@@ -42,11 +41,10 @@ function prevSlide() {
     showSlide(currentSlide);
 }
 
-// Auto-play carousel
 let autoPlayInterval;
 
 function startAutoPlay() {
-    autoPlayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    autoPlayInterval = setInterval(nextSlide, 5000);
 }
 
 function stopAutoPlay() {
@@ -55,7 +53,6 @@ function stopAutoPlay() {
 
 // Initialize carousel when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Carousel navigation
     const nextBtn = document.getElementById('nextBtn');
     const prevBtn = document.getElementById('prevBtn');
     
@@ -75,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Indicator clicks
     indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
             stopAutoPlay();
@@ -85,15 +81,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Start auto-play
     startAutoPlay();
     
-    // Pause auto-play on hover
     const carousel = document.querySelector('.hero-carousel');
     if (carousel) {
         carousel.addEventListener('mouseenter', stopAutoPlay);
         carousel.addEventListener('mouseleave', startAutoPlay);
     }
+
+    // Load liked cars from storage on page load
+    loadLikedCars();
 });
 
 // Toggle dropdown menu
@@ -119,7 +116,6 @@ const filterIcon = document.getElementById('filterIcon');
 const searchDropdown = document.getElementById('searchDropdown');
 const filterDropdown = document.getElementById('filterDropdown');
 
-// Build brand-model hierarchy from data
 function buildBrandModelHierarchy() {
     brandModelHierarchy = {};
     allCarsData.forEach(car => {
@@ -129,18 +125,15 @@ function buildBrandModelHierarchy() {
         brandModelHierarchy[car.Marks].add(car.Model);
     });
     
-    // Convert Sets to Arrays for easier handling
     Object.keys(brandModelHierarchy).forEach(brand => {
         brandModelHierarchy[brand] = Array.from(brandModelHierarchy[brand]).sort();
     });
 }
 
-// Enhanced search to include models
 function showSearchResults(searchTerm) {
     const results = [];
     const term = searchTerm.toLowerCase();
     
-    // Search in cars
     allCarsData.forEach(car => {
         let relevance = 0;
         let matchType = '';
@@ -168,11 +161,9 @@ function showSearchResults(searchTerm) {
         }
     });
     
-    // Sort by relevance
     results.sort((a, b) => b.relevance - a.relevance);
     
     if (results.length > 0) {
-        // Group by brand-model combination to avoid duplicates
         const uniqueResults = [];
         const seen = new Set();
         
@@ -220,7 +211,6 @@ function performSearch(searchTerm) {
     renderCars(results);
 }
 
-// Search icon click event
 searchIcon.addEventListener('click', function() {
     const searchTerm = searchBox.value.trim().toLowerCase();
     if (searchTerm) {
@@ -229,7 +219,6 @@ searchIcon.addEventListener('click', function() {
     }
 });
 
-// Search box input event (live search)
 searchBox.addEventListener('input', function() {
     const searchTerm = this.value.trim().toLowerCase();
     if (searchTerm.length >= 2) {
@@ -240,7 +229,6 @@ searchBox.addEventListener('input', function() {
     }
 });
 
-// Search box enter key event
 searchBox.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         const searchTerm = this.value.trim().toLowerCase();
@@ -251,7 +239,6 @@ searchBox.addEventListener('keypress', function(e) {
     }
 });
 
-// Filter icon click event
 filterIcon.addEventListener('click', function(e) {
     e.stopPropagation();
     if (filterDropdown.style.display === 'block') {
@@ -262,7 +249,6 @@ filterIcon.addEventListener('click', function(e) {
     }
 });
 
-// Hide dropdowns when clicking outside
 document.addEventListener('click', function(e) {
     if (!searchBox.contains(e.target) && !searchDropdown.contains(e.target) && !searchIcon.contains(e.target)) {
         hideSearchDropdown();
@@ -276,7 +262,6 @@ function hideSearchDropdown() {
     searchDropdown.style.display = 'none';
 }
 
-// Enhanced filter functions
 function showFilterDropdown() {
     generateFilterOptions();
     filterDropdown.style.display = 'block';
@@ -286,12 +271,9 @@ function hideFilterDropdown() {
     filterDropdown.style.display = 'none';
 }
 
-// NEW: Generate hierarchical brand-model filter options
 function generateFilterOptions() {
-    // Generate hierarchical brand-model options
     generateBrandModelHierarchy();
     
-    // Generate fuel type options
     const fuelTypes = [...new Set(allCarsData.map(car => car.FuelType))].sort();
     const fuelContainer = document.getElementById('fuelOptions');
     fuelContainer.innerHTML = fuelTypes.map(fuel => 
@@ -299,7 +281,6 @@ function generateFilterOptions() {
                data-type="fuel" data-value="${fuel}">${fuel}</span>`
     ).join('');
     
-    // Generate body type options
     const bodyTypes = [...new Set(allCarsData.map(car => car.BanType))].sort();
     const bodyContainer = document.getElementById('bodyOptions');
     bodyContainer.innerHTML = bodyTypes.map(body => 
@@ -307,11 +288,9 @@ function generateFilterOptions() {
                data-type="body" data-value="${body}">${body}</span>`
     ).join('');
     
-    // Set year values
     document.getElementById('minYear').value = activeFilters.minYear || '';
     document.getElementById('maxYear').value = activeFilters.maxYear || '';
     
-    // Add click events to filter options
     document.querySelectorAll('.filter-option').forEach(option => {
         option.addEventListener('click', function() {
             const type = this.dataset.type;
@@ -328,7 +307,6 @@ function generateFilterOptions() {
     });
 }
 
-// NEW: Generate brand options and show models when brand is selected
 function generateBrandModelHierarchy() {
     const brandContainer = document.getElementById('brandOptions');
     if (!brandContainer) {
@@ -337,7 +315,6 @@ function generateBrandModelHierarchy() {
     
     const brands = Object.keys(brandModelHierarchy).sort();
     
-    // Generate brand options
     let html = '';
     brands.forEach(brand => {
         const isSelected = activeFilters.brands.includes(brand);
@@ -347,17 +324,14 @@ function generateBrandModelHierarchy() {
     
     brandContainer.innerHTML = html;
     
-    // Add click events for brands
     document.querySelectorAll('.brand-option').forEach(option => {
         option.addEventListener('click', function() {
             const brand = this.dataset.value;
             this.classList.toggle('active');
             
-            // Toggle brand in activeFilters
             const brandIndex = activeFilters.brands.indexOf(brand);
             if (brandIndex > -1) {
                 activeFilters.brands.splice(brandIndex, 1);
-                // Clear models for this brand
                 if (activeFilters.selectedBrandModels[brand]) {
                     activeFilters.selectedBrandModels[brand].forEach(model => {
                         const modelIndex = activeFilters.models.indexOf(model);
@@ -376,12 +350,10 @@ function generateBrandModelHierarchy() {
     });
 }
 
-// Show model options for selected brand
 function showModelOptions(brand) {
     const models = brandModelHierarchy[brand];
     if (!models || models.length === 0) return;
     
-    // Find or create model section
     let modelSection = document.getElementById('modelSection');
     if (!modelSection) {
         const filterDropdown = document.getElementById('filterDropdown');
@@ -392,7 +364,6 @@ function showModelOptions(brand) {
         modelSection.id = 'modelSection';
         modelSection.innerHTML = '<h4>Models</h4><div class="filter-options" id="modelOptions"></div>';
         
-        // Insert after brand section
         brandSection.parentNode.insertBefore(modelSection, brandSection.nextSibling);
     }
     
@@ -409,7 +380,6 @@ function showModelOptions(brand) {
     modelContainer.innerHTML = html;
     modelSection.style.display = 'block';
     
-    // Add click events for models
     document.querySelectorAll('.model-option').forEach(option => {
         option.addEventListener('click', function() {
             const brand = this.dataset.brand;
@@ -424,14 +394,12 @@ function showModelOptions(brand) {
             const modelIndex = activeFilters.selectedBrandModels[brand].indexOf(model);
             if (modelIndex > -1) {
                 activeFilters.selectedBrandModels[brand].splice(modelIndex, 1);
-                // Remove from global models array
                 const globalModelIndex = activeFilters.models.indexOf(model);
                 if (globalModelIndex > -1) {
                     activeFilters.models.splice(globalModelIndex, 1);
                 }
             } else {
                 activeFilters.selectedBrandModels[brand].push(model);
-                // Add to global models array
                 if (!activeFilters.models.includes(model)) {
                     activeFilters.models.push(model);
                 }
@@ -440,7 +408,6 @@ function showModelOptions(brand) {
     });
 }
 
-// Hide model options when no brands are selected
 function hideModelOptions() {
     const modelSection = document.getElementById('modelSection');
     if (modelSection && activeFilters.brands.length === 0) {
@@ -457,22 +424,18 @@ function toggleFilterValue(filterArray, value) {
     }
 }
 
-// Filter button events
 document.getElementById('applyFilters').addEventListener('click', function() {
-    // Get year range values
     const minYear = document.getElementById('minYear').value;
     const maxYear = document.getElementById('maxYear').value;
     
     activeFilters.minYear = minYear ? parseInt(minYear) : null;
     activeFilters.maxYear = maxYear ? parseInt(maxYear) : null;
     
-    // Apply filters
     applyFilters();
     hideFilterDropdown();
 });
 
 document.getElementById('clearFilters').addEventListener('click', function() {
-    // Clear all filters
     activeFilters = {
         brands: [],
         models: [],
@@ -483,25 +446,19 @@ document.getElementById('clearFilters').addEventListener('click', function() {
         maxYear: null
     };
     
-    // Clear search box
     searchBox.value = '';
     
-    // Reset filtered data and render
     filteredCarsData = [...allCarsData];
     renderCars(filteredCarsData);
     
-    // Regenerate filter options
     generateFilterOptions();
 });
 
-// Enhanced apply filters function
 function applyFilters() {
     let filtered = [...allCarsData];
     
-    // Apply brand and model filter (hierarchical)
     if (activeFilters.models.length > 0) {
         filtered = filtered.filter(car => {
-            // Check if the car's brand has selected models
             const selectedModelsForBrand = activeFilters.selectedBrandModels[car.Marks];
             if (selectedModelsForBrand && selectedModelsForBrand.length > 0) {
                 return selectedModelsForBrand.includes(car.Model);
@@ -509,21 +466,17 @@ function applyFilters() {
             return false;
         });
     } else if (activeFilters.brands.length > 0) {
-        // If no specific models selected, show all cars of selected brands
         filtered = filtered.filter(car => activeFilters.brands.includes(car.Marks));
     }
     
-    // Apply fuel type filter
     if (activeFilters.fuelTypes.length > 0) {
         filtered = filtered.filter(car => activeFilters.fuelTypes.includes(car.FuelType));
     }
     
-    // Apply body type filter
     if (activeFilters.bodyTypes.length > 0) {
         filtered = filtered.filter(car => activeFilters.bodyTypes.includes(car.BanType));
     }
     
-    // Apply year range filter
     if (activeFilters.minYear) {
         filtered = filtered.filter(car => parseInt(car.Year) >= activeFilters.minYear);
     }
@@ -535,11 +488,297 @@ function applyFilters() {
     renderCars(filteredCarsData);
 }
 
-// Enhanced render cars function
+// Like system functions
+function updateLikeCounter() {
+    const counter = document.getElementById('likeCounter');
+    if (counter) {
+        counter.textContent = likedCars.length;
+    }
+}
+
+function saveLikedCars() {
+    const likedData = likedCars.map(car => ({
+        Marks: car.Marks,
+        Model: car.Model,
+        Year: car.Year
+    }));
+    // Store in memory (no localStorage as per requirements)
+    window.likedCarsData = likedData;
+}
+
+function loadLikedCars() {
+    // Load from memory if exists
+    if (window.likedCarsData) {
+        // This will be populated after cars are loaded
+    }
+}
+
+function isCarLiked(car) {
+    return likedCars.some(likedCar => 
+        likedCar.Marks === car.Marks && 
+        likedCar.Model === car.Model && 
+        likedCar.Year === car.Year
+    );
+}
+
+function toggleLike(car, heartIcon) {
+    const carIndex = likedCars.findIndex(likedCar => 
+        likedCar.Marks === car.Marks && 
+        likedCar.Model === car.Model && 
+        likedCar.Year === car.Year
+    );
+    
+    if (carIndex > -1) {
+        // Remove from liked
+        likedCars.splice(carIndex, 1);
+        heartIcon.classList.remove('liked');
+    } else {
+        // Add to liked
+        likedCars.push(car);
+        heartIcon.classList.add('liked');
+    }
+    
+    updateLikeCounter();
+    saveLikedCars();
+}
+
+// Show liked cars modal
+const likeLink = document.getElementById('likeLink');
+const mobileLikeLink = document.getElementById('mobileLikeLink');
+const likedModal = document.getElementById('likedModal');
+const closeLikedModal = document.getElementById('closeLikedModal');
+
+if (likeLink) {
+    likeLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showLikedCarsModal();
+    });
+}
+
+if (mobileLikeLink) {
+    mobileLikeLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showLikedCarsModal();
+    });
+}
+
+if (closeLikedModal) {
+    closeLikedModal.addEventListener('click', function() {
+        likedModal.style.display = 'none';
+    });
+}
+
+window.addEventListener('click', function(e) {
+    if (e.target === likedModal) {
+        likedModal.style.display = 'none';
+    }
+});
+
+function showLikedCarsModal() {
+    const likedCount = document.getElementById('likedCount');
+    const likedCarsList = document.getElementById('likedCarsList');
+    const clearAllBtn = document.getElementById('clearAllLiked');
+    
+    likedCount.textContent = likedCars.length;
+    
+    // Show/hide clear all button based on liked cars count
+    if (likedCars.length > 1) {
+        clearAllBtn.style.display = 'flex';
+    } else {
+        clearAllBtn.style.display = 'none';
+    }
+    
+    if (likedCars.length === 0) {
+        likedCarsList.innerHTML = '<div class="no-results">No liked cars yet. Start exploring and like your favorites!</div>';
+    } else {
+        likedCarsList.innerHTML = '';
+        likedCars.forEach((car, index) => {
+            const card = document.createElement('div');
+            card.classList.add('car-card'); // Use same class as main cards
+            
+            card.innerHTML = `
+                <img src="${car.image}" alt="${car.Marks} ${car.Model}" 
+                     onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=250&fit=crop'">
+                <button class="delete-btn" data-delete-index="${index}" title="Remove from favorites">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+                <h3>${car.Marks} ${car.Model}</h3>
+                <p class="car-price">$${typeof car.Price === 'number' ? car.Price.toLocaleString() : car.Price}</p>
+                <div class="card-actions">
+                    <i class="fa-solid fa-heart heart-icon liked" data-liked-index="${index}"></i>
+                    <button class="details-btn" data-liked-car="${index}">Details</button>
+                </div>
+            `;
+            
+            likedCarsList.appendChild(card);
+        });
+        
+        // Add event listeners for delete buttons (no confirmation)
+        document.querySelectorAll('[data-delete-index]').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const index = parseInt(this.dataset.deleteIndex);
+                removeLikedCarDirectly(index);
+            });
+        });
+        
+        // Add event listeners for heart icons (remove from liked)
+        document.querySelectorAll('[data-liked-index]').forEach(icon => {
+            icon.addEventListener('click', function() {
+                const index = parseInt(this.dataset.likedIndex);
+                removeLikedCarDirectly(index);
+            });
+        });
+        
+        // Add event listeners for details buttons (show inline details)
+        document.querySelectorAll('[data-liked-car]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = parseInt(this.dataset.likedCar);
+                const car = likedCars[index];
+                showInlineCarDetails(car, index);
+            });
+        });
+    }
+    
+    likedModal.style.display = 'flex';
+}
+
+// Direct removal function without confirmation
+function removeLikedCarDirectly(index) {
+    likedCars.splice(index, 1);
+    updateLikeCounter();
+    saveLikedCars();
+    showLikedCarsModal(); // Refresh modal
+    updateHeartIconsInMainView();
+}
+
+// Clear all liked cars function (keeps confirmation for bulk action)
+function clearAllLikedCars() {
+    if (confirm('Are you sure you want to remove all cars from your favorites?')) {
+        likedCars = [];
+        updateLikeCounter();
+        saveLikedCars();
+        showLikedCarsModal();
+        updateHeartIconsInMainView();
+    }
+}
+
+// Show car details inline within the liked modal
+function showInlineCarDetails(car, carIndex) {
+    const likedCarsList = document.getElementById('likedCarsList');
+    
+    // Check if details are already shown for this car
+    const existingDetails = document.getElementById(`details-${carIndex}`);
+    if (existingDetails) {
+        existingDetails.remove();
+        return;
+    }
+    
+    // Remove any other open details
+    document.querySelectorAll('.inline-details').forEach(detail => detail.remove());
+    
+    // Create inline details element
+    const detailsElement = document.createElement('div');
+    detailsElement.classList.add('inline-details');
+    detailsElement.id = `details-${carIndex}`;
+    
+    detailsElement.innerHTML = `
+        <div class="inline-details-content">
+            <div class="details-header">
+                <h3>${car.Marks} ${car.Model} - Full Details</h3>
+                <button class="close-details-btn" onclick="this.parentElement.parentElement.parentElement.remove()">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="details-grid">
+                <div class="detail-column">
+                    <div class="detail-item">
+                        <strong>Full Name:</strong>
+                        <span>${car.Name}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Year:</strong>
+                        <span>${car.Year}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Fuel Type:</strong>
+                        <span>${car.FuelType}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Body Type:</strong>
+                        <span>${car.BanType}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Gear Type:</strong>
+                        <span>${car.GearType}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Mileage:</strong>
+                        <span>${car.Milage}</span>
+                    </div>
+                </div>
+                <div class="detail-column">
+                    <div class="detail-item">
+                        <strong>Condition:</strong>
+                        <span>${car.Condition}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Engine Capacity:</strong>
+                        <span>${car.EngineCapacity}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Power:</strong>
+                        <span>${car.PowerHp}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Transmission:</strong>
+                        <span>${car.Transmission}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Color:</strong>
+                        <span>${car.Color}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Price:</strong>
+                        <span class="price-highlight">$${typeof car.Price === 'number' ? car.Price.toLocaleString() : car.Price}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="equipment-section">
+                <strong>Equipment:</strong>
+                <p>${car.Equipment}</p>
+            </div>
+        </div>
+    `;
+    
+    // Find the card and insert details after it
+    const cards = likedCarsList.querySelectorAll('.car-card');
+    const targetCard = cards[carIndex];
+    if (targetCard) {
+        targetCard.insertAdjacentElement('afterend', detailsElement);
+        
+        // Scroll to details
+        detailsElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+}
+
+function updateHeartIconsInMainView() {
+    document.querySelectorAll('.heart-icon').forEach(icon => {
+        const carIndex = parseInt(icon.dataset.index);
+        const car = filteredCarsData[carIndex];
+        if (car) {
+            if (isCarLiked(car)) {
+                icon.classList.add('liked');
+            } else {
+                icon.classList.remove('liked');
+            }
+        }
+    });
+}
+
 function renderCars(data) {
     const container = document.getElementById('carList');
     
-    // Check if this is filtered/searched data or original data
     const isFiltered = data.length !== allCarsData.length || 
                       searchBox.value.trim() !== '' ||
                       activeFilters.brands.length > 0 ||
@@ -549,11 +788,10 @@ function renderCars(data) {
                       activeFilters.minYear !== null ||
                       activeFilters.maxYear !== null;
     
-    // Update container layout based on filter status
     if (isFiltered) {
-        container.style.justifyContent = 'flex-start'; // Left-aligned for filtered results
+        container.style.justifyContent = 'flex-start';
     } else {
-        container.style.justifyContent = 'space-between'; // Original layout for all data
+        container.style.justifyContent = 'space-between';
     }
     
     if (data.length === 0) {
@@ -567,12 +805,14 @@ function renderCars(data) {
         const card = document.createElement('div');
         card.classList.add('car-card');
 
+        const isLiked = isCarLiked(car);
+
         card.innerHTML = `
             <img src="${car.image}" alt="${car.Marks} ${car.Model}" 
                  onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=250&fit=crop'">
             <h3>${car.Marks} ${car.Model}</h3>
             <div class="card-actions">
-                <i class="fa-solid fa-heart heart-icon" data-index="${index}"></i>
+                <i class="fa-solid fa-heart heart-icon ${isLiked ? 'liked' : ''}" data-index="${index}"></i>
                 <button class="details-btn" data-index="${index}">Details</button>
             </div>
         `;
@@ -580,18 +820,18 @@ function renderCars(data) {
         container.appendChild(card);
     });
 
-    // Heart icon click
+    // Heart icon click with like functionality
     document.querySelectorAll('.heart-icon').forEach(icon => {
-        icon.addEventListener('click', () => {
-            icon.classList.toggle('liked');
+        icon.addEventListener('click', function() {
+            const carIndex = parseInt(this.dataset.index);
+            const car = data[carIndex];
+            toggleLike(car, this);
         });
     });
 
-    // Modal elements
     const modal = document.getElementById('carModal');
     const closeModal = document.getElementById('closeModal');
 
-    // Details button click
     document.querySelectorAll('.details-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const car = data[btn.dataset.index];
@@ -599,7 +839,6 @@ function renderCars(data) {
         });
     });
 
-    // Modal close
     closeModal.addEventListener('click', () => {
         modal.style.display = 'none';
     });
@@ -609,7 +848,6 @@ function renderCars(data) {
     });
 }
 
-// Show car details in modal
 function showCarDetails(car) {
     const modal = document.getElementById('carModal');
     
@@ -632,13 +870,22 @@ function showCarDetails(car) {
     modal.style.display = 'flex';
 }
 
+// Add event listener for clear all button
+document.addEventListener('DOMContentLoaded', function() {
+    const clearAllBtn = document.getElementById('clearAllLiked');
+    if (clearAllBtn) {
+        clearAllBtn.addEventListener('click', clearAllLikedCars);
+    }
+});
+
 // Load cars from JSON
 fetch('cars.json')
     .then(response => response.json())
     .then(data => {
         allCarsData = data;
         filteredCarsData = [...data];
-        buildBrandModelHierarchy(); // Build hierarchy after data loads
+        buildBrandModelHierarchy();
         renderCars(filteredCarsData);
+        updateLikeCounter(); // Initialize counter
     })
     .catch(error => console.error('Error:', error));

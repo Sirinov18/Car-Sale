@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="#"><i class="fa-solid fa-house"></i>Home</a></li>
+                <li><a href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
                 <li><a href="#"><i class="fa-solid fa-user"></i>Account</a></li>
                 <li>
                     <a href="#" id="likeLink">
@@ -167,7 +167,12 @@
     <div id="likedModal" class="modal">
         <div class="modal-content">
             <span id="closeLikedModal" class="close">&times;</span>
-            <h2>Liked Cars (<span id="likedCount">0</span>)</h2>
+            <div class="liked-modal-header">
+                <h2>Liked Cars (<span id="likedCount">0</span>)</h2>
+                <button id="clearAllLiked" class="clear-all-btn" style="display: none;">
+                    <i class="fa-solid fa-trash-can"></i> Clear All
+                </button>
+            </div>
             <div id="likedCarsList" class="liked-cars-grid"></div>
         </div>
     </div>
