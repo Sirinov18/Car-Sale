@@ -2593,7 +2593,7 @@
     },
     {
         "Marks": "Mercedes",
-        "Model": "ML350",
+        "Model": "ML-class",
         "Name": "Mercedes-Benz ML350",
         "Year": "2010",
         "FuelType": "Diesel",
@@ -2623,9 +2623,9 @@
         "PowerHp": "170hp",
         "Transmission": "Full",
         "Equipment": "Alloy wheels,Air conditioning,Leather seats,Parking sensors,ABS",
-        "Price": 11500,
-        "Color": "Grey",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Nissan_X-Trail_2013.jpg"
+        "Price": 13000,
+        "Color": "White",
+        "image": "https://www.scarletpumpkin.com/assets/images/XTrail_front_copy.34102538_std.jpg"
     },
     {
         "Marks": "Toyota",
@@ -2665,7 +2665,7 @@
     },
     {
         "Marks": "Mercedes",
-        "Model": "GLK350",
+        "Model": "GLK-class",
         "Name": "Mercedes-Benz GLK350",
         "Year": "2013",
         "FuelType": "Petrol",

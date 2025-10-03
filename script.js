@@ -12,6 +12,8 @@ let activeFilters = {
     maxYear: null
 };
 let brandModelHierarchy = {};
+let currentSelectedBrand = null;
+let currentSelectedModel = null;
 
 // Carousel functionality
 let currentSlide = 0;
@@ -157,13 +159,16 @@ const filterDropdown = document.getElementById('filterDropdown');
 
 function buildBrandModelHierarchy() {
     brandModelHierarchy = {};
+    
     allCarsData.forEach(car => {
+        // Build brand -> model hierarchy
         if (!brandModelHierarchy[car.Marks]) {
             brandModelHierarchy[car.Marks] = new Set();
         }
         brandModelHierarchy[car.Marks].add(car.Model);
     });
     
+    // Convert Sets to sorted Arrays (automatically removes duplicates)
     Object.keys(brandModelHierarchy).forEach(brand => {
         brandModelHierarchy[brand] = Array.from(brandModelHierarchy[brand]).sort();
     });
@@ -176,16 +181,22 @@ function showSearchResults(searchTerm) {
     allCarsData.forEach(car => {
         let relevance = 0;
         let matchType = '';
+        let matchedText = '';
         
         if (car.Marks.toLowerCase().includes(term)) {
             relevance += car.Marks.toLowerCase() === term ? 100 : 50;
             matchType = 'brand';
+            matchedText = car.Marks;
         }
         if (car.Model.toLowerCase().includes(term)) {
             relevance += car.Model.toLowerCase() === term ? 100 : 50;
-            matchType = 'model';
+            matchType = matchType ? 'brand-model' : 'model';
+            matchedText = `${car.Marks} ${car.Model}`;
         }
-        if (car.Name.toLowerCase().includes(term)) relevance += 40;
+        if (car.Name.toLowerCase().includes(term)) {
+            relevance += 40;
+            matchedText = car.Name;
+        }
         if (car.BanType.toLowerCase().includes(term)) relevance += 30;
         if (car.FuelType.toLowerCase().includes(term)) relevance += 30;
         if (car.Color.toLowerCase().includes(term)) relevance += 20;
@@ -195,7 +206,8 @@ function showSearchResults(searchTerm) {
             results.push({
                 car: car,
                 relevance: relevance,
-                matchType: matchType
+                matchType: matchType,
+                matchedText: matchedText
             });
         }
     });
@@ -207,16 +219,17 @@ function showSearchResults(searchTerm) {
         const seen = new Set();
         
         results.forEach(result => {
-            const key = `${result.car.Marks}-${result.car.Model}`;
+            const key = `${result.car.Marks}-${result.car.Model}-${result.car.Name}`;
             if (!seen.has(key)) {
                 seen.add(key);
                 uniqueResults.push(result);
             }
         });
         
-        const html = uniqueResults.slice(0, 6).map(result => 
-            `<div class="search-result" onclick="selectSearchResult('${result.car.Marks}', '${result.car.Model}')">
-                ${result.car.Marks} ${result.car.Model} (${result.car.Year}) - $${result.car.Price.toLocaleString()}
+        const html = uniqueResults.slice(0, 8).map(result => 
+            `<div class="search-result" onclick="selectSearchResult('${escapeHtml(result.car.Marks)}', '${escapeHtml(result.car.Model)}', '${escapeHtml(result.car.Name)}')">
+                <strong>${result.car.Marks} ${result.car.Model}</strong><br>
+                <small>${result.car.Name} (${result.car.Year}) - $${result.car.Price.toLocaleString()}</small>
             </div>`
         ).join('');
         
@@ -228,9 +241,13 @@ function showSearchResults(searchTerm) {
     searchDropdown.style.display = 'block';
 }
 
-function selectSearchResult(brand, model) {
-    searchBox.value = `${brand} ${model}`;
-    performSearch(`${brand} ${model}`.toLowerCase());
+function escapeHtml(text) {
+    return text.replace(/'/g, "\\'");
+}
+
+function selectSearchResult(brand, model, name) {
+    searchBox.value = name || `${brand} ${model}`;
+    performSearch((name || `${brand} ${model}`).toLowerCase());
     hideSearchDropdown();
 }
 
@@ -366,23 +383,37 @@ function generateBrandModelHierarchy() {
     document.querySelectorAll('.brand-option').forEach(option => {
         option.addEventListener('click', function() {
             const brand = this.dataset.value;
+            
+            // Deselect all other brands first (single brand selection)
+            document.querySelectorAll('.brand-option').forEach(opt => {
+                if (opt !== this) {
+                    opt.classList.remove('active');
+                }
+            });
+            
+            const wasActive = this.classList.contains('active');
             this.classList.toggle('active');
             
-            const brandIndex = activeFilters.brands.indexOf(brand);
-            if (brandIndex > -1) {
-                activeFilters.brands.splice(brandIndex, 1);
+            if (wasActive) {
+                // Deselecting brand
+                const brandIndex = activeFilters.brands.indexOf(brand);
+                if (brandIndex > -1) {
+                    activeFilters.brands.splice(brandIndex, 1);
+                }
                 if (activeFilters.selectedBrandModels[brand]) {
-                    activeFilters.selectedBrandModels[brand].forEach(model => {
-                        const modelIndex = activeFilters.models.indexOf(model);
-                        if (modelIndex > -1) {
-                            activeFilters.models.splice(modelIndex, 1);
-                        }
-                    });
                     delete activeFilters.selectedBrandModels[brand];
                 }
+                activeFilters.models = [];
+                currentSelectedBrand = null;
+                currentSelectedModel = null;
                 hideModelOptions();
             } else {
-                activeFilters.brands.push(brand);
+                // Selecting new brand
+                activeFilters.brands = [brand];
+                activeFilters.models = [];
+                activeFilters.selectedBrandModels = {};
+                currentSelectedBrand = brand;
+                currentSelectedModel = null;
                 showModelOptions(brand);
             }
         });
@@ -393,25 +424,16 @@ function showModelOptions(brand) {
     const models = brandModelHierarchy[brand];
     if (!models || models.length === 0) return;
     
-    let modelSection = document.getElementById('modelSection');
-    if (!modelSection) {
-        const filterDropdown = document.getElementById('filterDropdown');
-        const brandSection = filterDropdown.querySelector('.filter-section');
-        
-        modelSection = document.createElement('div');
-        modelSection.className = 'filter-section';
-        modelSection.id = 'modelSection';
-        modelSection.innerHTML = '<h4>Models</h4><div class="filter-options" id="modelOptions"></div>';
-        
-        brandSection.parentNode.insertBefore(modelSection, brandSection.nextSibling);
-    }
-    
+    const modelSection = document.getElementById('modelSection');
     const modelContainer = document.getElementById('modelOptions');
+    
     const selectedModelsForBrand = activeFilters.selectedBrandModels[brand] || [];
     
+    // Models are already deduplicated in brandModelHierarchy (using Set)
     let html = '';
     models.forEach(model => {
         const isSelected = selectedModelsForBrand.includes(model);
+        
         html += `<span class="filter-option model-option ${isSelected ? 'active' : ''}" 
                        data-brand="${brand}" data-model="${model}">${model}</span>`;
     });
@@ -424,7 +446,8 @@ function showModelOptions(brand) {
             const brand = this.dataset.brand;
             const model = this.dataset.model;
             
-            this.classList.toggle('selected');
+            // Toggle active state (allow multiple selections)
+            this.classList.toggle('active');
             
             if (!activeFilters.selectedBrandModels[brand]) {
                 activeFilters.selectedBrandModels[brand] = [];
@@ -432,20 +455,22 @@ function showModelOptions(brand) {
             
             const modelIndex = activeFilters.selectedBrandModels[brand].indexOf(model);
             if (modelIndex > -1) {
+                // Remove model from selection
                 activeFilters.selectedBrandModels[brand].splice(modelIndex, 1);
-                const globalModelIndex = activeFilters.models.indexOf(model);
-                if (globalModelIndex > -1) {
-                    activeFilters.models.splice(globalModelIndex, 1);
-                }
             } else {
+                // Add model to selection
                 activeFilters.selectedBrandModels[brand].push(model);
-                if (!activeFilters.models.includes(model)) {
-                    activeFilters.models.push(model);
-                }
             }
+            
+            // Update global models array
+            activeFilters.models = [];
+            Object.values(activeFilters.selectedBrandModels).forEach(models => {
+                activeFilters.models.push(...models);
+            });
         });
     });
 }
+
 
 function hideModelOptions() {
     const modelSection = document.getElementById('modelSection');
@@ -485,17 +510,21 @@ document.getElementById('clearFilters').addEventListener('click', function() {
         maxYear: null
     };
     
+    currentSelectedBrand = null;
+    currentSelectedModel = null;
     searchBox.value = '';
     
     filteredCarsData = [...allCarsData];
     renderCars(filteredCarsData);
     
+    hideModelOptions();
     generateFilterOptions();
 });
 
 function applyFilters() {
     let filtered = [...allCarsData];
     
+    // Apply model filter
     if (activeFilters.models.length > 0) {
         filtered = filtered.filter(car => {
             const selectedModelsForBrand = activeFilters.selectedBrandModels[car.Marks];
@@ -505,6 +534,7 @@ function applyFilters() {
             return false;
         });
     } else if (activeFilters.brands.length > 0) {
+        // Apply brand filter
         filtered = filtered.filter(car => activeFilters.brands.includes(car.Marks));
     }
     
