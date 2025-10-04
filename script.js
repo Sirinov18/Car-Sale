@@ -95,6 +95,121 @@ document.addEventListener('DOMContentLoaded', function() {
     loadLikedCars();
 });
 
+// Account modal functionality
+const accountLink = document.getElementById('accountLink');
+const mobileAccountLink = document.getElementById('mobileAccountLink');
+const accountModal = document.getElementById('accountModal');
+const closeAccountModal = document.getElementById('closeAccountModal');
+const loginForm = document.getElementById('loginForm');
+const signupForm = document.getElementById('signupForm');
+const showSignupLink = document.getElementById('showSignupLink');
+const showLoginLink = document.getElementById('showLoginLink');
+const formTitle = document.getElementById('formTitle');
+
+// Function to show account modal
+function showAccountModal(e) {
+    e.preventDefault();
+    accountModal.style.display = 'flex';
+    
+    // Close mobile menu if open
+    if (mobileDropdown && mobileDropdown.classList.contains('show')) {
+        closeMobileMenu();
+    }
+}
+
+if (accountLink) {
+    accountLink.addEventListener('click', showAccountModal);
+}
+
+if (mobileAccountLink) {
+    mobileAccountLink.addEventListener('click', showAccountModal);
+}
+
+if (closeAccountModal) {
+    closeAccountModal.addEventListener('click', function() {
+        accountModal.style.display = 'none';
+    });
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', function(e) {
+    if (e.target === accountModal) {
+        accountModal.style.display = 'none';
+    }
+});
+
+// Switch to signup form
+if (showSignupLink) {
+    showSignupLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+        formTitle.textContent = 'Sign Up';
+    });
+}
+
+// Switch to login form
+if (showLoginLink) {
+    showLoginLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'block';
+        formTitle.textContent = 'Login';
+    });
+}
+
+// Handle login form submission
+if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const rememberMe = document.getElementById('rememberMe').checked;
+        
+        // Here you would normally send credentials to a server
+        console.log('Login attempt:', { username, rememberMe });
+        
+        // Show success message (you can customize this)
+        alert(`Welcome, ${username}!`);
+        
+        // Close modal and reset form
+        accountModal.style.display = 'none';
+        loginForm.reset();
+    });
+}
+
+// Handle signup form submission
+if (signupForm) {
+    signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('signupUsername').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+        const confirmPassword = document.getElementById('signupConfirmPassword').value;
+        
+        // Validate passwords match
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
+        
+        // Here you would normally send registration data to a server
+        console.log('Signup attempt:', { username, email });
+        
+        // Show success message
+        alert(`Account created successfully! Welcome, ${username}!`);
+        
+        // Close modal and reset form
+        accountModal.style.display = 'none';
+        signupForm.reset();
+        
+        // Switch back to login form
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'block';
+        formTitle.textContent = 'Login';
+    });
+}
+
 // Enhanced mobile menu functionality
 const mobileToggle = document.getElementById('mobileToggle');
 const mobileDropdown = document.getElementById('mobileDropdown');
@@ -311,6 +426,11 @@ document.addEventListener('click', function(e) {
     }
     if (!filterIcon.contains(e.target) && !filterDropdown.contains(e.target)) {
         hideFilterDropdown();
+    }
+    // Close account dropdown when clicking on search/filter areas
+    const accountDropdown = document.getElementById('accountDropdown');
+    if (accountDropdown && (searchBox.contains(e.target) || filterIcon.contains(e.target))) {
+        accountDropdown.classList.remove('show');
     }
 });
 

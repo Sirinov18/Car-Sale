@@ -118,6 +118,7 @@
         display: flex;
     }
 
+
     /* Search container desktop-də görünür */
     .search-container {
         display: flex !important;
@@ -475,6 +476,26 @@
         font-size: 12px;
         align-self: flex-end;
     }
+
+    /* Account modal tablet */
+    .account-modal-content {
+        max-width: 360px;
+        width: 85%;
+        max-height: 80vh;
+    }
+
+    .account-dropdown-header {
+        padding: 18px;
+    }
+
+    .account-dropdown-header h3 {
+        font-size: 20px;
+    }
+
+    .login-form,
+    .signup-form {
+        padding: 20px;
+    }
 }
 
 /* Mobile (480px və aşağı) */
@@ -734,6 +755,50 @@
         padding: 5px 10px;
         font-size: 11px;
     }
+
+    /* Account modal mobile */
+    .account-modal-content {
+        max-width: 340px;
+        width: 88%;
+        max-height: 75vh;
+    }
+
+    .account-dropdown-header {
+        padding: 16px;
+    }
+
+    .account-dropdown-header h3 {
+        font-size: 18px;
+    }
+
+    .login-form,
+    .signup-form {
+        padding: 18px;
+    }
+
+    .form-group {
+        margin-bottom: 14px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"],
+    .form-group input[type="email"] {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .login-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .signup-link {
+        font-size: 12px;
+    }
 }
 
 /* Çox kiçik mobil (360px və aşağı) */
@@ -976,6 +1041,56 @@
     .clear-all-btn {
         padding: 4px 8px;
         font-size: 10px;
+    }
+
+    /* Account modal extra small */
+    .account-modal-content {
+        max-width: 300px;
+        width: 90%;
+        max-height: 70vh;
+    }
+
+    .account-dropdown-header {
+        padding: 14px;
+    }
+
+    .account-dropdown-header h3 {
+        font-size: 16px;
+    }
+
+    .login-form,
+    .signup-form {
+        padding: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 12px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"],
+    .form-group input[type="email"] {
+        padding: 9px 11px;
+        font-size: 12px;
+    }
+
+    .form-options {
+        font-size: 11px;
+        margin-bottom: 14px;
+    }
+
+    .login-btn {
+        padding: 9px 14px;
+        font-size: 12px;
+    }
+
+    .signup-link {
+        font-size: 11px;
+        margin-top: 12px;
     }
 }
 

@@ -92,6 +92,179 @@
     text-align: center;
 }
 
+/* Account Modal */
+.account-modal-content {
+    max-width: 400px;
+    width: 90%;
+    padding: 0;
+    overflow: hidden;
+    max-height: 85vh;
+}
+
+.account-dropdown-header {
+    background: linear-gradient(135deg, #ff8c00, #ff6b00);
+    padding: 20px;
+    text-align: center;
+}
+
+.account-dropdown-header h3 {
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+}
+
+/* Login Form */
+.login-form {
+    padding: 25px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-group label i {
+    color: #ff8c00;
+    margin-right: 5px;
+    font-size: 13px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group input[type="password"]::placeholder,
+.form-group input[type="email"]::placeholder {
+    font-size: 14px;
+    color: #999;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus,
+.form-group input[type="email"]:focus {
+    outline: none;
+    border-color: #ff8c00;
+    box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: #666;
+}
+
+.remember-me input[type="checkbox"] {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.remember-me span {
+    user-select: none;
+}
+
+.forgot-password {
+    color: #ff8c00;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #ff6b00;
+    text-decoration: underline;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #ff8c00, #ff6b00);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.login-btn:hover {
+    background: linear-gradient(135deg, #ff6b00, #ff5500);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 13px;
+    color: #666;
+}
+
+.signup-link a {
+    color: #ff8c00;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#showSignupLink,
+#showLoginLink {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff8c00, #ff6b00);
+    color: white !important;
+    padding: 8px 16px;
+    border-radius: 6px;
+    margin-top: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 140, 0, 0.2);
+}
+
+#showSignupLink:active,
+#showLoginLink:active {
+    transform: translateY(1px);
+}
+
+/* Signup Form */
+.signup-form {
+    padding: 25px;
+}
+
 /* Search container styling */
 .search-container {
     margin-left: 20px;
