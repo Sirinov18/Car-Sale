@@ -1537,3 +1537,489 @@
         font-size: 12px;
     }
 }
+
+/* Advertisement Cards Responsive Styles */
+
+/* Desktop normal */
+@media screen and (min-width: 769px) {
+    .ads-section {
+        padding: 40px 8%;
+    }
+    
+    .ads-container {
+        gap: 30px;
+    }
+    
+    .ads-card-image {
+        height: 200px;
+    }
+}
+
+/* Tablet (768px and below) */
+@media screen and (max-width: 768px) {
+    .ads-section {
+        padding: 30px 4%;
+    }
+    
+    .ads-container {
+        flex-direction: column;
+        gap: 25px;
+    }
+    
+    .ads-card {
+        max-width: 100%;
+    }
+    
+    .ads-card-image {
+        height: 180px;
+    }
+    
+    .ads-card-content h3 {
+        font-size: 20px;
+    }
+    
+    .ads-card-content p {
+        font-size: 13px;
+    }
+    
+    .ads-details {
+        padding: 15px;
+    }
+    
+    .ads-details .detail-item {
+        font-size: 13px;
+        padding: 8px 0;
+    }
+}
+
+/* Mobile (480px and below) */
+@media screen and (max-width: 480px) {
+    .ads-section {
+        padding: 25px 3%;
+    }
+    
+    .ads-container {
+        gap: 20px;
+    }
+    
+    .ads-card-image {
+        height: 150px;
+    }
+    
+    .ads-card-content {
+        padding: 15px;
+    }
+    
+    .ads-card-content h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+    
+    .ads-card-content p {
+        font-size: 12px;
+    }
+    
+    .ads-details {
+        padding: 12px;
+    }
+    
+    .ads-details .detail-item {
+        font-size: 12px;
+        padding: 6px 0;
+        gap: 10px;
+    }
+    
+    .ads-details .detail-item i {
+        font-size: 16px;
+        width: 20px;
+    }
+}
+
+/* Extra small mobile (360px and below) */
+@media screen and (max-width: 360px) {
+    .ads-section {
+        padding: 20px 2%;
+    }
+    
+    .ads-container {
+        gap: 15px;
+    }
+    
+    .ads-card-image {
+        height: 130px;
+    }
+    
+    .ads-card-content {
+        padding: 12px;
+    }
+    
+    .ads-card-content h3 {
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+    
+    .ads-card-content p {
+        font-size: 11px;
+    }
+    
+    .ads-details {
+        padding: 10px;
+    }
+    
+    .ads-details .detail-item {
+        font-size: 11px;
+        padding: 5px 0;
+        gap: 8px;
+    }
+    
+    .ads-details .detail-item i {
+        font-size: 14px;
+        width: 18px;
+    }
+}
+
+/* Horizontal Banner Advertisement Responsive Styles */
+
+/* Desktop normal */
+@media screen and (min-width: 769px) {
+    .banner-ad-wrapper.show {
+        max-height: 450px;
+    }
+    
+    .banner-ad-content {
+        padding: 50px 100px;
+        gap: 60px;
+    }
+    
+    .banner-left h2 {
+        font-size: 46px;
+    }
+    
+    .banner-subtitle {
+        font-size: 19px;
+    }
+    
+    .banner-features li {
+        font-size: 16px;
+    }
+    
+    .banner-right {
+        flex: 0 0 550px;
+    }
+    
+    .banner-right img {
+        width: 100%;
+        height: 350px;
+        object-fit: contain;
+    }
+}
+
+/* Tablet (768px and below) */
+@media screen and (max-width: 768px) {
+    .banner-ad-wrapper.show {
+        max-height: 450px;
+    }
+    
+    .banner-ad-content {
+        flex-direction: row;
+        padding: 30px 20px;
+        gap: 20px;
+    }
+    
+    .banner-left {
+        flex: 1;
+        text-align: left;
+    }
+    
+    .banner-badge {
+        font-size: 11px;
+        padding: 6px 14px;
+        margin-bottom: 12px;
+    }
+    
+    .banner-left h2 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+    
+    .banner-subtitle {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    
+    .banner-features {
+        margin-bottom: 15px;
+    }
+    
+    .banner-features li {
+        font-size: 12px;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+    
+    .banner-features i {
+        font-size: 14px;
+    }
+    
+    .banner-cta-group {
+        gap: 10px;
+    }
+    
+    .banner-btn-primary,
+    .banner-btn-secondary {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+    
+    .banner-right {
+        flex: 0 0 320px;
+    }
+    
+    .banner-right img {
+        height: 280px;
+    }
+    
+    .banner-price-tag {
+        padding: 10px 18px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .price-label {
+        font-size: 10px;
+    }
+    
+    .price-amount {
+        font-size: 22px;
+    }
+}
+
+/* Mobile (470px and below) - Stacked Layout */
+@media screen and (max-width: 470px) {
+    .banner-ad-wrapper.show {
+        max-height: 700px;
+    }
+    
+    .banner-ad-content {
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 25px;
+    }
+    
+    .banner-left {
+        text-align: center;
+    }
+    
+    .banner-badge {
+        font-size: 12px;
+        padding: 8px 16px;
+        margin-bottom: 15px;
+    }
+    
+    .banner-left h2 {
+        font-size: 26px;
+        margin-bottom: 12px;
+    }
+    
+    .banner-subtitle {
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .banner-features {
+        margin-bottom: 20px;
+    }
+    
+    .banner-features li {
+        font-size: 14px;
+        gap: 10px;
+        margin-bottom: 10px;
+        justify-content: center;
+    }
+    
+    .banner-features i {
+        font-size: 16px;
+    }
+    
+    .banner-cta-group {
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .banner-btn-primary,
+    .banner-btn-secondary {
+        padding: 12px 28px;
+        font-size: 14px;
+    }
+    
+    .banner-right {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .banner-right img {
+        width: 100%;
+        height: 280px;
+        object-fit: contain;
+    }
+    
+    .banner-price-tag {
+        padding: 12px 20px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .price-label {
+        font-size: 11px;
+    }
+    
+    .price-amount {
+        font-size: 24px;
+    }
+}
+
+/* Bottom Banner Advertisement Responsive Styles */
+
+/* Desktop normal */
+@media screen and (min-width: 769px) {
+    .bottom-banner-wrapper.show {
+        max-height: 400px;
+    }
+    
+    .bottom-banner-content {
+        padding: 40px 80px;
+        gap: 60px;
+    }
+    
+    .bottom-banner-left {
+        flex: 0 0 450px;
+    }
+    
+    .bottom-banner-left img {
+        height: 300px;
+    }
+    
+    .bottom-banner-right h3 {
+        font-size: 36px;
+    }
+    
+    .bottom-banner-right p {
+        font-size: 17px;
+    }
+    
+    .bottom-features li {
+        font-size: 16px;
+    }
+}
+
+/* Tablet (768px and below) */
+@media screen and (max-width: 768px) {
+    .bottom-banner-wrapper.show {
+        max-height: 320px;
+    }
+    
+    .bottom-banner-content {
+        padding: 25px 25px;
+        gap: 25px;
+    }
+    
+    .bottom-banner-left {
+        flex: 0 0 280px;
+    }
+    
+    .bottom-banner-left img {
+        height: 200px;
+    }
+    
+    .bottom-banner-badge {
+        font-size: 11px;
+        padding: 6px 16px;
+    }
+    
+    .bottom-banner-right h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .bottom-banner-right p {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+    
+    .bottom-features {
+        margin-bottom: 15px;
+    }
+    
+    .bottom-features li {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+    
+    .bottom-banner-btn {
+        padding: 10px 24px;
+        font-size: 13px;
+    }
+}
+
+/* Mobile (470px and below) */
+@media screen and (max-width: 470px) {
+    .bottom-banner-wrapper {
+        margin-bottom: 10px;
+    }
+    
+    .bottom-banner-wrapper.show {
+        max-height: 550px;
+    }
+    
+    .bottom-banner-content {
+        flex-direction: column;
+        padding: 25px 20px;
+        gap: 20px;
+    }
+    
+    .bottom-banner-left {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .bottom-banner-left img {
+        height: 180px;
+    }
+    
+    .bottom-banner-right {
+        text-align: center;
+    }
+    
+    .bottom-banner-badge {
+        font-size: 10px;
+        padding: 6px 14px;
+    }
+    
+    .bottom-banner-right h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .bottom-banner-right p {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+    
+    .bottom-features {
+        margin-bottom: 15px;
+    }
+    
+    .bottom-features li {
+        font-size: 12px;
+        justify-content: center;
+        margin-bottom: 8px;
+    }
+    
+    .bottom-banner-btn {
+        padding: 10px 25px;
+        font-size: 13px;
+    }
+}

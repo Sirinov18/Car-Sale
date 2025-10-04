@@ -6,6 +6,24 @@
     box-sizing: border-box;
 }
 
+/* Smooth rendering for all elements */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-smooth: always;
+}
+
+img {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -ms-interpolation-mode: bicubic;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: optimize-quality;
+    transform: translateZ(0);
+}
+
 /* No results message */
 .no-results {
     text-align: center;
@@ -1224,4 +1242,464 @@
 .clear-all-btn:hover {
     background: linear-gradient(135deg, #c82333, #a71e2a);
     transform: translateY(-1px);
+}
+
+/* Advertisement Cards Section */
+.ads-section {
+    width: 100%;
+    padding: 40px 8%;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    overflow: hidden;
+}
+
+.ads-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: stretch;
+}
+
+.ads-card {
+    flex: 1;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    animation: slideInFromLeft 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateX(-100px);
+}
+
+.ads-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.ads-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.ads-card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.ads-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(255, 140, 0, 0.3);
+}
+
+.ads-card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.ads-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.ads-card:hover .ads-card-image img {
+    transform: scale(1.1);
+}
+
+.ads-card-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.ads-card-content h3 {
+    color: #333;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #ff8c00, #ff6b00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.ads-card-content p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.ads-details {
+    padding: 20px;
+    background: #f8f9fa;
+    border-top: 2px solid #e9ecef;
+}
+
+.ads-details .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    color: #555;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.ads-details .detail-item:hover {
+    color: #ff8c00;
+    transform: translateX(5px);
+}
+
+.ads-details .detail-item i {
+    color: #ff8c00;
+    font-size: 18px;
+    width: 25px;
+    text-align: center;
+}
+
+.ads-details .detail-item span {
+    font-weight: 500;
+}
+
+/* Horizontal Banner Advertisement */
+.banner-ad-wrapper {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.6s ease, opacity 0.6s ease;
+}
+
+.banner-ad-wrapper.show {
+    max-height: 450px;
+    opacity: 1;
+}
+
+.banner-ad-container {
+    width: 100%;
+    background:rgb(25, 24, 24);
+    position: relative;
+    overflow: visible;
+    transform: translateX(-100%);
+    transition: transform 1s ease-out;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.banner-ad-wrapper.show .banner-ad-container {
+    transform: translateX(0);
+}
+
+.banner-ad-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 100px;
+    gap: 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.banner-left {
+    flex: 1;
+    color: white;
+}
+
+.banner-badge {
+    display: inline-block;
+    background: #fbbf24;
+    color: #000;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.banner-left h2 {
+    font-size: 46px;
+    font-weight: 900;
+    margin: 0 0 15px 0;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.banner-subtitle {
+    font-size: 19px;
+    color: #e0e0e0;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.banner-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.banner-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.banner-features i {
+    color: #10b981;
+    font-size: 18px;
+}
+
+.banner-cta-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.banner-btn-primary {
+    background: #fbbf24;
+    color: #000;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.banner-btn-primary:hover {
+    background: #f59e0b;
+    transform: translateY(-2px);
+}
+
+.banner-btn-primary i {
+    font-size: 14px;
+}
+
+.banner-btn-secondary {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 13px 30px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.banner-btn-secondary:hover {
+    background: #fff;
+    color: #000;
+}
+
+.banner-right {
+    flex: 0 0 550px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-right img {
+    width: 100%;
+    height: 350px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+}
+
+.banner-price-tag {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #fbbf24;
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.price-label {
+    display: block;
+    font-size: 12px;
+    color: #000;
+    font-weight: 700;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+}
+
+.price-amount {
+    display: block;
+    font-size: 28px;
+    font-weight: 900;
+    color: #000;
+    line-height: 1;
+}
+
+/* Bottom Banner Advertisement */
+.bottom-banner-wrapper {
+    width: 100%;
+    overflow: visible;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.7s ease, opacity 0.7s ease;
+}
+
+.bottom-banner-wrapper.show {
+    max-height: 400px;
+    opacity: 1;
+}
+
+.bottom-banner-container {
+    width: 100%;
+    background: rgb(96, 92, 92);
+    position: relative;
+    overflow: visible;
+    box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.3);
+}
+
+.bottom-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 80px;
+    gap: 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.bottom-banner-left {
+    flex: 0 0 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: perspective(1200px) rotateY(-90deg) scale(0.5);
+    transform-origin: right center;
+    opacity: 0;
+    transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease;
+}
+
+.bottom-banner-wrapper.show .bottom-banner-left {
+    transform: perspective(1200px) rotateY(0deg) scale(1);
+    opacity: 1;
+}
+
+.bottom-banner-left img {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+}
+
+.bottom-banner-right {
+    flex: 1;
+    color: white;
+    transform: perspective(1200px) rotateY(90deg) scale(0.5);
+    transform-origin: left center;
+    opacity: 0;
+    transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease;
+    transition-delay: 0.2s;
+}
+
+.bottom-banner-wrapper.show .bottom-banner-right {
+    transform: perspective(1200px) rotateY(0deg) scale(1);
+    opacity: 1;
+}
+
+.bottom-banner-badge {
+    display: inline-block;
+    background: #fbbf24;
+    color: #000;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.bottom-banner-badge i {
+    color: #ff4500;
+}
+
+.bottom-banner-right h3 {
+    font-size: 36px;
+    font-weight: 900;
+    color: #fff;
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+}
+
+.bottom-banner-right p {
+    font-size: 17px;
+    color: #e0e0e0;
+    margin: 0 0 25px 0;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.bottom-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.bottom-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.bottom-features i {
+    color: #10b981;
+    font-size: 18px;
+}
+
+.bottom-banner-btn {
+    background: #fbbf24;
+    color: #000;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bottom-banner-btn:hover {
+    background: #f59e0b;
+    transform: translateY(-2px);
+}
+
+.bottom-banner-btn i {
+    font-size: 14px;
 }

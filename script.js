@@ -1071,6 +1071,44 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Horizontal Banner Advertisement functionality
+const bannerAdWrapper = document.getElementById('bannerAdWrapper');
+
+// Show banner ad on scroll
+window.addEventListener('scroll', function() {
+    if (bannerAdWrapper) {
+        const scrollPosition = window.scrollY || window.pageYOffset;
+        
+        // Show banner after scrolling 300px down
+        if (scrollPosition > 300) {
+            bannerAdWrapper.classList.add('show');
+        } else {
+            bannerAdWrapper.classList.remove('show');
+        }
+    }
+});
+
+// Bottom Banner Advertisement functionality
+const bottomBannerWrapper = document.getElementById('bottomBannerWrapper');
+
+// Show bottom banner when scrolling near footer
+window.addEventListener('scroll', function() {
+    if (bottomBannerWrapper) {
+        const scrollPosition = window.scrollY || window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Show banner when user scrolls to 70% of the page
+        const scrollPercentage = (scrollPosition + windowHeight) / documentHeight;
+        
+        if (scrollPercentage > 0.7) {
+            bottomBannerWrapper.classList.add('show');
+        } else {
+            bottomBannerWrapper.classList.remove('show');
+        }
+    }
+});
+
 // Load cars from JSON
 fetch('cars.json')
     .then(response => response.json())
