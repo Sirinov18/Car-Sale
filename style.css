@@ -374,7 +374,7 @@ img {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     z-index: 1000;
     display: none;
-    max-height: 500px;
+    max-height: 550px;
     overflow-y: auto;
 }
 
@@ -425,6 +425,24 @@ img {
     color: white;
     font-weight: 600;
     box-shadow: 0 2px 8px rgba(255, 140, 0, 0.3);
+}
+
+/* Brand option specific styling - orange theme */
+.brand-option.active {
+    background: linear-gradient(135deg, #ff8c00, #ff6b00);
+    border-color: #ff6b00;
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 3px 10px rgba(255, 140, 0, 0.4);
+    transform: scale(1.05);
+}
+
+.brand-option.active::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 6px;
+    font-size: 11px;
 }
 
 /* Model options styling - sub-group items */
@@ -523,18 +541,19 @@ img {
 
 /* Variant section styling */
 .variant-section {
-    background: #f8f9fa;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
+    background: #fff8f0;
+    border: 2px solid #ffb74d;
+    border-radius: 8px;
     padding: 15px !important;
-    margin-top: 0px;
+    margin-top: 5px;
+    margin-left: 15px;
     animation: slideDown 0.3s ease;
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid #ff9800;
 }
 
 .variant-section h4 {
-    font-size: 16px;
-    color: #333;
+    font-size: 15px;
+    color: #e65100;
     margin-bottom: 10px;
     font-weight: 600;
     display: flex;
@@ -546,7 +565,7 @@ img {
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     margin-right: 8px;
-    color: #666;
+    color: #ff9800;
 }
 
 .variant-options-container {
@@ -555,11 +574,46 @@ img {
     overflow-y: auto;
 }
 
+/* Selected Model Display Badge */
+.selected-model-display {
+    background: linear-gradient(135deg, #ff8c00, #ff6b00);
+    border: none;
+    padding: 12px 15px !important;
+    margin-bottom: 5px;
+}
+
+.selected-model-badge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.selected-model-badge span {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.selected-model-badge i {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.selected-model-badge i:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
 /* Variant option styling */
 .variant-option {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
-    color: #495057;
+    background: #fff3e0;
+    border: 1px solid #ffb74d;
+    color: #e65100;
     padding: 6px 12px;
     border-radius: 15px;
     font-size: 12px;
@@ -569,36 +623,51 @@ img {
 }
 
 .variant-option:hover {
-    background: #e9ecef;
-    border-color: #adb5bd;
+    background: #ffe0b2;
+    border-color: #ff9800;
     transform: translateY(-1px);
 }
 
 .variant-option.active {
-    background: linear-gradient(135deg, #ff8c00, #ff6b00);
-    border-color: #ff6b00;
+    background: linear-gradient(135deg, #ff6b00, #ff5500);
+    border-color: #ff5500;
     color: white;
     font-weight: 600;
-    box-shadow: 0 2px 8px rgba(255, 140, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(255, 107, 0, 0.4);
 }
 
-.year-range {
+.variant-option.active::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 6px;
+    font-size: 11px;
+}
+
+.year-range,
+.price-range,
+.mileage-range,
+.engine-range {
     display: flex;
     gap: 10px;
     align-items: center;
 }
 
-.year-input {
+.year-input,
+.range-input {
     flex: 1;
     padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
     font-size: 14px;
+    transition: all 0.3s ease;
 }
 
-.year-input:focus {
+.year-input:focus,
+.range-input:focus {
     outline: none;
     border-color: orange;
+    box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
 }
 
 .filter-buttons {
@@ -782,7 +851,7 @@ img {
 }
 
 .car-card {
-    background: rgb(81, 76, 76);
+    background: rgb(99, 101, 102);
     border-radius: 10px;
     width: 250px;
     color: white;
@@ -1389,7 +1458,7 @@ img {
 
 .banner-ad-container {
     width: 100%;
-    background:rgb(25, 24, 24);
+    background:rgb(225, 156, 67);
     position: relative;
     overflow: visible;
     transform: translateX(-100%);
@@ -1555,151 +1624,144 @@ img {
     line-height: 1;
 }
 
-/* Bottom Banner Advertisement */
-.bottom-banner-wrapper {
+/* Promo Card Section */
+.promo-section {
     width: 100%;
-    overflow: visible;
-    padding: 0;
-    margin: 0;
-    max-height: 0;
-    opacity: 0;
-    transition: max-height 0.7s ease, opacity 0.7s ease;
+    padding: 60px 8%;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
-.bottom-banner-wrapper.show {
-    max-height: 400px;
-    opacity: 1;
-}
-
-.bottom-banner-container {
-    width: 100%;
-    background: rgb(96, 92, 92);
+.promo-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     position: relative;
-    overflow: visible;
-    box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.3);
 }
 
-.bottom-banner-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 40px 80px;
-    gap: 60px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.bottom-banner-left {
-    flex: 0 0 450px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: perspective(1200px) rotateY(-90deg) scale(0.5);
-    transform-origin: right center;
-    opacity: 0;
-    transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease;
-}
-
-.bottom-banner-wrapper.show .bottom-banner-left {
-    transform: perspective(1200px) rotateY(0deg) scale(1);
-    opacity: 1;
-}
-
-.bottom-banner-left img {
-    width: 100%;
-    height: 300px;
-    object-fit: contain;
-    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
-}
-
-.bottom-banner-right {
+.promo-image {
     flex: 1;
-    color: white;
-    transform: perspective(1200px) rotateY(90deg) scale(0.5);
-    transform-origin: left center;
-    opacity: 0;
-    transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease;
-    transition-delay: 0.2s;
+    position: relative;
 }
 
-.bottom-banner-wrapper.show .bottom-banner-right {
-    transform: perspective(1200px) rotateY(0deg) scale(1);
+.car-image {
+    width: 100%;
+    height: auto;
+    animation: carSlide 3s ease-in-out infinite;
+    filter: drop-shadow(0 10px 30px rgba(255, 140, 0, 0.3));
+}
+
+@keyframes carSlide {
+    0%, 100% {
+        transform: translateX(-10px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+}
+
+.promo-text {
+    flex: 1;
+}
+
+.animated-title {
+    font-size: 48px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ff8c00, #ff6b00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    animation: titlePulse 2s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.animated-subtitle {
+    font-size: 22px;
+    color: #666;
+    font-weight: 500;
+    animation: subtitleFade 3s ease-in-out infinite;
+}
+
+@keyframes subtitleFade {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Scroll Reveal Section - Enhanced */
+.scroll-reveal-section {
+    width: 100%;
+    padding: 60px 8%;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.scroll-text-item {
+    padding: 45px;
+    margin-bottom: 35px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    border-left: 6px solid #ff8c00;
+    opacity: 0;
+    transform: translateY(80px) scale(0.95);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-text-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.05) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-text-item:hover::before {
     opacity: 1;
 }
 
-.bottom-banner-badge {
-    display: inline-block;
-    background: #fbbf24;
-    color: #000;
-    padding: 8px 20px;
-    border-radius: 30px;
-    font-size: 13px;
-    font-weight: 900;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
+.scroll-text-item.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
 
-.bottom-banner-badge i {
-    color: #ff4500;
+/* No CSS delays - timing controlled by JavaScript */
+
+.scroll-text-item h3 {
+    font-size: 32px;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
-.bottom-banner-right h3 {
-    font-size: 36px;
-    font-weight: 900;
-    color: #fff;
-    margin: 0 0 15px 0;
-    line-height: 1.2;
-}
-
-.bottom-banner-right p {
-    font-size: 17px;
-    color: #e0e0e0;
-    margin: 0 0 25px 0;
-    font-weight: 400;
-    line-height: 1.5;
-}
-
-.bottom-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 30px 0;
-}
-
-.bottom-features li {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-    font-size: 16px;
-    color: #fff;
+.scroll-text-item p {
+    font-size: 19px;
+    color: #4a4a4a;
+    line-height: 1.7;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
     font-weight: 500;
-}
-
-.bottom-features i {
-    color: #10b981;
-    font-size: 18px;
-}
-
-.bottom-banner-btn {
-    background: #fbbf24;
-    color: #000;
-    border: none;
-    padding: 15px 35px;
-    border-radius: 50px;
-    font-size: 16px;
-    font-weight: 900;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.bottom-banner-btn:hover {
-    background: #f59e0b;
-    transform: translateY(-2px);
-}
-
-.bottom-banner-btn i {
-    font-size: 14px;
 }

@@ -38,26 +38,75 @@
                             <h4>Models</h4>
                             <div class="filter-options model-options-container" id="modelOptions"></div>
                         </div>
+                        
                         <!-- Variant Section (dynamically shown for deeper filtering) -->
                         <div class="filter-section variant-section" id="variantSection" style="display: none;">
                             <h4>Variants</h4>
                             <div class="filter-options variant-options-container" id="variantOptions"></div>
                         </div>
+                        
+                        <div class="filter-section">
+                            <h4>Price Range</h4>
+                            <div class="price-range">
+                                <input type="number" placeholder="Min Price" id="minPrice" class="range-input">
+                                <input type="number" placeholder="Max Price" id="maxPrice" class="range-input">
+                            </div>
+                        </div>
+                        
+                        <div class="filter-section">
+                            <h4>Condition</h4>
+                            <div class="filter-options" id="conditionOptions"></div>
+                        </div>
+                        
+                        <div class="filter-section">
+                            <h4>Gear Type</h4>
+                            <div class="filter-options" id="gearOptions"></div>
+                        </div>
+                        
+                        <div class="filter-section">
+                            <h4>Transmission</h4>
+                            <div class="filter-options" id="transmissionOptions"></div>
+                        </div>
+                        
                         <div class="filter-section">
                             <h4>Fuel Type</h4>
                             <div class="filter-options" id="fuelOptions"></div>
                         </div>
+                        
                         <div class="filter-section">
                             <h4>Body Type</h4>
                             <div class="filter-options" id="bodyOptions"></div>
                         </div>
+                        
+                        <div class="filter-section">
+                            <h4>Mileage (km)</h4>
+                            <div class="mileage-range">
+                                <input type="number" placeholder="Min" id="minMileage" class="range-input">
+                                <input type="number" placeholder="Max" id="maxMileage" class="range-input">
+                            </div>
+                        </div>
+                        
+                        <div class="filter-section">
+                            <h4>Engine Capacity (L)</h4>
+                            <div class="engine-range">
+                                <input type="number" placeholder="Min" id="minEngine" class="range-input" step="0.1">
+                                <input type="number" placeholder="Max" id="maxEngine" class="range-input" step="0.1">
+                            </div>
+                        </div>
+                        
                         <div class="filter-section">
                             <h4>Year</h4>
                             <div class="year-range">
-                                <input type="number" placeholder="Min" id="minYear" class="year-input">
-                                <input type="number" placeholder="Max" id="maxYear" class="year-input">
+                                <input type="number" placeholder="Min" id="minYear" class="range-input">
+                                <input type="number" placeholder="Max" id="maxYear" class="range-input">
                             </div>
                         </div>
+                        
+                        <div class="filter-section">
+                            <h4>Equipment</h4>
+                            <div class="filter-options" id="equipmentOptions"></div>
+                        </div>
+                        
                         <div class="filter-buttons">
                             <button class="apply-btn" id="applyFilters">Apply</button>
                             <button class="clear-btn" id="clearFilters">Clear</button>
@@ -74,7 +123,7 @@
                         <span class="like-counter" id="likeCounter">0</span>
                     </a>
                 </li>
-                <li><a href="#"><i class="fa-solid fa-phone"></i>Contact</a></li>
+                <li><a href="contact.html"><i class="fa-solid fa-phone"></i>Contact</a></li>
                 <!-- Toggle button sağda (mobile-da) -->
                 <li class="mobile-toggle-container">
                     <div class="mobile-toggle" id="mobileToggle">
@@ -184,7 +233,7 @@
         <div class="ads-container">
             <div class="ads-card">
                 <div class="ads-card-image">
-                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop" alt="Premium Cars">
+                    <img src="https://media.ed.edmunds-media.com/mercedes-benz/maybach/2022/oem/2022_mercedes-benz_maybach_sedan_s-580-4matic_fq_oem_1_1600.jpg" alt="Premium Cars">
                 </div>
                 <div class="ads-card-content">
                     <h3>Premium Collection</h3>
@@ -208,7 +257,7 @@
 
             <div class="ads-card">
                 <div class="ads-card-image">
-                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" alt="Sports Cars">
+                    <img src="https://drivar.uk/wp-content/uploads/2021/10/aventador-Lamb-scaled.jpg" alt="Sports Cars">
                 </div>
                 <div class="ads-card-content">
                     <h3>Sports Performance</h3>
@@ -232,7 +281,7 @@
 
             <div class="ads-card">
                 <div class="ads-card-image">
-                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&h=300&fit=crop" alt="Electric Cars">
+                    <img src="https://www.topgear.com/sites/default/files/cars-car/image/2024/06/1-Porsche-Taycan-2024-UK-review.jpg?w=1280&h=720" alt="Electric Cars">
                 </div>
                 <div class="ads-card-content">
                     <h3>Electric Future</h3>
@@ -368,31 +417,39 @@
         </div>
     </div>
 
-    <!-- Bottom Banner Advertisement -->
-    <div class="bottom-banner-wrapper" id="bottomBannerWrapper">
-        <div class="bottom-banner-container">
-            <div class="bottom-banner-content">
-                <div class="bottom-banner-left">
-                    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=500&h=350&fit=crop" alt="Sports Car">
-                </div>
-                <div class="bottom-banner-right">
-                    <div class="bottom-banner-badge">
-                        <i class="fa-solid fa-fire"></i> HOT DEAL
-                    </div>
-                    <h3>Limited Time Offer - Act Fast!</h3>
-                    <p>Exclusive deals on luxury vehicles with unbeatable prices and premium service</p>
-                    <ul class="bottom-features">
-                        <li><i class="fa-solid fa-circle-check"></i> Best Price Guarantee</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Instant Approval</li>
-                        <li><i class="fa-solid fa-circle-check"></i> 24/7 Support</li>
-                    </ul>
-                    <div class="bottom-banner-cta">
-                        <button class="bottom-banner-btn">Claim Offer <i class="fa-solid fa-arrow-right"></i></button>
-                    </div>
-                </div>
+    <!-- Car Card with Animated Text -->
+    <section class="promo-section">
+        <div class="promo-card">
+            <div class="promo-image">
+                <img src="https://www.topgear.com/sites/default/files/2023/08/P90492179_highRes_bmw-i7-xdrive60-m-sp%20%281%29.jpg" 
+                     alt="Luxury Car" class="car-image">
+            </div>
+            <div class="promo-text">
+                <h2 class="animated-title">Find Your Perfect Ride</h2>
+                <p class="animated-subtitle">Premium vehicles at unbeatable prices</p>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Scrolling Text Paragraphs -->
+    <section class="scroll-reveal-section">
+        <div class="scroll-text-item" data-scroll>
+            <h3>🏆 Award-Winning Service</h3>
+            <p>Experience excellence with our certified dealers and premium customer support</p>
+        </div>
+        <div class="scroll-text-item" data-scroll>
+            <h3>💎 Verified Quality</h3>
+            <p>Every vehicle undergoes rigorous inspection to ensure top-notch quality</p>
+        </div>
+        <div class="scroll-text-item" data-scroll>
+            <h3>⚡ Fast & Easy Process</h3>
+            <p>Get your dream car delivered to your doorstep in just a few days</p>
+        </div>
+        <div class="scroll-text-item" data-scroll>
+            <h3>💰 Best Price Guarantee</h3>
+            <p>We offer competitive pricing and flexible financing options for everyone</p>
+        </div>
+    </section>
 
     <footer>
         <p style="text-align:center; padding:20px; background:#333; color:white;">
