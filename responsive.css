@@ -207,32 +207,29 @@
         position: relative;
     }
 
-    /* Search box mobile - hidden by default */
+    /* Search box mobile - always visible like desktop */
     #search-box {
-        position: fixed;
-        right: 35px;
-        width: 0;
+        display: block !important;
+        width: 140px;
         height: 35px;
-        padding: 0;
-        border: 2px solid transparent;
-        border-radius: 20px;
+        padding: 6px 12px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
         font-size: 13px;
         margin: 0;
-        opacity: 0;
-        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        overflow: hidden;
-        pointer-events: none;
-        background: white;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        transition: all 0.3s ease;
     }
 
-    /* Search box when expanded */
-    #search-box.expanded {
-        width: 160px;
-        padding: 6px 15px;
-        opacity: 1;
-        pointer-events: auto;
-        border-color: rgba(255, 140, 0, 0.5);
-        box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
+    #search-box::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    #search-box:focus {
+        outline: none;
+        border-color: orange;
+        background: rgba(255, 255, 255, 0.15);
     }
 
     /* Search and filter icons mobile */
@@ -247,13 +244,6 @@
 
     .search-container i:hover {
         color: orange;
-    }
-
-    /* Search icon animation when active */
-    #searchIcon.active {
-        background: transparent;
-        color: orange;
-        transform: scale(1.1);
     }
 
     /* Filter icon - ensure it's clickable and visible */
@@ -573,27 +563,21 @@
     }
 
     #search-box {
-        position: absolute;
-        right: 32px;
-        width: 0;
+        display: block !important;
+        width: 120px;
         height: 32px;
-        padding: 0;
-        border: 2px solid transparent;
-        border-radius: 18px;
-        font-size: 13px;
+        padding: 5px 10px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        font-size: 12px;
         margin: 0;
-        opacity: 0;
-        pointer-events: none;
-        background: white;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
     }
 
-    #search-box.expanded {
-        width: 140px;
-        padding: 5px 12px;
-        opacity: 1;
-        pointer-events: auto;
-        border-color: rgba(255, 140, 0, 0.5);
-        box-shadow: 0 3px 10px rgba(255, 140, 0, 0.2);
+    #search-box::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 11px;
     }
 
     /* Search and filter icons smaller */
@@ -899,27 +883,21 @@
     }
 
     #search-box {
-        position: absolute;
-        right: 28px;
-        width: 0;
+        display: block !important;
+        width: 100px;
         height: 30px;
-        padding: 0;
-        border: 2px solid transparent;
-        border-radius: 16px;
-        font-size: 12px;
+        padding: 4px 8px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        font-size: 11px;
         margin: 0;
-        opacity: 0;
-        pointer-events: none;
-        background: white;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
     }
 
-    #search-box.expanded {
-        width: 120px;
-        padding: 4px 10px;
-        opacity: 1;
-        pointer-events: auto;
-        border-color: rgba(255, 140, 0, 0.5);
-        box-shadow: 0 3px 8px rgba(255, 140, 0, 0.2);
+    #search-box::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 10px;
     }
 
     /* Extra small search and filter icons */
@@ -1248,27 +1226,21 @@
     }
     
     #search-box {
-        position: fixed;
-        right: 22px;
-        width: 0;
-        height: 20px;
-        padding: 0;
-        border: 2px solid transparent;
-        border-radius: 12px;
-        font-size: 10px;
+        display: block !important;
+        width: 80px;
+        height: 25px;
+        padding: 3px 6px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        font-size: 9px;
         margin: 0;
-        opacity: 0;
-        pointer-events: none;
-        background: white;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
     }
 
-    #search-box.expanded {
-        width: 90px;
-        padding: 2px 8px;
-        opacity: 1;
-        pointer-events: auto;
-        border-color: rgba(255, 140, 0, 0.5);
-        box-shadow: 0 2px 6px rgba(255, 140, 0, 0.2);
+    #search-box::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 8px;
     }
     
     .mobile-toggle {
@@ -1347,27 +1319,21 @@
     }
     
     #search-box {
-        position: absolute;
-        right: 20px;
-        width: 0;
-        height: 18px;
-        padding: 0;
-        border: 2px solid transparent;
-        border-radius: 10px;
-        font-size: 9px;
+        display: block !important;
+        width: 70px;
+        height: 22px;
+        padding: 2px 5px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        font-size: 8px;
         margin: 0;
-        opacity: 0;
-        pointer-events: none;
-        background: white;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
     }
 
-    #search-box.expanded {
-        width: 80px;
-        padding: 2px 6px;
-        opacity: 1;
-        pointer-events: auto;
-        border-color: rgba(255, 140, 0, 0.5);
-        box-shadow: 0 2px 5px rgba(255, 140, 0, 0.2);
+    #search-box::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 7px;
     }
     
     .mobile-toggle {
@@ -1446,27 +1412,21 @@
     }
     
     #search-box {
-        position: absolute;
-        right: 30px;
-        width: 0;
+        display: block !important;
+        width: 90px;
         height: 28px;
-        padding: 0;
-        border: 2px solid transparent;
-        border-radius: 15px;
-        font-size: 11px;
+        padding: 4px 8px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        font-size: 10px;
         margin: 0;
-        opacity: 0;
-        pointer-events: none;
-        background: white;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
     }
 
-    #search-box.expanded {
-        width: 110px;
-        padding: 4px 10px;
-        opacity: 1;
-        pointer-events: auto;
-        border-color: rgba(255, 140, 0, 0.5);
-        box-shadow: 0 3px 8px rgba(255, 140, 0, 0.2);
+    #search-box::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 9px;
     }
     
     /* Filter dropdown */
@@ -1563,27 +1523,21 @@
     }
 
     #search-box {
-        position: absolute;
-        right: 26px;
-        width: 0;
-        height: 22px;
-        padding: 0;
-        border: 2px solid transparent;
-        border-radius: 12px;
-        font-size: 11px;
+        display: block !important;
+        width: 100px;
+        height: 28px;
+        padding: 4px 8px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        font-size: 10px;
         margin: 0;
-        opacity: 0;
-        pointer-events: none;
-        background: white;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
     }
 
-    #search-box.expanded {
-        width: 100px;
-        padding: 3px 8px;
-        opacity: 1;
-        pointer-events: auto;
-        border-color: rgba(255, 140, 0, 0.5);
-        box-shadow: 0 2px 6px rgba(255, 140, 0, 0.2);
+    #search-box::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 9px;
     }
 
     .mobile-toggle {

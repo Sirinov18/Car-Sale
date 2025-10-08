@@ -1559,3 +1559,176 @@ window.addEventListener('orientationchange', function() {
         enhanceMapInteraction();
     }, 300);
 });
+// Enhanced Mobile Search with No Overlap
+function initializeMobileSearch() {
+    const searchBox = document.getElementById('search-box');
+    const searchIcon = document.getElementById('searchIcon');
+    const filterIcon = document.getElementById('filterIcon');
+    
+    if (!searchBox || !searchIcon) return;
+
+    // Create clear button
+    const clearButton = document.createElement('button');
+    clearButton.className = 'search-clear-btn';
+    clearButton.innerHTML = '<i class="fa-solid fa-times"></i>';
+    clearButton.setAttribute('type', 'button');
+    clearButton.setAttribute('aria-label', 'Clear search');
+    clearButton.style.display = 'none';
+    searchIcon.parentNode.appendChild(clearButton);
+
+    // Create backdrop
+    const backdrop = document.createElement('div');
+    backdrop.className = 'search-backdrop';
+    document.body.appendChild(backdrop);
+
+    let isSearchExpanded = false;
+
+    // Toggle search box
+    function toggleMobileSearch() {
+        isSearchExpanded = !isSearchExpanded;
+        
+        if (isSearchExpanded) {
+            expandSearch();
+        } else {
+            collapseSearch();
+        }
+    }
+
+    function expandSearch() {
+        searchBox.classList.add('expanded');
+        searchIcon.classList.add('active');
+        backdrop.classList.add('active');
+        document.body.classList.add('search-active');
+        
+        // Focus on search box after animation
+        setTimeout(() => {
+            searchBox.focus();
+            updateClearButton();
+        }, 100);
+    }
+
+    function collapseSearch() {
+        const searchTerm = searchBox.value.trim().toLowerCase();
+        
+        if (searchTerm) {
+            performSearch(searchTerm);
+        } else {
+            // Return to original list if empty
+            resetSearchResults();
+        }
+        
+        searchBox.classList.remove('expanded');
+        searchIcon.classList.remove('active');
+        clearButton.classList.remove('visible');
+        backdrop.classList.remove('active');
+        document.body.classList.remove('search-active');
+        hideSearchDropdown();
+        isSearchExpanded = false;
+    }
+
+    // Clear search function
+    function clearSearch() {
+        searchBox.value = '';
+        searchBox.focus();
+        clearButton.classList.remove('visible');
+        hideSearchDropdown();
+        resetSearchResults();
+    }
+
+    // Update clear button visibility
+    function updateClearButton() {
+        if (searchBox.value.trim()) {
+            clearButton.classList.add('visible');
+        } else {
+            clearButton.classList.remove('visible');
+        }
+        
+        // Perform search as user types
+        const searchTerm = searchBox.value.trim().toLowerCase();
+        if (searchTerm.length >= 2) {
+            showSearchResults(searchTerm);
+        } else if (searchTerm.length === 0) {
+            hideSearchDropdown();
+            resetSearchResults();
+        }
+    }
+
+    function resetSearchResults() {
+        if (window.filteredCarsData && window.allCarsData && window.renderCars) {
+            if (window.filteredCarsData.length !== window.allCarsData.length) {
+                window.renderCars(window.allCarsData);
+            }
+        }
+    }
+
+    // Event listeners
+    searchIcon.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMobileSearch();
+    });
+
+    clearButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        clearSearch();
+    });
+
+    backdrop.addEventListener('click', function() {
+        collapseSearch();
+    });
+
+    searchBox.addEventListener('input', updateClearButton);
+
+    searchBox.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const searchTerm = this.value.trim().toLowerCase();
+            if (searchTerm) {
+                performSearch(searchTerm);
+                collapseSearch();
+            }
+        }
+    });
+
+    // Handle Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isSearchExpanded) {
+            if (searchBox.value) {
+                clearSearch();
+            } else {
+                collapseSearch();
+            }
+        }
+    });
+
+    // Prevent filter icon from closing search
+    filterIcon.addEventListener('click', function(e) {
+        e.stopPropagation();
+        // Filter icon functionality remains separate
+    });
+
+    // Close search when clicking on other nav items
+    document.addEventListener('click', function(e) {
+        if (isSearchExpanded && 
+            !searchBox.contains(e.target) && 
+            !searchIcon.contains(e.target) && 
+            !clearButton.contains(e.target) &&
+            !filterIcon.contains(e.target)) {
+            collapseSearch();
+        }
+    });
+}
+
+// Initialize mobile search
+document.addEventListener('DOMContentLoaded', function() {
+    initializeMobileSearch();
+    
+    // Re-initialize on window resize
+    window.addEventListener('resize', function() {
+        const searchBox = document.getElementById('search-box');
+        if (searchBox && searchBox.classList.contains('expanded')) {
+            searchBox.classList.remove('expanded');
+            document.body.classList.remove('search-active');
+            const backdrop = document.querySelector('.search-backdrop');
+            if (backdrop) backdrop.classList.remove('active');
+        }
+    });
+});
