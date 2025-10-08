@@ -1,7 +1,6 @@
-// Global variables
 let allCarsData = [];
 let filteredCarsData = [];
-let likedCars = []; // Store liked cars
+let likedCars = [];
 let activeFilters = {
     brands: [],
     models: [],
@@ -28,7 +27,6 @@ let modelVariantHierarchy = {};
 let currentSelectedBrand = null;
 let currentSelectedModel = null;
 
-// Carousel functionality
 let currentSlide = 0;
 const slides = document.querySelectorAll('.carousel-slide');
 const indicators = document.querySelectorAll('.indicator');
@@ -37,7 +35,7 @@ const totalSlides = slides.length;
 function showSlide(index) {
     slides.forEach(slide => slide.classList.remove('active'));
     indicators.forEach(indicator => indicator.classList.remove('active'));
-    
+
     if (slides[index]) {
         slides[index].classList.add('active');
     }
@@ -66,11 +64,10 @@ function stopAutoPlay() {
     clearInterval(autoPlayInterval);
 }
 
-// Initialize carousel when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const nextBtn = document.getElementById('nextBtn');
     const prevBtn = document.getElementById('prevBtn');
-    
+
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
             stopAutoPlay();
@@ -78,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
             startAutoPlay();
         });
     }
-    
+
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
             stopAutoPlay();
@@ -86,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
             startAutoPlay();
         });
     }
-    
+
     indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
             stopAutoPlay();
@@ -95,20 +92,18 @@ document.addEventListener('DOMContentLoaded', function() {
             startAutoPlay();
         });
     });
-    
+
     startAutoPlay();
-    
+
     const carousel = document.querySelector('.hero-carousel');
     if (carousel) {
         carousel.addEventListener('mouseenter', stopAutoPlay);
         carousel.addEventListener('mouseleave', startAutoPlay);
     }
 
-    // Load liked cars from storage on page load
     loadLikedCars();
 });
 
-// Account modal functionality
 const accountLink = document.getElementById('accountLink');
 const mobileAccountLink = document.getElementById('mobileAccountLink');
 const accountModal = document.getElementById('accountModal');
@@ -119,12 +114,10 @@ const showSignupLink = document.getElementById('showSignupLink');
 const showLoginLink = document.getElementById('showLoginLink');
 const formTitle = document.getElementById('formTitle');
 
-// Function to show account modal
 function showAccountModal(e) {
     e.preventDefault();
     accountModal.style.display = 'flex';
-    
-    // Close mobile menu if open
+
     if (mobileDropdown && mobileDropdown.classList.contains('show')) {
         closeMobileMenu();
     }
@@ -139,19 +132,17 @@ if (mobileAccountLink) {
 }
 
 if (closeAccountModal) {
-    closeAccountModal.addEventListener('click', function() {
+    closeAccountModal.addEventListener('click', function () {
         accountModal.style.display = 'none';
     });
 }
 
-// Close modal when clicking outside
-window.addEventListener('click', function(e) {
+window.addEventListener('click', function (e) {
     if (e.target === accountModal) {
         accountModal.style.display = 'none';
     }
 });
 
-// Switch to signup form
 if (showSignupLink) {
     showSignupLink.addEventListener('click', (e) => {
         e.preventDefault();
@@ -161,7 +152,6 @@ if (showSignupLink) {
     });
 }
 
-// Switch to login form
 if (showLoginLink) {
     showLoginLink.addEventListener('click', (e) => {
         e.preventDefault();
@@ -171,27 +161,22 @@ if (showLoginLink) {
     });
 }
 
-// Handle login form submission
 if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const rememberMe = document.getElementById('rememberMe').checked;
-        
-        // Here you would normally send credentials to a server
+
         console.log('Login attempt:', { username, rememberMe });
-        
-        // Show success message (you can customize this)
+
         alert(`Welcome, ${username}!`);
-        
-        // Close modal and reset form
+
         accountModal.style.display = 'none';
         loginForm.reset();
     });
 }
 
-// Handle signup form submission
 if (signupForm) {
     signupForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -199,34 +184,27 @@ if (signupForm) {
         const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
         const confirmPassword = document.getElementById('signupConfirmPassword').value;
-        
-        // Validate passwords match
+
         if (password !== confirmPassword) {
             alert('Passwords do not match!');
             return;
         }
-        
-        // Here you would normally send registration data to a server
+
         console.log('Signup attempt:', { username, email });
-        
-        // Show success message
+
         alert(`Account created successfully! Welcome, ${username}!`);
-        
-        // Close modal and reset form
+
         accountModal.style.display = 'none';
         signupForm.reset();
-        // Switch back to login form
         signupForm.style.display = 'none';
         loginForm.style.display = 'block';
         formTitle.textContent = 'Login';
     });
 }
 
-// Enhanced mobile menu functionality
 const mobileToggle = document.getElementById('mobileToggle');
 const mobileDropdown = document.getElementById('mobileDropdown');
 
-// Function to close mobile menu (global scope)
 function closeMobileMenu() {
     if (mobileDropdown && mobileToggle) {
         mobileDropdown.classList.remove('show');
@@ -239,15 +217,13 @@ function closeMobileMenu() {
 }
 
 if (mobileToggle && mobileDropdown) {
-    // Toggle mobile menu
     mobileToggle.addEventListener('click', (e) => {
         e.stopPropagation();
         mobileDropdown.classList.toggle('show');
         const icon = mobileToggle.querySelector('i');
-        
+
         if (mobileDropdown.classList.contains('show')) {
             icon.classList.replace('fa-bars', 'fa-times');
-            // Add active state to toggle button
             mobileToggle.classList.add('active');
         } else {
             icon.classList.replace('fa-times', 'fa-bars');
@@ -255,25 +231,21 @@ if (mobileToggle && mobileDropdown) {
         }
     });
 
-    // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
         if (!mobileToggle.contains(e.target) && !mobileDropdown.contains(e.target)) {
             closeMobileMenu();
         }
     });
 
-    // Close mobile menu when clicking on menu items
     mobileDropdown.addEventListener('click', (e) => {
         if (e.target.tagName === 'A') {
             closeMobileMenu();
         }
     });
 
-    // Close mobile menu on window resize to desktop
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
             closeMobileMenu();
-            // Reset mobile search state on desktop
             if (searchBox.classList.contains('expanded')) {
                 searchBox.classList.remove('expanded');
                 searchIcon.classList.remove('active');
@@ -282,14 +254,12 @@ if (mobileToggle && mobileDropdown) {
     });
 }
 
-// Search functionality
 const searchBox = document.getElementById('search-box');
 const searchIcon = document.getElementById('searchIcon');
 const filterIcon = document.getElementById('filterIcon');
 const searchDropdown = document.getElementById('searchDropdown');
 const filterDropdown = document.getElementById('filterDropdown');
 
-// Mobile search toggle functionality
 function isMobileView() {
     return window.innerWidth <= 768;
 }
@@ -297,30 +267,25 @@ function isMobileView() {
 function toggleMobileSearch() {
     if (isMobileView()) {
         const isExpanded = searchBox.classList.contains('expanded');
-        
+
         if (isExpanded) {
-            // If search box is expanded and has content, perform search
             const searchTerm = searchBox.value.trim().toLowerCase();
             if (searchTerm) {
                 performSearch(searchTerm);
                 hideSearchDropdown();
             } else {
-                // If empty, just collapse it
                 searchBox.classList.remove('expanded');
                 searchIcon.classList.remove('active');
                 hideSearchDropdown();
             }
         } else {
-            // Expand search box with animation
             searchBox.classList.add('expanded');
             searchIcon.classList.add('active');
-            // Focus on search box after animation
             setTimeout(() => {
                 searchBox.focus();
             }, 100);
         }
     } else {
-        // Desktop behavior - just perform search
         const searchTerm = searchBox.value.trim().toLowerCase();
         if (searchTerm) {
             performSearch(searchTerm);
@@ -329,11 +294,10 @@ function toggleMobileSearch() {
     }
 }
 
-// Close search box when clicking outside on mobile
 function handleOutsideClick(e) {
     if (isMobileView() && searchBox.classList.contains('expanded')) {
-        if (!searchBox.contains(e.target) && 
-            !searchIcon.contains(e.target) && 
+        if (!searchBox.contains(e.target) &&
+            !searchIcon.contains(e.target) &&
             !searchDropdown.contains(e.target)) {
             searchBox.classList.remove('expanded');
             searchIcon.classList.remove('active');
@@ -345,27 +309,24 @@ function handleOutsideClick(e) {
 function buildBrandModelHierarchy() {
     brandModelHierarchy = {};
     modelVariantHierarchy = {};
-    
+
     allCarsData.forEach(car => {
-        // Build brand -> model hierarchy
         if (!brandModelHierarchy[car.Marks]) {
             brandModelHierarchy[car.Marks] = new Set();
         }
         brandModelHierarchy[car.Marks].add(car.Model);
-        
-        // Build model -> variant (Name) hierarchy
+
         const modelKey = `${car.Marks}|${car.Model}`;
         if (!modelVariantHierarchy[modelKey]) {
             modelVariantHierarchy[modelKey] = new Set();
         }
         modelVariantHierarchy[modelKey].add(car.Name);
     });
-    
-    // Convert Sets to sorted Arrays (automatically removes duplicates)
+
     Object.keys(brandModelHierarchy).forEach(brand => {
         brandModelHierarchy[brand] = Array.from(brandModelHierarchy[brand]).sort();
     });
-    
+
     Object.keys(modelVariantHierarchy).forEach(modelKey => {
         modelVariantHierarchy[modelKey] = Array.from(modelVariantHierarchy[modelKey]).sort();
     });
@@ -374,12 +335,12 @@ function buildBrandModelHierarchy() {
 function showSearchResults(searchTerm) {
     const results = [];
     const term = searchTerm.toLowerCase();
-    
+
     allCarsData.forEach(car => {
         let relevance = 0;
         let matchType = '';
         let matchedText = '';
-        
+
         if (car.Marks.toLowerCase().includes(term)) {
             relevance += car.Marks.toLowerCase() === term ? 100 : 50;
             matchType = 'brand';
@@ -398,7 +359,7 @@ function showSearchResults(searchTerm) {
         if (car.FuelType.toLowerCase().includes(term)) relevance += 30;
         if (car.Color.toLowerCase().includes(term)) relevance += 20;
         if (car.Year.toString().includes(term)) relevance += 25;
-        
+
         if (relevance > 0) {
             results.push({
                 car: car,
@@ -408,13 +369,13 @@ function showSearchResults(searchTerm) {
             });
         }
     });
-    
+
     results.sort((a, b) => b.relevance - a.relevance);
-    
+
     if (results.length > 0) {
         const uniqueResults = [];
         const seen = new Set();
-        
+
         results.forEach(result => {
             const key = `${result.car.Marks}-${result.car.Model}-${result.car.Name}`;
             if (!seen.has(key)) {
@@ -422,19 +383,19 @@ function showSearchResults(searchTerm) {
                 uniqueResults.push(result);
             }
         });
-        
-        const html = uniqueResults.slice(0, 8).map(result => 
+
+        const html = uniqueResults.slice(0, 8).map(result =>
             `<div class="search-result" onclick="selectSearchResult('${escapeHtml(result.car.Marks)}', '${escapeHtml(result.car.Model)}', '${escapeHtml(result.car.Name)}')">
                 <strong>${result.car.Marks} ${result.car.Model}</strong><br>
                 <small>${result.car.Name} (${result.car.Year}) - $${result.car.Price.toLocaleString()}</small>
             </div>`
         ).join('');
-        
+
         searchDropdown.innerHTML = html;
     } else {
         searchDropdown.innerHTML = '<div class="no-search-results">No results found</div>';
     }
-    
+
     searchDropdown.style.display = 'block';
 }
 
@@ -449,7 +410,7 @@ function selectSearchResult(brand, model, name) {
 }
 
 function performSearch(searchTerm) {
-    const results = allCarsData.filter(car => 
+    const results = allCarsData.filter(car =>
         car.Marks.toLowerCase().includes(searchTerm) ||
         car.Model.toLowerCase().includes(searchTerm) ||
         car.Name.toLowerCase().includes(searchTerm) ||
@@ -460,16 +421,16 @@ function performSearch(searchTerm) {
         car.Condition.toLowerCase().includes(searchTerm) ||
         car.Equipment.toLowerCase().includes(searchTerm)
     );
-    
+
     renderCars(results);
 }
 
-searchIcon.addEventListener('click', function(e) {
+searchIcon.addEventListener('click', function (e) {
     e.stopPropagation();
     toggleMobileSearch();
 });
 
-searchBox.addEventListener('input', function() {
+searchBox.addEventListener('input', function () {
     const searchTerm = this.value.trim().toLowerCase();
     if (searchTerm.length >= 2) {
         showSearchResults(searchTerm);
@@ -479,7 +440,7 @@ searchBox.addEventListener('input', function() {
     }
 });
 
-searchBox.addEventListener('keypress', function(e) {
+searchBox.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         const searchTerm = this.value.trim().toLowerCase();
         if (searchTerm) {
@@ -489,7 +450,7 @@ searchBox.addEventListener('keypress', function(e) {
     }
 });
 
-filterIcon.addEventListener('click', function(e) {
+filterIcon.addEventListener('click', function (e) {
     e.stopPropagation();
     if (filterDropdown.style.display === 'block') {
         hideFilterDropdown();
@@ -499,19 +460,17 @@ filterIcon.addEventListener('click', function(e) {
     }
 });
 
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     if (!searchBox.contains(e.target) && !searchDropdown.contains(e.target) && !searchIcon.contains(e.target)) {
         hideSearchDropdown();
     }
     if (!filterIcon.contains(e.target) && !filterDropdown.contains(e.target)) {
         hideFilterDropdown();
     }
-    // Close account dropdown when clicking on search/filter areas
     const accountDropdown = document.getElementById('accountDropdown');
     if (accountDropdown && (searchBox.contains(e.target) || filterIcon.contains(e.target))) {
         accountDropdown.classList.remove('show');
     }
-    // Handle mobile search outside click
     handleOutsideClick(e);
 });
 
@@ -520,7 +479,6 @@ function hideSearchDropdown() {
 }
 
 function showFilterDropdown() {
-    // Always regenerate filter options from current data
     buildBrandModelHierarchy();
     generateFilterOptions();
     filterDropdown.style.display = 'block';
@@ -531,66 +489,57 @@ function hideFilterDropdown() {
 }
 
 function generateFilterOptions() {
-    // Regenerate brand options first
     generateBrandOptions();
-    
-    // Fuel Types
+
     const fuelTypes = [...new Set(allCarsData.map(car => car.FuelType))].sort();
     const fuelContainer = document.getElementById('fuelOptions');
-    fuelContainer.innerHTML = fuelTypes.map(fuel => 
+    fuelContainer.innerHTML = fuelTypes.map(fuel =>
         `<span class="filter-option ${activeFilters.fuelTypes.includes(fuel) ? 'active' : ''}" 
                data-type="fuel" data-value="${fuel}">${fuel}</span>`
     ).join('');
-    
-    // Body Types
+
     const bodyTypes = [...new Set(allCarsData.map(car => car.BanType))].sort();
     const bodyContainer = document.getElementById('bodyOptions');
-    bodyContainer.innerHTML = bodyTypes.map(body => 
+    bodyContainer.innerHTML = bodyTypes.map(body =>
         `<span class="filter-option ${activeFilters.bodyTypes.includes(body) ? 'active' : ''}" 
                data-type="body" data-value="${body}">${body}</span>`
     ).join('');
-    
-    // Gear Types
+
     const gearTypes = [...new Set(allCarsData.map(car => car.GearType))].sort();
     const gearContainer = document.getElementById('gearOptions');
-    gearContainer.innerHTML = gearTypes.map(gear => 
+    gearContainer.innerHTML = gearTypes.map(gear =>
         `<span class="filter-option ${activeFilters.gearTypes.includes(gear) ? 'active' : ''}" 
                data-type="gear" data-value="${gear}">${gear}</span>`
     ).join('');
-    
-    // Transmissions
+
     const transmissions = [...new Set(allCarsData.map(car => car.Transmission))].sort();
     const transmissionContainer = document.getElementById('transmissionOptions');
-    transmissionContainer.innerHTML = transmissions.map(trans => 
+    transmissionContainer.innerHTML = transmissions.map(trans =>
         `<span class="filter-option ${activeFilters.transmissions.includes(trans) ? 'active' : ''}" 
                data-type="transmission" data-value="${trans}">${trans}</span>`
     ).join('');
-    
-    // Conditions
+
     const conditions = [...new Set(allCarsData.map(car => car.Condition))].sort();
     const conditionContainer = document.getElementById('conditionOptions');
-    conditionContainer.innerHTML = conditions.map(cond => 
+    conditionContainer.innerHTML = conditions.map(cond =>
         `<span class="filter-option ${activeFilters.conditions.includes(cond) ? 'active' : ''}" 
                data-type="condition" data-value="${cond}">${cond}</span>`
     ).join('');
-    
-    // Equipment - Extract unique equipment keywords
+
     const equipmentSet = new Set();
     allCarsData.forEach(car => {
         if (car.Equipment) {
-            // Split equipment by common delimiters and extract keywords
             const items = car.Equipment.split(/[,;]/).map(item => item.trim()).filter(item => item.length > 0);
             items.forEach(item => equipmentSet.add(item));
         }
     });
     const equipments = Array.from(equipmentSet).sort();
     const equipmentContainer = document.getElementById('equipmentOptions');
-    equipmentContainer.innerHTML = equipments.slice(0, 20).map(equip => 
+    equipmentContainer.innerHTML = equipments.slice(0, 20).map(equip =>
         `<span class="filter-option ${activeFilters.equipments.includes(equip) ? 'active' : ''}" 
                data-type="equipment" data-value="${equip}">${equip}</span>`
     ).join('');
-    
-    // Set range input values
+
     document.getElementById('minYear').value = activeFilters.minYear || '';
     document.getElementById('maxYear').value = activeFilters.maxYear || '';
     document.getElementById('minPrice').value = activeFilters.minPrice || '';
@@ -599,15 +548,14 @@ function generateFilterOptions() {
     document.getElementById('maxMileage').value = activeFilters.maxMileage || '';
     document.getElementById('minEngine').value = activeFilters.minEngine || '';
     document.getElementById('maxEngine').value = activeFilters.maxEngine || '';
-    
-    // Add event listeners for filter options
+
     document.querySelectorAll('.filter-option').forEach(option => {
-        option.addEventListener('click', function() {
+        option.addEventListener('click', function () {
             const type = this.dataset.type;
             const value = this.dataset.value;
-            
+
             this.classList.toggle('active');
-            
+
             if (type === 'fuel') {
                 toggleFilterValue(activeFilters.fuelTypes, value);
             } else if (type === 'body') {
@@ -630,34 +578,32 @@ function generateBrandOptions() {
     if (!brandContainer) {
         return;
     }
-    
+
     const brands = Object.keys(brandModelHierarchy).sort();
-    
+
     let html = '';
     brands.forEach(brand => {
         const isSelected = activeFilters.brands.includes(brand);
         html += `<span class="filter-option brand-option ${isSelected ? 'active' : ''}" 
                        data-type="brand" data-value="${brand}">${brand}</span>`;
     });
-    
+
     brandContainer.innerHTML = html;
-    
+
     document.querySelectorAll('.brand-option').forEach(option => {
-        option.addEventListener('click', function() {
+        option.addEventListener('click', function () {
             const brand = this.dataset.value;
-            
-            // Deselect all other brands first (single brand selection)
+
             document.querySelectorAll('.brand-option').forEach(opt => {
                 if (opt !== this) {
                     opt.classList.remove('active');
                 }
             });
-            
+
             const wasActive = this.classList.contains('active');
             this.classList.toggle('active');
-            
+
             if (wasActive) {
-                // Deselecting brand
                 const brandIndex = activeFilters.brands.indexOf(brand);
                 if (brandIndex > -1) {
                     activeFilters.brands.splice(brandIndex, 1);
@@ -674,7 +620,6 @@ function generateBrandOptions() {
                 hideVariantSection();
                 updateSelectedModelDisplay();
             } else {
-                // Selecting new brand
                 activeFilters.brands = [brand];
                 activeFilters.models = [];
                 activeFilters.variants = [];
@@ -692,56 +637,48 @@ function generateBrandOptions() {
 function showModelOptions(brand) {
     const models = brandModelHierarchy[brand];
     if (!models || models.length === 0) return;
-    
+
     const modelSection = document.getElementById('modelSection');
     const modelContainer = document.getElementById('modelOptions');
-    
+
     const selectedModelsForBrand = activeFilters.selectedBrandModels[brand] || [];
-    
-    // Models are already deduplicated in brandModelHierarchy (using Set)
+
     let html = '';
     models.forEach(model => {
         const isSelected = selectedModelsForBrand.includes(model);
-        
+
         html += `<span class="filter-option model-option ${isSelected ? 'active' : ''}" 
                        data-brand="${brand}" data-model="${model}">${model}</span>`;
     });
-    
+
     modelContainer.innerHTML = html;
     modelSection.style.display = 'block';
-    
+
     document.querySelectorAll('.model-option').forEach(option => {
-        option.addEventListener('click', function() {
+        option.addEventListener('click', function () {
             const brand = this.dataset.brand;
             const model = this.dataset.model;
-            
-            // Toggle active state (allow multiple selections)
+
             this.classList.toggle('active');
-            
+
             if (!activeFilters.selectedBrandModels[brand]) {
                 activeFilters.selectedBrandModels[brand] = [];
             }
-            
+
             const modelIndex = activeFilters.selectedBrandModels[brand].indexOf(model);
             if (modelIndex > -1) {
-                // Remove model from selection
                 activeFilters.selectedBrandModels[brand].splice(modelIndex, 1);
-                // Hide variants for this model
                 hideVariantsForModel(brand, model);
             } else {
-                // Add model to selection
                 activeFilters.selectedBrandModels[brand].push(model);
-                // Show variants for this model - rebuild variant section
                 rebuildVariantSection();
             }
-            
-            // Update global models array
+
             activeFilters.models = [];
             Object.values(activeFilters.selectedBrandModels).forEach(models => {
                 activeFilters.models.push(...models);
             });
-            
-            // Update selected model display
+
             updateSelectedModelDisplay();
         });
     });
@@ -750,23 +687,22 @@ function showModelOptions(brand) {
 function rebuildVariantSection() {
     const variantSection = document.getElementById('variantSection');
     const variantContainer = document.getElementById('variantOptions');
-    
-    // Collect all variants for all selected models
+
     let allVariantsHtml = '';
     let hasVariants = false;
-    
+
     if (activeFilters.brands.length > 0) {
         const brand = activeFilters.brands[0];
         const selectedModels = activeFilters.selectedBrandModels[brand] || [];
-        
+
         selectedModels.forEach(model => {
             const modelKey = `${brand}|${model}`;
             const variants = modelVariantHierarchy[modelKey];
-            
+
             if (variants && variants.length > 0) {
                 hasVariants = true;
                 const selectedVariantsForModel = activeFilters.selectedModelVariants[modelKey] || [];
-                
+
                 variants.forEach(variant => {
                     const isSelected = selectedVariantsForModel.includes(variant);
                     allVariantsHtml += `<span class="filter-option variant-option ${isSelected ? 'active' : ''}" 
@@ -775,38 +711,36 @@ function rebuildVariantSection() {
             }
         });
     }
-    
+
     if (hasVariants) {
         variantContainer.innerHTML = allVariantsHtml;
         variantSection.style.display = 'block';
-        
-        // Add event listeners for variant options
+
         document.querySelectorAll('.variant-option').forEach(option => {
-            option.addEventListener('click', function() {
+            option.addEventListener('click', function () {
                 const brand = this.dataset.brand;
                 const model = this.dataset.model;
                 const variant = this.dataset.variant;
                 const modelKey = `${brand}|${model}`;
-                
+
                 this.classList.toggle('active');
-                
+
                 if (!activeFilters.selectedModelVariants[modelKey]) {
                     activeFilters.selectedModelVariants[modelKey] = [];
                 }
-                
+
                 const variantIndex = activeFilters.selectedModelVariants[modelKey].indexOf(variant);
                 if (variantIndex > -1) {
                     activeFilters.selectedModelVariants[modelKey].splice(variantIndex, 1);
                 } else {
                     activeFilters.selectedModelVariants[modelKey].push(variant);
                 }
-                
-                // Update global variants array
+
                 activeFilters.variants = [];
                 Object.values(activeFilters.selectedModelVariants).forEach(variants => {
                     activeFilters.variants.push(...variants);
                 });
-                
+
                 updateSelectedModelDisplay();
             });
         });
@@ -818,19 +752,16 @@ function rebuildVariantSection() {
 function hideVariantsForModel(brand, model) {
     const modelKey = `${brand}|${model}`;
     delete activeFilters.selectedModelVariants[modelKey];
-    
-    // Update global variants array
+
     activeFilters.variants = [];
     Object.values(activeFilters.selectedModelVariants).forEach(variants => {
         activeFilters.variants.push(...variants);
     });
-    
-    // Rebuild variant section with remaining selected models
+
     rebuildVariantSection();
 }
 
 function updateSelectedModelDisplay() {
-    // Function kept for compatibility but does nothing
 }
 
 
@@ -857,7 +788,7 @@ function toggleFilterValue(filterArray, value) {
     }
 }
 
-document.getElementById('applyFilters').addEventListener('click', function() {
+document.getElementById('applyFilters').addEventListener('click', function () {
     const minYear = document.getElementById('minYear').value;
     const maxYear = document.getElementById('maxYear').value;
     const minPrice = document.getElementById('minPrice').value;
@@ -866,7 +797,7 @@ document.getElementById('applyFilters').addEventListener('click', function() {
     const maxMileage = document.getElementById('maxMileage').value;
     const minEngine = document.getElementById('minEngine').value;
     const maxEngine = document.getElementById('maxEngine').value;
-    
+
     activeFilters.minYear = minYear ? parseInt(minYear) : null;
     activeFilters.maxYear = maxYear ? parseInt(maxYear) : null;
     activeFilters.minPrice = minPrice ? parseFloat(minPrice) : null;
@@ -875,12 +806,12 @@ document.getElementById('applyFilters').addEventListener('click', function() {
     activeFilters.maxMileage = maxMileage ? parseFloat(maxMileage) : null;
     activeFilters.minEngine = minEngine ? parseFloat(minEngine) : null;
     activeFilters.maxEngine = maxEngine ? parseFloat(maxEngine) : null;
-    
+
     applyFilters();
     hideFilterDropdown();
 });
 
-document.getElementById('clearFilters').addEventListener('click', function() {
+document.getElementById('clearFilters').addEventListener('click', function () {
     activeFilters = {
         brands: [],
         models: [],
@@ -902,30 +833,28 @@ document.getElementById('clearFilters').addEventListener('click', function() {
         minEngine: null,
         maxEngine: null
     };
-    
+
     currentSelectedBrand = null;
     currentSelectedModel = null;
     searchBox.value = '';
-    
+
     filteredCarsData = [...allCarsData];
     renderCars(filteredCarsData);
-    
+
     hideModelOptions();
     hideVariantSection();
     updateSelectedModelDisplay();
-    // Regenerate filter options from current JSON data
     buildBrandModelHierarchy();
     generateFilterOptions();
 });
 
 function applyFilters() {
     let filtered = [...allCarsData];
-    
-    // Apply variant filter (most specific)
+
     if (activeFilters.variants.length > 0) {
         filtered = filtered.filter(car => activeFilters.variants.includes(car.Name));
     } else if (activeFilters.models.length > 0) {
-        // Apply model filter
+
         filtered = filtered.filter(car => {
             const selectedModelsForBrand = activeFilters.selectedBrandModels[car.Marks];
             if (selectedModelsForBrand && selectedModelsForBrand.length > 0) {
@@ -934,60 +863,59 @@ function applyFilters() {
             return false;
         });
     } else if (activeFilters.brands.length > 0) {
-        // Apply brand filter
+
         filtered = filtered.filter(car => activeFilters.brands.includes(car.Marks));
     }
-    
-    // Apply fuel type filter
+
+
     if (activeFilters.fuelTypes.length > 0) {
         filtered = filtered.filter(car => activeFilters.fuelTypes.includes(car.FuelType));
     }
-    
-    // Apply body type filter
+
+
     if (activeFilters.bodyTypes.length > 0) {
         filtered = filtered.filter(car => activeFilters.bodyTypes.includes(car.BanType));
     }
-    
-    // Apply gear type filter
+
+
     if (activeFilters.gearTypes.length > 0) {
         filtered = filtered.filter(car => activeFilters.gearTypes.includes(car.GearType));
     }
-    
-    // Apply transmission filter
+
+
     if (activeFilters.transmissions.length > 0) {
         filtered = filtered.filter(car => activeFilters.transmissions.includes(car.Transmission));
     }
-    
-    // Apply condition filter
+
+
     if (activeFilters.conditions.length > 0) {
         filtered = filtered.filter(car => activeFilters.conditions.includes(car.Condition));
     }
-    
-    // Apply equipment filter
+
+
     if (activeFilters.equipments.length > 0) {
         filtered = filtered.filter(car => {
             if (!car.Equipment) return false;
             return activeFilters.equipments.some(equip => car.Equipment.includes(equip));
         });
     }
-    
-    // Apply year range filter
+
+
     if (activeFilters.minYear) {
         filtered = filtered.filter(car => parseInt(car.Year) >= activeFilters.minYear);
     }
     if (activeFilters.maxYear) {
         filtered = filtered.filter(car => parseInt(car.Year) <= activeFilters.maxYear);
     }
-    
-    // Apply price range filter
+
     if (activeFilters.minPrice) {
         filtered = filtered.filter(car => parseFloat(car.Price) >= activeFilters.minPrice);
     }
     if (activeFilters.maxPrice) {
         filtered = filtered.filter(car => parseFloat(car.Price) <= activeFilters.maxPrice);
     }
-    
-    // Apply mileage range filter
+
+
     if (activeFilters.minMileage) {
         filtered = filtered.filter(car => {
             const mileage = parseFloat(car.Milage.toString().replace(/[^0-9.]/g, ''));
@@ -1000,8 +928,8 @@ function applyFilters() {
             return mileage <= activeFilters.maxMileage;
         });
     }
-    
-    // Apply engine capacity range filter
+
+
     if (activeFilters.minEngine) {
         filtered = filtered.filter(car => {
             const engine = parseFloat(car.EngineCapacity.toString().replace(/[^0-9.]/g, ''));
@@ -1014,12 +942,12 @@ function applyFilters() {
             return engine <= activeFilters.maxEngine;
         });
     }
-    
+
     filteredCarsData = filtered;
     renderCars(filteredCarsData);
 }
 
-// Like system functions
+
 function updateLikeCounter() {
     const counter = document.getElementById('likeCounter');
     if (counter) {
@@ -1033,64 +961,59 @@ function saveLikedCars() {
         Model: car.Model,
         Year: car.Year
     }));
-    // Store in memory (no localStorage as per requirements)
+
     window.likedCarsData = likedData;
 }
 
 function loadLikedCars() {
-    // Load from memory if exists
     if (window.likedCarsData) {
-        // This will be populated after cars are loaded
+
     }
 }
 
 function isCarLiked(car) {
-    return likedCars.some(likedCar => 
-        likedCar.Marks === car.Marks && 
-        likedCar.Model === car.Model && 
+    return likedCars.some(likedCar =>
+        likedCar.Marks === car.Marks &&
+        likedCar.Model === car.Model &&
         likedCar.Year === car.Year
     );
 }
 
 function toggleLike(car, heartIcon) {
-    const carIndex = likedCars.findIndex(likedCar => 
-        likedCar.Marks === car.Marks && 
-        likedCar.Model === car.Model && 
+    const carIndex = likedCars.findIndex(likedCar =>
+        likedCar.Marks === car.Marks &&
+        likedCar.Model === car.Model &&
         likedCar.Year === car.Year
     );
-    
+
     if (carIndex > -1) {
-        // Remove from liked
         likedCars.splice(carIndex, 1);
         heartIcon.classList.remove('liked');
     } else {
-        // Add to liked
         likedCars.push(car);
         heartIcon.classList.add('liked');
     }
-    
+
     updateLikeCounter();
     saveLikedCars();
 }
 
-// Show liked cars modal
 const likeLink = document.getElementById('likeLink');
 const mobileLikeLink = document.getElementById('mobileLikeLink');
 const likedModal = document.getElementById('likedModal');
 const closeLikedModal = document.getElementById('closeLikedModal');
 
 if (likeLink) {
-    likeLink.addEventListener('click', function(e) {
+    likeLink.addEventListener('click', function (e) {
         e.preventDefault();
         showLikedCarsModal();
     });
 }
 
 if (mobileLikeLink) {
-    mobileLikeLink.addEventListener('click', function(e) {
+    mobileLikeLink.addEventListener('click', function (e) {
         e.preventDefault();
         showLikedCarsModal();
-        // Close mobile menu after clicking
         if (mobileDropdown && mobileDropdown.classList.contains('show')) {
             closeMobileMenu();
         }
@@ -1098,12 +1021,12 @@ if (mobileLikeLink) {
 }
 
 if (closeLikedModal) {
-    closeLikedModal.addEventListener('click', function() {
+    closeLikedModal.addEventListener('click', function () {
         likedModal.style.display = 'none';
     });
 }
 
-window.addEventListener('click', function(e) {
+window.addEventListener('click', function (e) {
     if (e.target === likedModal) {
         likedModal.style.display = 'none';
     }
@@ -1113,24 +1036,22 @@ function showLikedCarsModal() {
     const likedCount = document.getElementById('likedCount');
     const likedCarsList = document.getElementById('likedCarsList');
     const clearAllBtn = document.getElementById('clearAllLiked');
-    
+
     likedCount.textContent = likedCars.length;
-    
-    // Show/hide clear all button based on liked cars count
     if (likedCars.length > 1) {
         clearAllBtn.style.display = 'flex';
     } else {
         clearAllBtn.style.display = 'none';
     }
-    
+
     if (likedCars.length === 0) {
         likedCarsList.innerHTML = '<div class="no-results">No liked cars yet. Start exploring and like your favorites!</div>';
     } else {
         likedCarsList.innerHTML = '';
         likedCars.forEach((car, index) => {
             const card = document.createElement('div');
-            card.classList.add('car-card'); // Use same class as main cards
-            
+            card.classList.add('car-card');
+
             card.innerHTML = `
                 <img src="${car.image}" alt="${car.Marks} ${car.Model}" 
                      onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=250&fit=crop'">
@@ -1144,50 +1065,45 @@ function showLikedCarsModal() {
                     <button class="details-btn" data-liked-car="${index}">Details</button>
                 </div>
             `;
-            
+
             likedCarsList.appendChild(card);
         });
-        
-        // Add event listeners for delete buttons (no confirmation)
+
         document.querySelectorAll('[data-delete-index]').forEach(btn => {
-            btn.addEventListener('click', function(e) {
+            btn.addEventListener('click', function (e) {
                 e.stopPropagation();
                 const index = parseInt(this.dataset.deleteIndex);
                 removeLikedCarDirectly(index);
             });
         });
-        
-        // Add event listeners for heart icons (remove from liked)
+
         document.querySelectorAll('[data-liked-index]').forEach(icon => {
-            icon.addEventListener('click', function() {
+            icon.addEventListener('click', function () {
                 const index = parseInt(this.dataset.likedIndex);
                 removeLikedCarDirectly(index);
             });
         });
-        
-        // Add event listeners for details buttons (show inline details)
+
         document.querySelectorAll('[data-liked-car]').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 const index = parseInt(this.dataset.likedCar);
                 const car = likedCars[index];
                 showInlineCarDetails(car, index);
             });
         });
     }
-    
+
     likedModal.style.display = 'flex';
 }
 
-// Direct removal function without confirmation
 function removeLikedCarDirectly(index) {
     likedCars.splice(index, 1);
     updateLikeCounter();
     saveLikedCars();
-    showLikedCarsModal(); // Refresh modal
+    showLikedCarsModal();
     updateHeartIconsInMainView();
 }
 
-// Clear all liked cars function (keeps confirmation for bulk action)
 function clearAllLikedCars() {
     if (confirm('Are you sure you want to remove all cars from your favorites?')) {
         likedCars = [];
@@ -1198,25 +1114,21 @@ function clearAllLikedCars() {
     }
 }
 
-// Show car details inline within the liked modal
 function showInlineCarDetails(car, carIndex) {
     const likedCarsList = document.getElementById('likedCarsList');
-    
-    // Check if details are already shown for this car
+
     const existingDetails = document.getElementById(`details-${carIndex}`);
     if (existingDetails) {
         existingDetails.remove();
         return;
     }
-    
-    // Remove any other open details
+
     document.querySelectorAll('.inline-details').forEach(detail => detail.remove());
-    
-    // Create inline details element
+
     const detailsElement = document.createElement('div');
     detailsElement.classList.add('inline-details');
     detailsElement.id = `details-${carIndex}`;
-    
+
     detailsElement.innerHTML = `
         <div class="inline-details-content">
             <div class="details-header">
@@ -1285,14 +1197,13 @@ function showInlineCarDetails(car, carIndex) {
             </div>
         </div>
     `;
-    
-    // Find the card and insert details after it
+
     const cards = likedCarsList.querySelectorAll('.car-card');
     const targetCard = cards[carIndex];
     if (targetCard) {
         targetCard.insertAdjacentElement('afterend', detailsElement);
-        
-        // Scroll to details
+
+
         detailsElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 }
@@ -1313,27 +1224,27 @@ function updateHeartIconsInMainView() {
 
 function renderCars(data) {
     const container = document.getElementById('carList');
-    
-    const isFiltered = data.length !== allCarsData.length || 
-                      searchBox.value.trim() !== '' ||
-                      activeFilters.brands.length > 0 ||
-                      activeFilters.models.length > 0 ||
-                      activeFilters.fuelTypes.length > 0 ||
-                      activeFilters.bodyTypes.length > 0 ||
-                      activeFilters.minYear !== null ||
-                      activeFilters.maxYear !== null;
-    
+
+    const isFiltered = data.length !== allCarsData.length ||
+        searchBox.value.trim() !== '' ||
+        activeFilters.brands.length > 0 ||
+        activeFilters.models.length > 0 ||
+        activeFilters.fuelTypes.length > 0 ||
+        activeFilters.bodyTypes.length > 0 ||
+        activeFilters.minYear !== null ||
+        activeFilters.maxYear !== null;
+
     if (isFiltered) {
         container.style.justifyContent = 'flex-start';
     } else {
         container.style.justifyContent = 'space-between';
     }
-    
+
     if (data.length === 0) {
         container.innerHTML = '<div class="no-results">No cars found matching your criteria.</div>';
         return;
     }
-    
+
     container.innerHTML = '';
 
     data.forEach((car, index) => {
@@ -1355,9 +1266,8 @@ function renderCars(data) {
         container.appendChild(card);
     });
 
-    // Heart icon click with like functionality
     document.querySelectorAll('.heart-icon').forEach(icon => {
-        icon.addEventListener('click', function() {
+        icon.addEventListener('click', function () {
             const carIndex = parseInt(this.dataset.index);
             const car = data[carIndex];
             toggleLike(car, this);
@@ -1385,7 +1295,7 @@ function renderCars(data) {
 
 function showCarDetails(car) {
     const modal = document.getElementById('carModal');
-    
+
     document.getElementById('modalTitle').textContent = `${car.Marks} ${car.Model}`;
     document.getElementById('modalName').textContent = car.Name;
     document.getElementById('modalImage').src = car.image;
@@ -1401,27 +1311,27 @@ function showCarDetails(car) {
     document.getElementById('modalEquipment').textContent = car.Equipment;
     document.getElementById('modalPrice').textContent = typeof car.Price === 'number' ? `$${car.Price.toLocaleString()}` : car.Price;
     document.getElementById('modalColor').textContent = car.Color;
-    
+
     modal.style.display = 'flex';
 }
 
-// Add event listener for clear all button
-document.addEventListener('DOMContentLoaded', function() {
+
+document.addEventListener('DOMContentLoaded', function () {
     const clearAllBtn = document.getElementById('clearAllLiked');
     if (clearAllBtn) {
         clearAllBtn.addEventListener('click', clearAllLikedCars);
     }
 });
 
-// Horizontal Banner Advertisement functionality
+
 const bannerAdWrapper = document.getElementById('bannerAdWrapper');
 
-// Show banner ad on scroll
-window.addEventListener('scroll', function() {
+
+window.addEventListener('scroll', function () {
     if (bannerAdWrapper) {
         const scrollPosition = window.scrollY || window.pageYOffset;
-        
-        // Show banner after scrolling 300px down
+
+
         if (scrollPosition > 300) {
             bannerAdWrapper.classList.add('show');
         } else {
@@ -1430,7 +1340,7 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Load cars from JSON
+
 fetch('cars.json')
     .then(response => response.json())
     .then(data => {
@@ -1438,16 +1348,14 @@ fetch('cars.json')
         filteredCarsData = [...data];
         buildBrandModelHierarchy();
         renderCars(filteredCarsData);
-        updateLikeCounter(); // Initialize counter
-        
-        // If filter dropdown is open, regenerate options
+        updateLikeCounter();
+
         if (filterDropdown && filterDropdown.style.display === 'block') {
             generateFilterOptions();
         }
     })
     .catch(error => console.error('Error:', error));
 
-// Scroll Reveal Animation - Sequential reveal maintained
 let isAnimating = false;
 let hasAnimated = false;
 
@@ -1460,14 +1368,14 @@ const observerOptions = {
 function revealItemsSequentially(items) {
     if (isAnimating) return;
     isAnimating = true;
-    
+
     items.forEach((item, index) => {
         setTimeout(() => {
             item.classList.add('visible');
             if (index === items.length - 1) {
                 isAnimating = false;
             }
-        }, index * 800); // 800ms delay between each item
+        }, index * 800);
     });
 }
 
@@ -1476,98 +1384,83 @@ const scrollObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting && !hasAnimated) {
             const section = entry.target.closest('.scroll-reveal-section');
             const allItems = Array.from(section.querySelectorAll('.scroll-text-item'));
-            
-            // Trigger sequential animation only once
+
             hasAnimated = true;
             revealItemsSequentially(allItems);
-            
-            // Stop observing all items after animation starts
+
             allItems.forEach(item => scrollObserver.unobserve(item));
         }
     });
 }, observerOptions);
 
-// Initialize observer on DOM load
 document.addEventListener('DOMContentLoaded', () => {
     const scrollItems = document.querySelectorAll('.scroll-text-item');
-    
-    // Observe only the first item to trigger the sequence
+
     if (scrollItems.length > 0) {
         scrollObserver.observe(scrollItems[0]);
     }
 });
-// Enhanced map loading and interaction handler
 function initContactMap() {
     const mapIframe = document.querySelector('.map-embed iframe');
     const mapLoading = document.querySelector('.map-loading');
-    
+
     if (mapIframe && mapLoading) {
-        // Hide loading when map is loaded
-        mapIframe.onload = function() {
+        mapIframe.onload = function () {
             setTimeout(() => {
                 mapLoading.style.display = 'none';
                 enhanceMapInteraction();
             }, 1000);
         };
-        
-        // Fallback: hide loading after 5 seconds
+
         setTimeout(() => {
             if (mapLoading.style.display !== 'none') {
                 mapLoading.style.display = 'none';
             }
         }, 5000);
     }
-    
-    // Add mobile touch improvements
+
     enhanceMapInteraction();
 }
 
 function enhanceMapInteraction() {
     const mapEmbed = document.querySelector('.map-embed');
-    
+
     if (mapEmbed) {
-        // Enable better touch handling for mobile
         mapEmbed.style.cssText += `
             -webkit-overflow-scrolling: touch;
             overflow: auto;
         `;
-        
-        // Prevent unwanted behaviors
-        mapEmbed.addEventListener('touchstart', function(e) {
+
+        mapEmbed.addEventListener('touchstart', function (e) {
             e.stopPropagation();
         }, { passive: true });
-        
-        mapEmbed.addEventListener('touchmove', function(e) {
+
+        mapEmbed.addEventListener('touchmove', function (e) {
             e.stopPropagation();
         }, { passive: true });
     }
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initContactMap();
-    
-    // Re-initialize on window resize for better mobile handling
-    window.addEventListener('resize', function() {
+
+    window.addEventListener('resize', function () {
         setTimeout(enhanceMapInteraction, 100);
     });
 });
 
-// Handle orientation changes on mobile
-window.addEventListener('orientationchange', function() {
+window.addEventListener('orientationchange', function () {
     setTimeout(() => {
         enhanceMapInteraction();
     }, 300);
 });
-// Enhanced Mobile Search with No Overlap
 function initializeMobileSearch() {
     const searchBox = document.getElementById('search-box');
     const searchIcon = document.getElementById('searchIcon');
     const filterIcon = document.getElementById('filterIcon');
-    
+
     if (!searchBox || !searchIcon) return;
 
-    // Create clear button
     const clearButton = document.createElement('button');
     clearButton.className = 'search-clear-btn';
     clearButton.innerHTML = '<i class="fa-solid fa-times"></i>';
@@ -1576,17 +1469,15 @@ function initializeMobileSearch() {
     clearButton.style.display = 'none';
     searchIcon.parentNode.appendChild(clearButton);
 
-    // Create backdrop
     const backdrop = document.createElement('div');
     backdrop.className = 'search-backdrop';
     document.body.appendChild(backdrop);
 
     let isSearchExpanded = false;
 
-    // Toggle search box
     function toggleMobileSearch() {
         isSearchExpanded = !isSearchExpanded;
-        
+
         if (isSearchExpanded) {
             expandSearch();
         } else {
@@ -1599,8 +1490,7 @@ function initializeMobileSearch() {
         searchIcon.classList.add('active');
         backdrop.classList.add('active');
         document.body.classList.add('search-active');
-        
-        // Focus on search box after animation
+
         setTimeout(() => {
             searchBox.focus();
             updateClearButton();
@@ -1609,14 +1499,13 @@ function initializeMobileSearch() {
 
     function collapseSearch() {
         const searchTerm = searchBox.value.trim().toLowerCase();
-        
+
         if (searchTerm) {
             performSearch(searchTerm);
         } else {
-            // Return to original list if empty
             resetSearchResults();
         }
-        
+
         searchBox.classList.remove('expanded');
         searchIcon.classList.remove('active');
         clearButton.classList.remove('visible');
@@ -1625,8 +1514,6 @@ function initializeMobileSearch() {
         hideSearchDropdown();
         isSearchExpanded = false;
     }
-
-    // Clear search function
     function clearSearch() {
         searchBox.value = '';
         searchBox.focus();
@@ -1635,15 +1522,13 @@ function initializeMobileSearch() {
         resetSearchResults();
     }
 
-    // Update clear button visibility
     function updateClearButton() {
         if (searchBox.value.trim()) {
             clearButton.classList.add('visible');
         } else {
             clearButton.classList.remove('visible');
         }
-        
-        // Perform search as user types
+
         const searchTerm = searchBox.value.trim().toLowerCase();
         if (searchTerm.length >= 2) {
             showSearchResults(searchTerm);
@@ -1661,24 +1546,23 @@ function initializeMobileSearch() {
         }
     }
 
-    // Event listeners
-    searchIcon.addEventListener('click', function(e) {
+    searchIcon.addEventListener('click', function (e) {
         e.stopPropagation();
         toggleMobileSearch();
     });
 
-    clearButton.addEventListener('click', function(e) {
+    clearButton.addEventListener('click', function (e) {
         e.stopPropagation();
         clearSearch();
     });
 
-    backdrop.addEventListener('click', function() {
+    backdrop.addEventListener('click', function () {
         collapseSearch();
     });
 
     searchBox.addEventListener('input', updateClearButton);
 
-    searchBox.addEventListener('keypress', function(e) {
+    searchBox.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             const searchTerm = this.value.trim().toLowerCase();
             if (searchTerm) {
@@ -1688,8 +1572,7 @@ function initializeMobileSearch() {
         }
     });
 
-    // Handle Escape key
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && isSearchExpanded) {
             if (searchBox.value) {
                 clearSearch();
@@ -1699,17 +1582,14 @@ function initializeMobileSearch() {
         }
     });
 
-    // Prevent filter icon from closing search
-    filterIcon.addEventListener('click', function(e) {
+    filterIcon.addEventListener('click', function (e) {
         e.stopPropagation();
-        // Filter icon functionality remains separate
     });
 
-    // Close search when clicking on other nav items
-    document.addEventListener('click', function(e) {
-        if (isSearchExpanded && 
-            !searchBox.contains(e.target) && 
-            !searchIcon.contains(e.target) && 
+    document.addEventListener('click', function (e) {
+        if (isSearchExpanded &&
+            !searchBox.contains(e.target) &&
+            !searchIcon.contains(e.target) &&
             !clearButton.contains(e.target) &&
             !filterIcon.contains(e.target)) {
             collapseSearch();
@@ -1717,12 +1597,11 @@ function initializeMobileSearch() {
     });
 }
 
-// Initialize mobile search
-document.addEventListener('DOMContentLoaded', function() {
+
+document.addEventListener('DOMContentLoaded', function () {
     initializeMobileSearch();
-    
-    // Re-initialize on window resize
-    window.addEventListener('resize', function() {
+
+    window.addEventListener('resize', function () {
         const searchBox = document.getElementById('search-box');
         if (searchBox && searchBox.classList.contains('expanded')) {
             searchBox.classList.remove('expanded');

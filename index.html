@@ -20,26 +20,20 @@
                 <h1><a href="index.html">Cars.com</a></h1>
             </div>
             <ul class="nav-element">
-                <!-- Search box solda (mobile-da) -->
                 <li class="search-container">
                     <input type="search" placeholder="search" id="search-box">
                     <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
                     <i class="fa-solid fa-list" id="filterIcon"></i>
-                    <!-- Search results dropdown -->
                     <div class="search-dropdown" id="searchDropdown"></div>
-                    <!-- Enhanced Filter dropdown with hierarchical structure -->
                     <div class="filter-dropdown" id="filterDropdown">
                         <div class="filter-section">
                             <h4>Brand</h4>
                             <div class="filter-options" id="brandOptions"></div>
                         </div>
-                        <!-- Model Section (dynamically shown) -->
                         <div class="filter-section model-section" id="modelSection" style="display: none;">
                             <h4>Models</h4>
                             <div class="filter-options model-options-container" id="modelOptions"></div>
                         </div>
-
-                        <!-- Variant Section (dynamically shown for deeper filtering) -->
                         <div class="filter-section variant-section" id="variantSection" style="display: none;">
                             <h4>Variants</h4>
                             <div class="filter-options variant-options-container" id="variantOptions"></div>
@@ -124,14 +118,12 @@
                     </a>
                 </li>
                 <li><a href="contact.html"><i class="fa-solid fa-phone"></i>Contact</a></li>
-                <!-- Toggle button sağda (mobile-da) -->
                 <li class="mobile-toggle-container">
                     <div class="mobile-toggle" id="mobileToggle">
                         <i class="fa-solid fa-bars"></i>
                     </div>
                 </li>
             </ul>
-            <!-- Mobile dropdown menu -->
             <div class="mobile-dropdown" id="mobileDropdown">
                 <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
                 <a href="#" id="mobileAccountLink"><i class="fa-solid fa-user"></i>Account</a>
@@ -141,7 +133,6 @@
         </div>
     </nav>
 
-    <!-- New Image Carousel Section -->
     <section class="hero-carousel">
         <div class="carousel-container">
             <div class="carousel-slide active" data-slide="0">
@@ -174,7 +165,7 @@
             </div>
         </div>
 
-        <!-- Carousel Navigation -->
+
         <div class="carousel-nav">
             <button class="carousel-btn prev-btn" id="prevBtn">
                 <i class="fa-solid fa-chevron-left"></i>
@@ -184,7 +175,7 @@
             </button>
         </div>
 
-        <!-- Carousel Indicators -->
+
         <div class="carousel-indicators">
             <span class="indicator active" data-slide="0"></span>
             <span class="indicator" data-slide="1"></span>
@@ -199,7 +190,7 @@
         </div>
     </section>
 
-    <!-- Horizontal Banner Advertisement -->
+
     <div class="banner-ad-wrapper" id="bannerAdWrapper">
         <div class="banner-ad-container">
             <div class="banner-ad-content">
@@ -228,7 +219,7 @@
         </div>
     </div>
 
-    <!-- Advertisement Cards Section -->
+
     <section class="ads-section">
         <div class="ads-container">
             <div class="ads-card">
@@ -307,7 +298,7 @@
         </div>
     </section>
 
-    <!-- Car Details Modal -->
+
     <div id="carModal" class="modal">
         <div class="modal-content">
             <span id="closeModal" class="close">&times;</span>
@@ -332,7 +323,7 @@
         </div>
     </div>
 
-    <!-- Liked Cars Modal -->
+
     <div id="likedModal" class="modal">
         <div class="modal-content">
             <span id="closeLikedModal" class="close">&times;</span>
@@ -346,7 +337,7 @@
         </div>
     </div>
 
-    <!-- Account Modal -->
+
     <div id="accountModal" class="modal">
         <div class="modal-content account-modal-content">
             <span id="closeAccountModal" class="close">&times;</span>
@@ -354,7 +345,6 @@
                 <h3 id="formTitle">Login</h3>
             </div>
 
-            <!-- Login Form -->
             <form class="login-form" id="loginForm">
                 <div class="form-group">
                     <label for="username">
@@ -383,7 +373,6 @@
                 </div>
             </form>
 
-            <!-- Signup Form -->
             <form class="signup-form" id="signupForm" style="display: none;">
                 <div class="form-group">
                     <label for="signupUsername">
@@ -419,7 +408,6 @@
         </div>
     </div>
 
-    <!-- Car Card with Animated Text -->
     <section class="promo-section">
         <div class="promo-card">
             <div class="promo-image">
@@ -433,7 +421,6 @@
         </div>
     </section>
 
-    <!-- Scrolling Text Paragraphs -->
     <section class="scroll-reveal-section">
         <div class="scroll-text-item" data-scroll>
             <h3>🏆 Award-Winning Service</h3>
@@ -453,10 +440,8 @@
         </div>
     </section>
 
-    <!-- Enhanced Footer -->
     <footer class="site-footer">
         <div class="footer-container">
-            <!-- About Section -->
             <div class="footer-section footer-about">
                 <h3>About Cars.com</h3>
                 <p>Your premier destination for luxury and premium vehicles. We offer an extensive collection of
@@ -477,7 +462,6 @@
                 </div>
             </div>
 
-            <!-- Quick Links -->
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul class="footer-links">
@@ -490,7 +474,6 @@
                 </ul>
             </div>
 
-            <!-- Services -->
             <div class="footer-section">
                 <h3>Our Services</h3>
                 <div class="service-item">
@@ -519,7 +502,6 @@
                 </div>
             </div>
 
-            <!-- Newsletter -->
             <div class="footer-section">
                 <h3>Newsletter</h3>
                 <p class="newsletter-text">Subscribe to our newsletter for the latest car deals and exclusive offers.

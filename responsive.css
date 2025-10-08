@@ -1,6 +1,3 @@
-/* responsive.css - Desktop normal, mobile toggle menu */
-
-/* Hamburger menu button - əsas CSS-də görünməz */
 .mobile-toggle {
     display: none;
     color: #FFF;
@@ -16,7 +13,6 @@
     background: rgba(255, 165, 0, 0.1);
 }
 
-/* Mobile dropdown menu */
 .mobile-dropdown {
     display: none;
     position: absolute;
@@ -50,7 +46,7 @@
     transition: all 0.3s ease;
     position: relative;
     text-decoration: none;
-    min-height: 50px; /* Touch-friendly height */
+    min-height: 50px;
 }
 
 .mobile-dropdown a:hover,
@@ -86,7 +82,6 @@
     height: 60%;
 }
 
-/* Slide down animasiyası */
 @keyframes slideDown {
     from {
         opacity: 0;
@@ -99,17 +94,16 @@
     }
 }
 
-/* Desktop görünüş - həmə şey normal */
 @media screen and (min-width: 769px) {
     .mobile-toggle {
         display: none !important;
     }
-    
+
     .mobile-dropdown {
         display: none !important;
     }
 
-    /* Desktop linklər normal görünür */
+
     .nav-element li {
         display: list-item;
     }
@@ -119,7 +113,6 @@
     }
 
 
-    /* Search container desktop-də görünür */
     .search-container {
         display: flex !important;
         align-items: center;
@@ -136,30 +129,27 @@
         margin: 0;
     }
 
-    /* Toggle container desktop-də gizli */
     .mobile-toggle-container {
         display: none !important;
     }
 
-    /* Search and filter dropdowns desktop */
     .search-dropdown {
         width: 320px;
     }
-    
+
     .filter-dropdown {
         width: 450px;
     }
-    
+
     .model-options-container {
         max-height: 250px;
     }
-    
+
     .variant-options-container {
         max-height: 180px;
     }
 }
 
-/* Tablet (768px və aşağı) - Toggle menu aktivləşir */
 @media screen and (max-width: 768px) {
     .navbar {
         padding: 15px 4%;
@@ -183,7 +173,6 @@
         font-size: 32px;
     }
 
-    /* Nav element container */
     .nav-element {
         order: 2;
         display: flex;
@@ -195,7 +184,6 @@
         overflow: visible;
     }
 
-    /* Search container */
     .search-container {
         display: flex;
         align-items: center;
@@ -207,7 +195,6 @@
         position: relative;
     }
 
-    /* Search box mobile - always visible like desktop */
     #search-box {
         display: block !important;
         width: 140px;
@@ -232,7 +219,6 @@
         background: rgba(255, 255, 255, 0.15);
     }
 
-    /* Search and filter icons mobile */
     .search-container i {
         font-size: 16px;
         margin-left: 5px;
@@ -246,18 +232,15 @@
         color: orange;
     }
 
-    /* Filter icon - ensure it's clickable and visible */
     #filterIcon {
         position: relative;
         z-index: 5;
     }
 
-    /* Search icon wrapper for better positioning */
     .search-container {
         position: relative;
     }
 
-    /* Mobile dropdowns */
     .search-dropdown {
         width: 280px;
         max-width: 90vw;
@@ -265,67 +248,69 @@
         left: auto;
         top: 80px;
     }
-    
+
     .filter-dropdown {
         position: fixed;
         width: 90vw;
         max-width: 380px;
-        right: 5px; left: auto;
+        right: 5px;
+        left: auto;
         top: 80px;
-        max-height: calc(100vh - 100px); overflow-y: auto;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
         z-index: 9999;
     }
-    
+
     .filter-dropdown .filter-section {
         padding: 14px;
     }
-    
+
     .filter-dropdown h4 {
         font-size: 15px;
         margin-bottom: 10px;
     }
-    
+
     .filter-option {
         font-size: 12px;
         padding: 6px 10px;
         margin: 3px;
     }
-    
+
     .model-section {
         margin-left: 8px;
         padding: 14px !important;
         margin-top: 5px;
     }
-    
+
     .model-section h4 {
         font-size: 14px;
         margin-bottom: 10px;
     }
-    
+
     .model-option {
         font-size: 12px;
         padding: 7px 12px;
         margin: 3px;
     }
-    
+
     .model-options-container {
         max-height: 150px;
         padding: 5px;
     }
-    
+
     .year-input,
     .range-input {
         padding: 7px 10px;
         font-size: 13px;
         border-radius: 18px;
     }
-    
-    .apply-btn, .clear-btn {
+
+    .apply-btn,
+    .clear-btn {
         padding: 9px 16px;
         font-size: 13px;
     }
 
-    /* Toggle container */
     .mobile-toggle-container {
         order: 3;
         display: flex !important;
@@ -334,7 +319,6 @@
         overflow: visible;
     }
 
-    /* Toggle button göstər */
     .mobile-toggle {
         display: flex !important;
         align-items: center;
@@ -357,7 +341,6 @@
         color: orange;
     }
 
-    /* Mobile dropdown positioning */
     .mobile-dropdown {
         position: absolute;
         top: 100%;
@@ -367,49 +350,46 @@
         z-index: 1001;
     }
 
-    /* Desktop nav linklərini gizlə, ancaq toggle və search göstər */
-    .nav-element > li:not(.mobile-toggle-container):not(.search-container) {
+    .nav-element>li:not(.mobile-toggle-container):not(.search-container) {
         display: none !important;
     }
-    
-    /* Ensure search and toggle are visible */
+
     .nav-element .search-container,
     .nav-element .mobile-toggle-container {
         display: flex !important;
     }
 
-    /* Carousel responsive */
     .hero-carousel {
         height: 300px;
     }
-    
+
     .carousel-content {
         padding: 20px;
     }
-    
+
     .carousel-content h2 {
         font-size: 1.8rem;
     }
-    
+
     .carousel-content p {
         font-size: 1rem;
     }
-    
+
     .carousel-btn {
         width: 40px;
         height: 40px;
         font-size: 16px;
     }
-    
+
     .carousel-nav {
         padding: 0 15px;
     }
 
-    /* Modal responsive */
+
     .modal {
         padding: 15px;
     }
-    
+
     .modal-content {
         padding: 20px;
         max-width: 100%;
@@ -431,18 +411,18 @@
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     .car-details strong {
         min-width: auto;
         margin-bottom: 5px;
         margin-right: 0;
     }
-    
+
     .car-details span {
         text-align: left;
         padding-left: 0;
     }
-    
+
     .close {
         top: 10px;
         right: 15px;
@@ -451,7 +431,6 @@
         height: 25px;
     }
 
-    /* Liked modal responsive */
     .liked-cars-grid {
         justify-content: flex-start;
         gap: 15px;
@@ -467,7 +446,6 @@
         right: 8px;
     }
 
-    /* Inline details responsive */
     .details-grid {
         grid-template-columns: 1fr;
         gap: 15px;
@@ -500,7 +478,6 @@
         padding: 12px;
     }
 
-    /* Liked modal header responsive */
     .liked-modal-header {
         flex-direction: column;
         align-items: flex-start;
@@ -513,7 +490,6 @@
         align-self: flex-end;
     }
 
-    /* Account modal tablet */
     .account-modal-content {
         max-width: 360px;
         width: 85%;
@@ -534,7 +510,6 @@
     }
 }
 
-/* Mobile (480px və aşağı) */
 @media screen and (max-width: 480px) {
     .navbar {
         padding: 12px 3%;
@@ -550,13 +525,11 @@
         font-size: 26px;
     }
 
-    /* Nav element mobile layout */
     .nav-element {
         margin-left: 15px;
         gap: 10px;
     }
 
-    /* Search container mobile */
     .search-container {
         padding: 6px 8px;
         font-size: 14px;
@@ -580,7 +553,6 @@
         font-size: 11px;
     }
 
-    /* Search and filter icons smaller */
     .search-container i {
         font-size: 14px;
         margin-left: 4px;
@@ -588,13 +560,11 @@
         cursor: pointer;
     }
 
-    /* Mobile toggle button */
     .mobile-toggle {
         font-size: 22px;
         padding: 6px;
     }
 
-    /* Mobile dropdown */
     .mobile-dropdown {
         right: 3%;
         min-width: 180px;
@@ -606,7 +576,6 @@
         padding: 12px 16px;
     }
 
-    /* Mobile dropdowns smaller */
     .search-dropdown {
         width: 240px;
         max-width: 85vw;
@@ -614,14 +583,16 @@
         left: auto;
         font-size: 12px;
     }
-    
+
     .filter-dropdown {
         position: fixed;
         width: 90vw;
         max-width: 350px;
-        right: 5px; left: auto;
+        right: 5px;
+        left: auto;
         top: 80px;
-        max-height: calc(100vh - 90px); overflow-y: auto;
+        max-height: calc(100vh - 90px);
+        overflow-y: auto;
         z-index: 9999;
     }
 
@@ -639,26 +610,27 @@
         padding: 5px 9px;
         margin: 2px;
     }
-    
+
     .model-section {
         margin-left: 6px;
         padding: 12px !important;
         margin-top: 4px;
     }
-    
+
     .model-section h4 {
         font-size: 13px;
         margin-bottom: 8px;
     }
-    
+
     .model-option {
         font-size: 11px;
         padding: 6px 10px;
         margin: 2px;
     }
-    
+
     .model-options-container {
-        max-height: calc(100vh - 90px); overflow-y: auto;
+        max-height: calc(100vh - 90px);
+        overflow-y: auto;
         padding: 4px;
     }
 
@@ -669,45 +641,44 @@
         border-radius: 16px;
     }
 
-    .apply-btn, .clear-btn {
+    .apply-btn,
+    .clear-btn {
         padding: 8px 12px;
         font-size: 12px;
     }
 
-    /* Carousel responsive */
     .hero-carousel {
         height: 250px;
     }
-    
+
     .carousel-content {
         padding: 15px;
     }
-    
+
     .carousel-content h2 {
         font-size: 1.5rem;
         margin-bottom: 5px;
     }
-    
+
     .carousel-content p {
         font-size: 0.9rem;
     }
-    
+
     .carousel-btn {
         width: 35px;
         height: 35px;
         font-size: 14px;
     }
-    
+
     .indicator {
         width: 10px;
         height: 10px;
     }
 
-    /* Modal responsive */
     .modal {
         padding: 10px;
     }
-    
+
     .modal-content {
         padding: 15px;
         border-radius: 10px;
@@ -720,7 +691,8 @@
     }
 
     .modal-img {
-        max-height: calc(100vh - 90px); overflow-y: auto;
+        max-height: calc(100vh - 90px);
+        overflow-y: auto;
         margin-bottom: 12px;
     }
 
@@ -728,16 +700,16 @@
         padding: 8px 0;
         font-size: 14px;
     }
-    
+
     .car-details strong {
         font-size: 14px;
         margin-bottom: 3px;
     }
-    
+
     .car-details span {
         font-size: 13px;
     }
-    
+
     .close {
         top: 8px;
         right: 12px;
@@ -746,7 +718,6 @@
         height: 22px;
     }
 
-    /* Mobile liked modal */
     .liked-cars-grid {
         justify-content: center;
         gap: 15px;
@@ -762,7 +733,6 @@
         right: 6px;
     }
 
-    /* Mobile inline details */
     .inline-details-content {
         padding: 12px;
     }
@@ -803,13 +773,11 @@
         font-size: 14px;
     }
 
-    /* Mobile clear all button */
     .clear-all-btn {
         padding: 5px 10px;
         font-size: 11px;
     }
 
-    /* Account modal mobile */
     .account-modal-content {
         max-width: 350px;
         width: 90vw;
@@ -854,7 +822,6 @@
     }
 }
 
-/* Çox kiçik mobil (360px və aşağı) */
 @media screen and (max-width: 360px) {
     .navbar {
         padding: 10px 2%;
@@ -870,13 +837,11 @@
         font-size: 22px;
     }
 
-    /* Nav element extra small */
     .nav-element {
         margin-left: 10px;
         gap: 8px;
     }
 
-    /* Search container extra small */
     .search-container {
         padding: 4px 6px;
         font-size: 13px;
@@ -900,7 +865,6 @@
         font-size: 10px;
     }
 
-    /* Extra small search and filter icons */
     .search-container i {
         font-size: 12px;
         margin-left: 3px;
@@ -908,12 +872,11 @@
         cursor: pointer;
     }
 
-    /* Mobile toggle button extra small */
     .mobile-toggle {
         font-size: 20px;
         padding: 5px;
     }
-    /* Mobile dropdown extra small */
+
     .mobile-dropdown {
         right: 2%;
         min-width: 140px;
@@ -925,7 +888,6 @@
         padding: 8px 12px;
     }
 
-    /* Extra small dropdowns */
     .search-dropdown {
         width: 200px;
         max-width: 80vw;
@@ -933,14 +895,16 @@
         left: auto;
         font-size: 10px;
     }
-    
+
     .filter-dropdown {
         position: fixed;
         width: 280px;
         max-width: 90vw;
-        right: 5px; left: auto;
+        right: 5px;
+        left: auto;
         top: 80px;
-        max-height: calc(100vh - 85px); overflow-y: auto;
+        max-height: calc(100vh - 85px);
+        overflow-y: auto;
         z-index: 9999;
     }
 
@@ -957,25 +921,25 @@
         font-size: 9px;
         padding: 3px 6px;
     }
-    
-    /* Model section extra small */
+
     .model-section {
         margin-left: 2px;
         padding: 6px !important;
     }
-    
+
     .model-section h4 {
         font-size: 11px;
         margin-bottom: 6px;
     }
-    
+
     .model-option {
         font-size: 9px;
         padding: 3px 6px;
     }
-    
+
     .model-options-container {
-        max-height: calc(100vh - 85px); overflow-y: auto;
+        max-height: calc(100vh - 85px);
+        overflow-y: auto;
     }
 
     .year-input,
@@ -986,16 +950,16 @@
         border-radius: 14px;
     }
 
-    .apply-btn, .clear-btn {
+    .apply-btn,
+    .clear-btn {
         padding: 5px 8px;
         font-size: 10px;
     }
-    
-    /* Very small mobile modal */
+
     .modal {
         padding: 4px;
     }
-    
+
     .modal-content {
         padding: 12px;
         max-height: 98vh;
@@ -1007,7 +971,8 @@
     }
 
     .modal-img {
-        max-height: calc(100vh - 85px); overflow-y: auto;
+        max-height: calc(100vh - 85px);
+        overflow-y: auto;
         margin-bottom: 10px;
     }
 
@@ -1015,16 +980,15 @@
         padding: 6px 0;
         font-size: 13px;
     }
-    
+
     .car-details strong {
         font-size: 13px;
     }
-    
+
     .car-details span {
         font-size: 12px;
     }
 
-    /* Extra small mobile liked modal */
     .liked-cars-grid {
         justify-content: center;
         gap: 12px;
@@ -1110,13 +1074,11 @@
         font-size: 12px;
     }
 
-    /* Extra small clear all button */
     .clear-all-btn {
         padding: 4px 8px;
         font-size: 10px;
     }
 
-    /* Account modal extra small */
     .account-modal-content {
         max-width: 340px;
         width: 92vw;
@@ -1167,7 +1129,6 @@
     }
 }
 
-/* Landscape mobil cihazlar */
 @media screen and (max-height: 500px) and (orientation: landscape) {
     .navbar {
         padding-top: 1%;
@@ -1200,31 +1161,30 @@
         padding: 6px 12px;
     }
 
-    /* Landscape dropdowns */
     .search-dropdown {
-        max-height: calc(100vh - 85px); overflow-y: auto;
+        max-height: calc(100vh - 85px);
+        overflow-y: auto;
     }
-    
+
     .filter-dropdown {
-        max-height: calc(100vh - 85px); overflow-y: auto;
+        max-height: calc(100vh - 85px);
+        overflow-y: auto;
     }
 }
 
 
-
-/* 280px - 327px */
 @media screen and (min-width: 280px) and (max-width: 327px) {
     .navbar {
         padding: 5px 1.5%;
         min-height: 45px;
         flex-wrap: wrap;
     }
-    
+
     .logo h1 a {
         font-size: 16px;
         line-height: 25px;
     }
-    
+
     #search-box {
         display: block !important;
         width: 80px;
@@ -1242,55 +1202,57 @@
         color: rgba(255, 255, 255, 0.7);
         font-size: 8px;
     }
-    
+
     .mobile-toggle {
         font-size: 14px;
         padding: 3px;
     }
-    
-    /* Filter dropdown for very small screens */
+
     .filter-dropdown {
         position: fixed;
         width: 90vw;
         max-width: 340px;
-        right: 5px; left: auto;
+        right: 5px;
+        left: auto;
         top: 80px;
-        max-height: calc(100vh - 85px); overflow-y: auto;
+        max-height: calc(100vh - 85px);
+        overflow-y: auto;
         z-index: 9999;
     }
-    
+
     .filter-dropdown .filter-section {
         padding: 8px;
     }
-    
+
     .filter-dropdown h4 {
         font-size: 12px;
         margin-bottom: 5px;
     }
-    
+
     .filter-option {
         font-size: 9px;
         padding: 3px 5px;
     }
-    
+
     .model-section {
         margin-left: 2px;
         padding: 6px !important;
     }
-    
+
     .model-section h4 {
         font-size: 11px;
     }
-    
+
     .model-option {
         font-size: 9px;
         padding: 3px 6px;
     }
-    
+
     .model-options-container {
-        max-height: calc(100vh - 85px); overflow-y: auto;
+        max-height: calc(100vh - 85px);
+        overflow-y: auto;
     }
-    
+
     .year-input,
     .range-input {
         padding: 4px 5px;
@@ -1298,26 +1260,26 @@
         width: 55px;
         border-radius: 14px;
     }
-    
-    .apply-btn, .clear-btn {
+
+    .apply-btn,
+    .clear-btn {
         padding: 5px 8px;
         font-size: 10px;
     }
 }
 
-/* 200px - 279px (Ultra small screens) */
 @media screen and (max-width: 279px) {
     .navbar {
         padding: 3px 1%;
         min-height: 40px;
         flex-wrap: wrap;
     }
-    
+
     .logo h1 a {
         font-size: 14px;
         line-height: 20px;
     }
-    
+
     #search-box {
         display: block !important;
         width: 70px;
@@ -1335,56 +1297,56 @@
         color: rgba(255, 255, 255, 0.7);
         font-size: 7px;
     }
-    
+
     .mobile-toggle {
         font-size: 12px;
         padding: 2px;
     }
-    
-    /* Filter dropdown for ultra small screens */
+
     .filter-dropdown {
         position: fixed;
         width: 97%;
         max-width: 250px;
-        right: 5px; left: auto;
+        right: 5px;
+        left: auto;
         top: 60px;
         max-height: calc(100vh - 70px);
         overflow-y: auto;
         z-index: 9999;
     }
-    
+
     .filter-dropdown .filter-section {
         padding: 6px;
     }
-    
+
     .filter-dropdown h4 {
         font-size: 11px;
         margin-bottom: 4px;
     }
-    
+
     .filter-option {
         font-size: 8px;
         padding: 2px 4px;
     }
-    
+
     .model-section {
         margin-left: 1px;
         padding: 5px !important;
     }
-    
+
     .model-section h4 {
         font-size: 10px;
     }
-    
+
     .model-option {
         font-size: 8px;
         padding: 2px 5px;
     }
-    
+
     .model-options-container {
         max-height: 80px;
     }
-    
+
     .year-input,
     .range-input {
         padding: 3px 4px;
@@ -1392,25 +1354,24 @@
         width: 45px;
         border-radius: 12px;
     }
-    
-    .apply-btn, .clear-btn {
+
+    .apply-btn,
+    .clear-btn {
         padding: 4px 6px;
         font-size: 9px;
     }
 }
 
-
-/* 328px - 360px */
 @media screen and (min-width: 328px) and (max-width: 360px) {
     .navbar {
         padding: 8px 2%;
         min-height: 50px;
     }
-    
+
     .logo h1 a {
         font-size: 20px;
     }
-    
+
     #search-box {
         display: block !important;
         width: 90px;
@@ -1428,69 +1389,69 @@
         color: rgba(255, 255, 255, 0.7);
         font-size: 9px;
     }
-    
-    /* Filter dropdown */
+
     .filter-dropdown {
         position: fixed;
         width: 90vw;
         max-width: 320px;
-        right: 5px; left: auto;
+        right: 5px;
+        left: auto;
         top: 80px;
         max-height: 310px;
         z-index: 9999;
     }
-    
+
     .filter-dropdown .filter-section {
         padding: 11px;
     }
-    
+
     .filter-dropdown h4 {
         font-size: 13px;
         margin-bottom: 7px;
     }
-    
+
     .filter-option {
         font-size: 10px;
         padding: 5px 8px;
         margin: 2px;
     }
-    
+
     .model-section {
         margin-left: 5px;
         padding: 10px !important;
         margin-top: 3px;
     }
-    
+
     .model-section h4 {
         font-size: 12px;
         margin-bottom: 7px;
     }
-    
+
     .model-option {
         font-size: 10px;
         padding: 5px 9px;
         margin: 2px;
     }
-    
+
     .model-options-container {
         max-height: 110px;
         padding: 3px;
     }
-    
+
     .year-input,
     .range-input {
         padding: 5px 6px;
         font-size: 11px;
         border-radius: 16px;
     }
-    
-    .apply-btn, .clear-btn {
+
+    .apply-btn,
+    .clear-btn {
         padding: 6px 10px;
         font-size: 11px;
     }
 }
 
-/* 361px - 390px arası responsive düzəliş */
 @media screen and (min-width: 361px) and (max-width: 390px) {
     .navbar {
         padding: 10px 2.5%;
@@ -1556,68 +1517,67 @@
         font-size: 12px;
         padding: 8px 10px;
     }
-    
-    /* Filter dropdown adjustments */
+
     .filter-dropdown {
         position: fixed;
         width: 90vw;
         max-width: 350px;
-        right: 5px; left: auto;
+        right: 5px;
+        left: auto;
         top: 80px;
         max-height: 330px;
         z-index: 9999;
     }
-    
+
     .filter-dropdown .filter-section {
         padding: 12px;
     }
-    
+
     .filter-dropdown h4 {
         font-size: 13px;
         margin-bottom: 8px;
     }
-    
+
     .filter-option {
         font-size: 11px;
         padding: 5px 9px;
         margin: 2px;
     }
-    
-    /* Model section specific */
+
     .model-section {
         margin-left: 7px;
         padding: 12px !important;
         margin-top: 4px;
     }
-    
+
     .model-section h4 {
         font-size: 13px;
         margin-bottom: 8px;
     }
-    
+
     .model-option {
         font-size: 11px;
         padding: 6px 10px;
         margin: 2px;
     }
-    
+
     .model-options-container {
         max-height: 120px;
         padding: 4px;
     }
-    
+
     .year-input {
         padding: 5px 6px;
         font-size: 11px;
     }
-    
-    .apply-btn, .clear-btn {
+
+    .apply-btn,
+    .clear-btn {
         padding: 6px 10px;
         font-size: 11px;
     }
 }
 
-/* 391px - 400px */
 @media screen and (min-width: 391px) and (max-width: 400px) {
     .filter-dropdown {
         width: 90vw;
@@ -1625,224 +1585,216 @@
         right: 2%;
         max-height: 350px;
     }
-    
+
     .filter-dropdown .filter-section {
         padding: 13px;
     }
-    
+
     .filter-dropdown h4 {
         font-size: 14px;
         margin-bottom: 9px;
     }
-    
+
     .filter-option {
         font-size: 12px;
         padding: 6px 10px;
         margin: 3px;
     }
-    
+
     .model-section {
         margin-left: 8px;
         padding: 13px !important;
         margin-top: 5px;
     }
-    
+
     .model-section h4 {
         font-size: 14px;
         margin-bottom: 9px;
     }
-    
+
     .model-option {
         font-size: 12px;
         padding: 7px 11px;
         margin: 3px;
     }
-    
+
     .model-options-container {
         max-height: 135px;
         padding: 5px;
     }
-    
+
     .year-input {
         padding: 6px 8px;
         font-size: 12px;
     }
-    
-    .apply-btn, .clear-btn {
+
+    .apply-btn,
+    .clear-btn {
         padding: 7px 12px;
         font-size: 12px;
     }
 }
 
-/* Advertisement Cards Responsive Styles */
-
-/* Desktop normal */
 @media screen and (min-width: 769px) {
     .ads-section {
         padding: 40px 8%;
     }
-    
+
     .ads-container {
         gap: 30px;
     }
-    
+
     .ads-card-image {
         height: 200px;
     }
 }
 
-/* Tablet (768px and below) */
 @media screen and (max-width: 768px) {
     .ads-section {
         padding: 30px 4%;
     }
-    
+
     .ads-container {
         flex-direction: column;
         gap: 25px;
     }
-    
+
     .ads-card {
         max-width: 100%;
     }
-    
+
     .ads-card-image {
         height: 180px;
     }
-    
+
     .ads-card-content h3 {
         font-size: 20px;
     }
-    
+
     .ads-card-content p {
         font-size: 13px;
     }
-    
+
     .ads-details {
         padding: 15px;
     }
-    
+
     .ads-details .detail-item {
         font-size: 13px;
         padding: 8px 0;
     }
 }
 
-/* Mobile (480px and below) */
 @media screen and (max-width: 480px) {
     .ads-section {
         padding: 25px 3%;
     }
-    
+
     .ads-container {
         gap: 20px;
     }
-    
+
     .ads-card-image {
         height: 150px;
     }
-    
+
     .ads-card-content {
         padding: 15px;
     }
-    
+
     .ads-card-content h3 {
         font-size: 18px;
         margin-bottom: 8px;
     }
-    
+
     .ads-card-content p {
         font-size: 12px;
     }
-    
+
     .ads-details {
         padding: 12px;
     }
-    
+
     .ads-details .detail-item {
         font-size: 12px;
         padding: 6px 0;
         gap: 10px;
     }
-    
+
     .ads-details .detail-item i {
         font-size: 16px;
         width: 20px;
     }
 }
 
-/* Extra small mobile (360px and below) */
 @media screen and (max-width: 360px) {
     .ads-section {
         padding: 20px 2%;
     }
-    
+
     .ads-container {
         gap: 15px;
     }
-    
+
     .ads-card-image {
         height: 130px;
     }
-    
+
     .ads-card-content {
         padding: 12px;
     }
-    
+
     .ads-card-content h3 {
         font-size: 16px;
         margin-bottom: 6px;
     }
-    
+
     .ads-card-content p {
         font-size: 11px;
     }
-    
+
     .ads-details {
         padding: 10px;
     }
-    
+
     .ads-details .detail-item {
         font-size: 11px;
         padding: 5px 0;
         gap: 8px;
     }
-    
+
     .ads-details .detail-item i {
         font-size: 14px;
         width: 18px;
     }
 }
 
-/* Horizontal Banner Advertisement Responsive Styles */
-
-/* Desktop normal */
 @media screen and (min-width: 769px) {
     .banner-ad-wrapper.show {
         max-height: 450px;
     }
-    
+
     .banner-ad-content {
         padding: 50px 100px;
         gap: 60px;
     }
-    
+
     .banner-left h2 {
         font-size: 46px;
     }
-    
+
     .banner-subtitle {
         font-size: 19px;
     }
-    
+
     .banner-features li {
         font-size: 16px;
     }
-    
+
     .banner-right {
         flex: 0 0 550px;
     }
-    
+
     .banner-right img {
         width: 100%;
         height: 350px;
@@ -1850,240 +1802,235 @@
     }
 }
 
-/* Tablet (768px and below) */
 @media screen and (max-width: 768px) {
     .banner-ad-wrapper.show {
         max-height: 450px;
     }
-    
+
     .banner-ad-content {
         flex-direction: row;
         padding: 30px 20px;
         gap: 20px;
     }
-    
+
     .banner-left {
         flex: 1;
         text-align: left;
     }
-    
+
     .banner-badge {
         font-size: 11px;
         padding: 6px 14px;
         margin-bottom: 12px;
     }
-    
+
     .banner-left h2 {
         font-size: 28px;
         margin-bottom: 10px;
     }
-    
+
     .banner-subtitle {
         font-size: 14px;
         margin-bottom: 15px;
     }
-    
+
     .banner-features {
         margin-bottom: 15px;
     }
-    
+
     .banner-features li {
         font-size: 12px;
         gap: 8px;
         margin-bottom: 8px;
     }
-    
+
     .banner-features i {
         font-size: 14px;
     }
-    
+
     .banner-cta-group {
         gap: 10px;
     }
-    
+
     .banner-btn-primary,
     .banner-btn-secondary {
         padding: 10px 20px;
         font-size: 13px;
     }
-    
+
     .banner-right {
         flex: 0 0 320px;
     }
-    
+
     .banner-right img {
         height: 280px;
     }
-    
+
     .banner-price-tag {
         padding: 10px 18px;
         bottom: 15px;
         right: 15px;
     }
-    
+
     .price-label {
         font-size: 10px;
     }
-    
+
     .price-amount {
         font-size: 22px;
     }
 }
 
-/* Mobile (470px and below) - Stacked Layout */
 @media screen and (max-width: 470px) {
     .banner-ad-wrapper.show {
         max-height: 700px;
     }
-    
+
     .banner-ad-content {
         flex-direction: column;
         padding: 30px 20px;
         gap: 25px;
     }
-    
+
     .banner-left {
         text-align: center;
     }
-    
+
     .banner-badge {
         font-size: 12px;
         padding: 8px 16px;
         margin-bottom: 15px;
     }
-    
+
     .banner-left h2 {
         font-size: 26px;
         margin-bottom: 12px;
     }
-    
+
     .banner-subtitle {
         font-size: 15px;
         margin-bottom: 20px;
     }
-    
+
     .banner-features {
         margin-bottom: 20px;
     }
-    
+
     .banner-features li {
         font-size: 14px;
         gap: 10px;
         margin-bottom: 10px;
         justify-content: center;
     }
-    
+
     .banner-features i {
         font-size: 16px;
     }
-    
+
     .banner-cta-group {
         gap: 12px;
         justify-content: center;
         flex-wrap: wrap;
     }
-    
+
     .banner-btn-primary,
     .banner-btn-secondary {
         padding: 12px 28px;
         font-size: 14px;
     }
-    
+
     .banner-right {
         width: 100%;
         max-width: 400px;
         margin: 0 auto;
     }
-    
+
     .banner-right img {
         width: 100%;
         height: 280px;
         object-fit: contain;
     }
-    
+
     .banner-price-tag {
         padding: 12px 20px;
         bottom: 15px;
         right: 15px;
     }
-    
+
     .price-label {
         font-size: 11px;
     }
-    
+
     .price-amount {
         font-size: 24px;
     }
-    
-    /* Promo card responsive */
+
     .promo-section {
         padding: 40px 4%;
     }
-    
+
     .promo-card {
         flex-direction: column;
         padding: 30px;
         gap: 30px;
     }
-    
+
     .animated-title {
         font-size: 36px;
     }
-    
+
     .animated-subtitle {
         font-size: 18px;
     }
-    
-    /* Scroll reveal responsive */
+
     .scroll-reveal-section {
         padding: 40px 4%;
     }
-    
+
     .scroll-text-item {
         padding: 30px;
     }
-    
+
     .scroll-text-item h3 {
         font-size: 24px;
     }
-    
+
     .scroll-text-item p {
         font-size: 16px;
     }
 }
 
-/* Mobile specific (480px and below) */
 @media screen and (max-width: 480px) {
     .promo-section {
         padding: 30px 3%;
     }
-    
+
     .promo-card {
         padding: 20px;
         gap: 20px;
     }
-    
+
     .animated-title {
         font-size: 28px;
     }
-    
+
     .animated-subtitle {
         font-size: 16px;
     }
-    
+
     .scroll-reveal-section {
         padding: 30px 3%;
     }
-    
+
     .scroll-text-item {
         padding: 20px;
         margin-bottom: 20px;
     }
-    
+
     .scroll-text-item h3 {
         font-size: 20px;
     }
-    
+
     .scroll-text-item p {
         font-size: 14px;
     }
