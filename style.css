@@ -12,16 +12,14 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     font-smooth: always;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-img {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -ms-interpolation-mode: bicubic;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    image-rendering: optimize-quality;
-    transform: translateZ(0);
+/* Main content wrapper */
+main {
+    flex: 1;
 }
 
 /* No results message */
@@ -480,7 +478,6 @@ img {
     margin-right: 6px;
     font-size: 11px;
 }
-
 
 /* Model section specific styling - sub-group appearance */
 .model-section {
@@ -1764,4 +1761,16 @@ img {
     line-height: 1.7;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
     font-weight: 500;
+}
+
+/* Footer Styles */
+footer {
+    margin-top: auto;
+    width: 100%;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
 }

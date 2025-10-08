@@ -1496,3 +1496,66 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollObserver.observe(scrollItems[0]);
     }
 });
+// Enhanced map loading and interaction handler
+function initContactMap() {
+    const mapIframe = document.querySelector('.map-embed iframe');
+    const mapLoading = document.querySelector('.map-loading');
+    
+    if (mapIframe && mapLoading) {
+        // Hide loading when map is loaded
+        mapIframe.onload = function() {
+            setTimeout(() => {
+                mapLoading.style.display = 'none';
+                enhanceMapInteraction();
+            }, 1000);
+        };
+        
+        // Fallback: hide loading after 5 seconds
+        setTimeout(() => {
+            if (mapLoading.style.display !== 'none') {
+                mapLoading.style.display = 'none';
+            }
+        }, 5000);
+    }
+    
+    // Add mobile touch improvements
+    enhanceMapInteraction();
+}
+
+function enhanceMapInteraction() {
+    const mapEmbed = document.querySelector('.map-embed');
+    
+    if (mapEmbed) {
+        // Enable better touch handling for mobile
+        mapEmbed.style.cssText += `
+            -webkit-overflow-scrolling: touch;
+            overflow: auto;
+        `;
+        
+        // Prevent unwanted behaviors
+        mapEmbed.addEventListener('touchstart', function(e) {
+            e.stopPropagation();
+        }, { passive: true });
+        
+        mapEmbed.addEventListener('touchmove', function(e) {
+            e.stopPropagation();
+        }, { passive: true });
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initContactMap();
+    
+    // Re-initialize on window resize for better mobile handling
+    window.addEventListener('resize', function() {
+        setTimeout(enhanceMapInteraction, 100);
+    });
+});
+
+// Handle orientation changes on mobile
+window.addEventListener('orientationchange', function() {
+    setTimeout(() => {
+        enhanceMapInteraction();
+    }, 300);
+});
