@@ -14,26 +14,33 @@
 </head>
 
 <body>
-    <nav>
+    <!-- Fixed Navbar -->
+    <nav class="fixed-navbar">
         <div class="navbar">
             <div class="logo">
                 <h1><a href="index.html">Cars.com</a></h1>
             </div>
             <ul class="nav-element">
+                <!-- Search box solda (mobile-da) -->
                 <li class="search-container">
                     <input type="search" placeholder="search" id="search-box">
                     <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
                     <i class="fa-solid fa-list" id="filterIcon"></i>
+                    <!-- Search results dropdown -->
                     <div class="search-dropdown" id="searchDropdown"></div>
+                    <!-- Enhanced Filter dropdown with hierarchical structure -->
                     <div class="filter-dropdown" id="filterDropdown">
                         <div class="filter-section">
                             <h4>Brand</h4>
                             <div class="filter-options" id="brandOptions"></div>
                         </div>
+                        <!-- Model Section (dynamically shown) -->
                         <div class="filter-section model-section" id="modelSection" style="display: none;">
                             <h4>Models</h4>
                             <div class="filter-options model-options-container" id="modelOptions"></div>
                         </div>
+
+                        <!-- Variant Section (dynamically shown for deeper filtering) -->
                         <div class="filter-section variant-section" id="variantSection" style="display: none;">
                             <h4>Variants</h4>
                             <div class="filter-options variant-options-container" id="variantOptions"></div>
@@ -118,12 +125,14 @@
                     </a>
                 </li>
                 <li><a href="contact.html"><i class="fa-solid fa-phone"></i>Contact</a></li>
+                <!-- Toggle button sağda (mobile-da) -->
                 <li class="mobile-toggle-container">
                     <div class="mobile-toggle" id="mobileToggle">
                         <i class="fa-solid fa-bars"></i>
                     </div>
                 </li>
             </ul>
+            <!-- Mobile dropdown menu -->
             <div class="mobile-dropdown" id="mobileDropdown">
                 <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
                 <a href="#" id="mobileAccountLink"><i class="fa-solid fa-user"></i>Account</a>
@@ -133,421 +142,437 @@
         </div>
     </nav>
 
-    <section class="hero-carousel">
-        <div class="carousel-container">
-            <div class="carousel-slide active" data-slide="0">
-                <img src="../image/Premium.png" alt="Luxury Cars">
-                <div class="carousel-content">
-                    <h2>Premium Luxury Cars</h2>
-                    <p>Discover our exclusive collection of luxury vehicles</p>
-                </div>
-            </div>
-            <div class="carousel-slide" data-slide="1">
-                <img src="../image/luxury.png" alt="Sports Cars">
-                <div class="carousel-content">
-                    <h2>High Performance Sports Cars</h2>
-                    <p>Experience the thrill of speed and precision</p>
-                </div>
-            </div>
-            <div class="carousel-slide" data-slide="2">
-                <img src="../image/Vip.png" alt="SUVs">
-                <div class="carousel-content">
-                    <h2>Powerful SUVs</h2>
-                    <p>Adventure awaits with our premium SUV collection</p>
-                </div>
-            </div>
-            <div class="carousel-slide" data-slide="3">
-                <img src="../image/Future.png" alt="Electric Cars">
-                <div class="carousel-content">
-                    <h2>Future of Driving</h2>
-                    <p>Explore our eco-friendly electric vehicle range</p>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="carousel-nav">
-            <button class="carousel-btn prev-btn" id="prevBtn">
-                <i class="fa-solid fa-chevron-left"></i>
-            </button>
-            <button class="carousel-btn next-btn" id="nextBtn">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
-        </div>
-
-
-        <div class="carousel-indicators">
-            <span class="indicator active" data-slide="0"></span>
-            <span class="indicator" data-slide="1"></span>
-            <span class="indicator" data-slide="2"></span>
-            <span class="indicator" data-slide="3"></span>
-        </div>
-    </section>
-
-    <section>
-        <div class="car-area">
-            <div id="carList" class="car-container"></div>
-        </div>
-    </section>
-
-
-    <div class="banner-ad-wrapper" id="bannerAdWrapper">
-        <div class="banner-ad-container">
-            <div class="banner-ad-content">
-                <div class="banner-left">
-                    <div class="banner-badge">🔥 MEGA SALE 2025</div>
-                    <h2>Drive Your Dream Car Today!</h2>
-                    <p class="banner-subtitle">Exclusive deals on luxury and sports vehicles</p>
-                    <ul class="banner-features">
-                        <li><i class="fa-solid fa-check-circle"></i> Up to 30% OFF on selected models</li>
-                        <li><i class="fa-solid fa-check-circle"></i> 0% Financing available</li>
-                        <li><i class="fa-solid fa-check-circle"></i> Free insurance for 1 year</li>
-                    </ul>
-                    <div class="banner-cta-group">
-                        <button class="banner-btn-primary">Browse Deals <i class="fa-solid fa-arrow-right"></i></button>
-                        <button class="banner-btn-secondary">Contact Us</button>
+    <!-- Content Wrapper -->
+    <div class="content-wrapper">
+        <!-- New Image Carousel Section -->
+        <section class="hero-carousel">
+            <div class="carousel-container">
+                <div class="carousel-slide active" data-slide="0">
+                    <img src="../image/Premium.png" alt="Luxury Cars">
+                    <div class="carousel-content">
+                        <h2>Premium Luxury Cars</h2>
+                        <p>Discover our exclusive collection of luxury vehicles</p>
                     </div>
                 </div>
-                <div class="banner-right">
-                    <img src="../image/luxury1.png" alt="Luxury Car">
-                    <div class="banner-price-tag">
-                        <span class="price-label">Starting from</span>
-                        <span class="price-amount">$249,999</span>
+                <div class="carousel-slide" data-slide="1">
+                    <img src="../image/luxury.png" alt="Sports Cars">
+                    <div class="carousel-content">
+                        <h2>High Performance Sports Cars</h2>
+                        <p>Experience the thrill of speed and precision</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-
-    <section class="ads-section">
-        <div class="ads-container">
-            <div class="ads-card">
-                <div class="ads-card-image">
-                    <img src="https://media.ed.edmunds-media.com/mercedes-benz/maybach/2022/oem/2022_mercedes-benz_maybach_sedan_s-580-4matic_fq_oem_1_1600.jpg"
-                        alt="Premium Cars">
-                </div>
-                <div class="ads-card-content">
-                    <h3>Premium Collection</h3>
-                    <p>Discover luxury vehicles with exceptional performance</p>
-                </div>
-                <div class="ads-details">
-                    <div class="detail-item">
-                        <i class="fa-solid fa-car"></i>
-                        <span>50+ Premium Models</span>
+                <div class="carousel-slide" data-slide="2">
+                    <img src="../image/Vip.png" alt="SUVs">
+                    <div class="carousel-content">
+                        <h2>Powerful SUVs</h2>
+                        <p>Adventure awaits with our premium SUV collection</p>
                     </div>
-                    <div class="detail-item">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <span>Certified Quality</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fa-solid fa-star"></i>
-                        <span>Top Rated Dealers</span>
+                </div>
+                <div class="carousel-slide" data-slide="3">
+                    <img src="../image/Future.png" alt="Electric Cars">
+                    <div class="carousel-content">
+                        <h2>Future of Driving</h2>
+                        <p>Explore our eco-friendly electric vehicle range</p>
                     </div>
                 </div>
             </div>
 
-            <div class="ads-card">
-                <div class="ads-card-image">
-                    <img src="https://drivar.uk/wp-content/uploads/2021/10/aventador-Lamb-scaled.jpg" alt="Sports Cars">
-                </div>
-                <div class="ads-card-content">
-                    <h3>Sports Performance</h3>
-                    <p>Experience the thrill of high-performance vehicles</p>
-                </div>
-                <div class="ads-details">
-                    <div class="detail-item">
-                        <i class="fa-solid fa-gauge-high"></i>
-                        <span>High Performance</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fa-solid fa-bolt"></i>
-                        <span>Turbocharged Power</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fa-solid fa-trophy"></i>
-                        <span>Award Winners</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ads-card">
-                <div class="ads-card-image">
-                    <img src="https://www.topgear.com/sites/default/files/cars-car/image/2024/06/1-Porsche-Taycan-2024-UK-review.jpg?w=1280&h=720"
-                        alt="Electric Cars">
-                </div>
-                <div class="ads-card-content">
-                    <h3>Electric Future</h3>
-                    <p>Embrace eco-friendly driving with cutting-edge technology</p>
-                </div>
-                <div class="ads-details">
-                    <div class="detail-item">
-                        <i class="fa-solid fa-leaf"></i>
-                        <span>Zero Emissions</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fa-solid fa-battery-full"></i>
-                        <span>Long Range Battery</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fa-solid fa-plug"></i>
-                        <span>Fast Charging</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <div id="carModal" class="modal">
-        <div class="modal-content">
-            <span id="closeModal" class="close">&times;</span>
-            <h2 id="modalTitle"></h2>
-            <img id="modalImage" src="" alt="" class="modal-img">
-
-            <ul class="car-details">
-                <li><strong>Full name:</strong> <span id="modalName"></span></li>
-                <li><strong>Year:</strong> <span id="modalYear"></span></li>
-                <li><strong>Fuel Type:</strong> <span id="modalFuel"></span></li>
-                <li><strong>Ban Type:</strong> <span id="modalBan"></span></li>
-                <li><strong>Gear Type:</strong> <span id="modalGear"></span></li>
-                <li><strong>Mileage:</strong> <span id="modalMilage"></span></li>
-                <li><strong>Condition:</strong> <span id="modalCondition"></span></li>
-                <li><strong>Engine Capacity:</strong> <span id="modalEngine"></span></li>
-                <li><strong>Power:</strong> <span id="modalPower"></span></li>
-                <li><strong>Transmission:</strong> <span id="modalTransmission"></span></li>
-                <li><strong>Equipment:</strong> <span id="modalEquipment"></span></li>
-                <li><strong>Price:</strong> <span id="modalPrice"></span></li>
-                <li><strong>Color:</strong> <span id="modalColor"></span></li>
-            </ul>
-        </div>
-    </div>
-
-
-    <div id="likedModal" class="modal">
-        <div class="modal-content">
-            <span id="closeLikedModal" class="close">&times;</span>
-            <div class="liked-modal-header">
-                <h2>Liked Cars (<span id="likedCount">0</span>)</h2>
-                <button id="clearAllLiked" class="clear-all-btn" style="display: none;">
-                    <i class="fa-solid fa-trash-can"></i> Clear All
+            <!-- Carousel Navigation -->
+            <div class="carousel-nav">
+                <button class="carousel-btn prev-btn" id="prevBtn">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next-btn" id="nextBtn">
+                    <i class="fa-solid fa-chevron-right"></i>
                 </button>
             </div>
-            <div id="likedCarsList" class="liked-cars-grid"></div>
-        </div>
-    </div>
 
-
-    <div id="accountModal" class="modal">
-        <div class="modal-content account-modal-content">
-            <span id="closeAccountModal" class="close">&times;</span>
-            <div class="account-dropdown-header">
-                <h3 id="formTitle">Login</h3>
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <span class="indicator active" data-slide="0"></span>
+                <span class="indicator" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+                <span class="indicator" data-slide="3"></span>
             </div>
+        </section>
 
-            <form class="login-form" id="loginForm">
-                <div class="form-group">
-                    <label for="username">
-                        <i class="fa-solid fa-user"></i> Username
-                    </label>
-                    <input type="text" id="username" placeholder="Enter username" required>
+        <section>
+            <div class="car-area">
+                <div id="carList" class="car-container"></div>
+                <div class="load-more-container">
+                    <button id="loadMoreBtn" class="load-more-btn">Load More</button>
                 </div>
-                <div class="form-group">
-                    <label for="password">
-                        <i class="fa-solid fa-lock"></i> Password
-                    </label>
-                    <input type="password" id="password" placeholder="Enter password" required>
-                </div>
-                <div class="form-options">
-                    <label class="remember-me">
-                        <input type="checkbox" id="rememberMe">
-                        <span>Remember me</span>
-                    </label>
-                    <a href="#" class="forgot-password">Forgot?</a>
-                </div>
-                <button type="submit" class="login-btn">
-                    <i class="fa-solid fa-right-to-bracket"></i> Login
-                </button>
-                <div class="signup-link">
-                    Don't have an account? <a href="#" id="showSignupLink">Sign up</a>
-                </div>
-            </form>
-
-            <form class="signup-form" id="signupForm" style="display: none;">
-                <div class="form-group">
-                    <label for="signupUsername">
-                        <i class="fa-solid fa-user"></i> Username
-                    </label>
-                    <input type="text" id="signupUsername" placeholder="Choose username" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupEmail">
-                        <i class="fa-solid fa-envelope"></i> Email
-                    </label>
-                    <input type="email" id="signupEmail" placeholder="Enter email" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupPassword">
-                        <i class="fa-solid fa-lock"></i> Password
-                    </label>
-                    <input type="password" id="signupPassword" placeholder="Create password" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupConfirmPassword">
-                        <i class="fa-solid fa-lock"></i> Confirm Password
-                    </label>
-                    <input type="password" id="signupConfirmPassword" placeholder="Confirm password" required>
-                </div>
-                <button type="submit" class="login-btn">
-                    <i class="fa-solid fa-user-plus"></i> Sign Up
-                </button>
-                <div class="signup-link">
-                    Already have an account? <a href="#" id="showLoginLink">Login</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <section class="promo-section">
-        <div class="promo-card">
-            <div class="promo-image">
-                <img src="https://www.topgear.com/sites/default/files/2023/08/P90492179_highRes_bmw-i7-xdrive60-m-sp%20%281%29.jpg"
-                    alt="Luxury Car" class="car-image">
             </div>
-            <div class="promo-text">
-                <h2 class="animated-title">Find Your Perfect Ride</h2>
-                <p class="animated-subtitle">Premium vehicles at unbeatable prices</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="scroll-reveal-section">
-        <div class="scroll-text-item" data-scroll>
-            <h3>🏆 Award-Winning Service</h3>
-            <p>Experience excellence with our certified dealers and premium customer support</p>
-        </div>
-        <div class="scroll-text-item" data-scroll>
-            <h3>💎 Verified Quality</h3>
-            <p>Every vehicle undergoes rigorous inspection to ensure top-notch quality</p>
-        </div>
-        <div class="scroll-text-item" data-scroll>
-            <h3>⚡ Fast & Easy Process</h3>
-            <p>Get your dream car delivered to your doorstep in just a few days</p>
-        </div>
-        <div class="scroll-text-item" data-scroll>
-            <h3>💰 Best Price Guarantee</h3>
-            <p>We offer competitive pricing and flexible financing options for everyone</p>
-        </div>
-    </section>
-
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-section footer-about">
-                <h3>About Cars.com</h3>
-                <p>Your premier destination for luxury and premium vehicles. We offer an extensive collection of
-                    certified cars with exceptional customer service and competitive pricing.</p>
-                <div class="footer-contact-info">
-                    <div class="contact-item">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>123 Luxury Car Avenue, Downtown District</span>
+        <!-- Horizontal Banner Advertisement -->
+        <div class="banner-ad-wrapper" id="bannerAdWrapper">
+            <div class="banner-ad-container">
+                <div class="banner-ad-content">
+                    <div class="banner-left">
+                        <div class="banner-badge">🔥 MEGA SALE 2025</div>
+                        <h2>Drive Your Dream Car Today!</h2>
+                        <p class="banner-subtitle">Exclusive deals on luxury and sports vehicles</p>
+                        <ul class="banner-features">
+                            <li><i class="fa-solid fa-check-circle"></i> Up to 30% OFF on selected models</li>
+                            <li><i class="fa-solid fa-check-circle"></i> 0% Financing available</li>
+                            <li><i class="fa-solid fa-check-circle"></i> Free insurance for 1 year</li>
+                        </ul>
+                        <div class="banner-cta-group">
+                            <button class="banner-btn-primary">Browse Deals <i class="fa-solid fa-arrow-right"></i></button>
+                            <button class="banner-btn-secondary">Contact Us</button>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fa-solid fa-phone"></i>
-                        <a href="tel:+1234567890">+1 (234) 567-890</a>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fa-solid fa-envelope"></i>
-                        <a href="mailto:info@cars.com">info@cars.com</a>
+                    <div class="banner-right">
+                        <img src="../image/luxury1.png" alt="Luxury Car">
+                        <div class="banner-price-tag">
+                            <span class="price-label">Starting from</span>
+                            <span class="price-amount">$249,999</span>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i>Home</a></li>
-                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Featured Cars</a></li>
-                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Luxury Collection</a></li>
-                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Sports Cars</a></li>
-                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i>SUV Collection</a></li>
-                    <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i>Contact Us</a></li>
+        <!-- Advertisement Cards Section -->
+        <section class="ads-section">
+            <div class="ads-container">
+                <div class="ads-card">
+                    <div class="ads-card-image">
+                        <img src="https://media.ed.edmunds-media.com/mercedes-benz/maybach/2022/oem/2022_mercedes-benz_maybach_sedan_s-580-4matic_fq_oem_1_1600.jpg"
+                            alt="Premium Cars">
+                    </div>
+                    <div class="ads-card-content">
+                        <h3>Premium Collection</h3>
+                        <p>Discover luxury vehicles with exceptional performance</p>
+                    </div>
+                    <div class="ads-details">
+                        <div class="detail-item">
+                            <i class="fa-solid fa-car"></i>
+                            <span>50+ Premium Models</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>Certified Quality</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa-solid fa-star"></i>
+                            <span>Top Rated Dealers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ads-card">
+                    <div class="ads-card-image">
+                        <img src="https://drivar.uk/wp-content/uploads/2021/10/aventador-Lamb-scaled.jpg" alt="Sports Cars">
+                    </div>
+                    <div class="ads-card-content">
+                        <h3>Sports Performance</h3>
+                        <p>Experience the thrill of high-performance vehicles</p>
+                    </div>
+                    <div class="ads-details">
+                        <div class="detail-item">
+                            <i class="fa-solid fa-gauge-high"></i>
+                            <span>High Performance</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>Turbocharged Power</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa-solid fa-trophy"></i>
+                            <span>Award Winners</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ads-card">
+                    <div class="ads-card-image">
+                        <img src="https://www.topgear.com/sites/default/files/cars-car/image/2024/06/1-Porsche-Taycan-2024-UK-review.jpg?w=1280&h=720"
+                            alt="Electric Cars">
+                    </div>
+                    <div class="ads-card-content">
+                        <h3>Electric Future</h3>
+                        <p>Embrace eco-friendly driving with cutting-edge technology</p>
+                    </div>
+                    <div class="ads-details">
+                        <div class="detail-item">
+                            <i class="fa-solid fa-leaf"></i>
+                            <span>Zero Emissions</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa-solid fa-battery-full"></i>
+                            <span>Long Range Battery</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa-solid fa-plug"></i>
+                            <span>Fast Charging</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Car Details Modal -->
+        <div id="carModal" class="modal">
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <h2 id="modalTitle"></h2>
+                <img id="modalImage" src="" alt="" class="modal-img">
+
+                <ul class="car-details">
+                    <li><strong>Full name:</strong> <span id="modalName"></span></li>
+                    <li><strong>Year:</strong> <span id="modalYear"></span></li>
+                    <li><strong>Fuel Type:</strong> <span id="modalFuel"></span></li>
+                    <li><strong>Ban Type:</strong> <span id="modalBan"></span></li>
+                    <li><strong>Gear Type:</strong> <span id="modalGear"></span></li>
+                    <li><strong>Mileage:</strong> <span id="modalMilage"></span></li>
+                    <li><strong>Condition:</strong> <span id="modalCondition"></span></li>
+                    <li><strong>Engine Capacity:</strong> <span id="modalEngine"></span></li>
+                    <li><strong>Power:</strong> <span id="modalPower"></span></li>
+                    <li><strong>Transmission:</strong> <span id="modalTransmission"></span></li>
+                    <li><strong>Equipment:</strong> <span id="modalEquipment"></span></li>
+                    <li><strong>Price:</strong> <span id="modalPrice"></span></li>
+                    <li><strong>Color:</strong> <span id="modalColor"></span></li>
                 </ul>
             </div>
+        </div>
 
-            <div class="footer-section">
-                <h3>Our Services</h3>
-                <div class="service-item">
-                    <i class="fa-solid fa-check"></i>
-                    <span>Car Financing</span>
+        <!-- Liked Cars Modal -->
+        <div id="likedModal" class="modal">
+            <div class="modal-content">
+                <span id="closeLikedModal" class="close">&times;</span>
+                <div class="liked-modal-header">
+                    <h2>Liked Cars (<span id="likedCount">0</span>)</h2>
+                    <button id="clearAllLiked" class="clear-all-btn" style="display: none;">
+                        <i class="fa-solid fa-trash-can"></i> Clear All
+                    </button>
                 </div>
-                <div class="service-item">
-                    <i class="fa-solid fa-check"></i>
-                    <span>Vehicle Inspection</span>
+                <div id="likedCarsList" class="liked-cars-grid"></div>
+            </div>
+        </div>
+
+        <!-- Account Modal -->
+        <div id="accountModal" class="modal">
+            <div class="modal-content account-modal-content">
+                <span id="closeAccountModal" class="close">&times;</span>
+                <div class="account-dropdown-header">
+                    <h3 id="formTitle">Login</h3>
                 </div>
-                <div class="service-item">
-                    <i class="fa-solid fa-check"></i>
-                    <span>Test Drive</span>
+
+                <!-- Login Form -->
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="username">
+                            <i class="fa-solid fa-user"></i> Username
+                        </label>
+                        <input type="text" id="username" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fa-solid fa-lock"></i> Password
+                        </label>
+                        <input type="password" id="password" placeholder="Enter password" required>
+                    </div>
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot?</a>
+                    </div>
+                    <button type="submit" class="login-btn">
+                        <i class="fa-solid fa-right-to-bracket"></i> Login
+                    </button>
+                    <div class="signup-link">
+                        Don't have an account? <a href="#" id="showSignupLink">Sign up</a>
+                    </div>
+                </form>
+
+                <!-- Signup Form -->
+                <form class="signup-form" id="signupForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="signupUsername">
+                            <i class="fa-solid fa-user"></i> Username
+                        </label>
+                        <input type="text" id="signupUsername" placeholder="Choose username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">
+                            <i class="fa-solid fa-envelope"></i> Email
+                        </label>
+                        <input type="email" id="signupEmail" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">
+                            <i class="fa-solid fa-lock"></i> Password
+                        </label>
+                        <input type="password" id="signupPassword" placeholder="Create password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupConfirmPassword">
+                            <i class="fa-solid fa-lock"></i> Confirm Password
+                        </label>
+                        <input type="password" id="signupConfirmPassword" placeholder="Confirm password" required>
+                    </div>
+                    <button type="submit" class="login-btn">
+                        <i class="fa-solid fa-user-plus"></i> Sign Up
+                    </button>
+                    <div class="signup-link">
+                        Already have an account? <a href="#" id="showLoginLink">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Car Card with Animated Text -->
+        <section class="promo-section">
+            <div class="promo-card">
+                <div class="promo-image">
+                    <img src="https://www.topgear.com/sites/default/files/2023/08/P90492179_highRes_bmw-i7-xdrive60-m-sp%20%281%29.jpg"
+                        alt="Luxury Car" class="car-image">
                 </div>
-                <div class="service-item">
-                    <i class="fa-solid fa-check"></i>
-                    <span>Insurance Services</span>
-                </div>
-                <div class="service-item">
-                    <i class="fa-solid fa-check"></i>
-                    <span>Maintenance</span>
-                </div>
-                <div class="service-item">
-                    <i class="fa-solid fa-check"></i>
-                    <span>24/7 Support</span>
+                <div class="promo-text">
+                    <h2 class="animated-title">Find Your Perfect Ride</h2>
+                    <p class="animated-subtitle">Premium vehicles at unbeatable prices</p>
                 </div>
             </div>
+        </section>
 
-            <div class="footer-section">
-                <h3>Newsletter</h3>
-                <p class="newsletter-text">Subscribe to our newsletter for the latest car deals and exclusive offers.
-                </p>
-                <form class="newsletter-form">
-                    <input type="email" class="newsletter-input" placeholder="Your email address" required>
-                    <button type="submit" class="newsletter-btn">
-                        <i class="fa-solid fa-paper-plane"></i> Subscribe
-                    </button>
-                </form>
-                <div class="footer-social">
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Facebook">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Twitter">
-                            <i class="fa-brands fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Instagram">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="LinkedIn">
-                            <i class="fa-brands fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="YouTube">
-                            <i class="fa-brands fa-youtube"></i>
-                        </a>
+        <!-- Scrolling Text Paragraphs -->
+        <section class="scroll-reveal-section">
+            <div class="scroll-text-item" data-scroll>
+                <h3>🏆 Award-Winning Service</h3>
+                <p>Experience excellence with our certified dealers and premium customer support</p>
+            </div>
+            <div class="scroll-text-item" data-scroll>
+                <h3>💎 Verified Quality</h3>
+                <p>Every vehicle undergoes rigorous inspection to ensure top-notch quality</p>
+            </div>
+            <div class="scroll-text-item" data-scroll>
+                <h3>⚡ Fast & Easy Process</h3>
+                <p>Get your dream car delivered to your doorstep in just a few days</p>
+            </div>
+            <div class="scroll-text-item" data-scroll>
+                <h3>💰 Best Price Guarantee</h3>
+                <p>We offer competitive pricing and flexible financing options for everyone</p>
+            </div>
+        </section>
+
+        <!-- Enhanced Footer -->
+        <footer class="site-footer">
+            <div class="footer-container">
+                <!-- About Section -->
+                <div class="footer-section footer-about">
+                    <h3>About Cars.com</h3>
+                    <p>Your premier destination for luxury and premium vehicles. We offer an extensive collection of
+                        certified cars with exceptional customer service and competitive pricing.</p>
+                    <div class="footer-contact-info">
+                        <div class="contact-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>123 Luxury Car Avenue, Downtown District</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:+1234567890">+1 (234) 567-890</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:info@cars.com">info@cars.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i>Home</a></li>
+                        <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Featured Cars</a></li>
+                        <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Luxury Collection</a></li>
+                        <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Sports Cars</a></li>
+                        <li><a href="#"><i class="fa-solid fa-chevron-right"></i>SUV Collection</a></li>
+                        <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i>Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <div class="service-item">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Car Financing</span>
+                    </div>
+                    <div class="service-item">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Vehicle Inspection</span>
+                    </div>
+                    <div class="service-item">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Test Drive</span>
+                    </div>
+                    <div class="service-item">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Insurance Services</span>
+                    </div>
+                    <div class="service-item">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Maintenance</span>
+                    </div>
+                    <div class="service-item">
+                        <i class="fa-solid fa-check"></i>
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p class="newsletter-text">Subscribe to our newsletter for the latest car deals and exclusive offers.
+                    </p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                        <button type="submit" class="newsletter-btn">
+                            <i class="fa-solid fa-paper-plane"></i> Subscribe
+                        </button>
+                    </form>
+                    <div class="footer-social">
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Twitter">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="YouTube">
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
-                <div class="copyright">
-                    &copy; 2025 Cars.com. All rights reserved.
-                </div>
-                <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Cookie Policy</a>
-                    <a href="#">Sitemap</a>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        &copy; 2025 Cars.com. All rights reserved.
+                    </div>
+                    <div class="footer-legal">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                        <a href="#">Sitemap</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
