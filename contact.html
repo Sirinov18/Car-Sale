@@ -15,18 +15,105 @@
 </head>
 
 <body>
-    <nav>
+    
+    <!-- Fixed Navbar -->
+    <nav class="fixed-navbar">
         <div class="navbar">
             <div class="logo">
                 <h1><a href="index.html">Cars.com</a></h1>
             </div>
             <ul class="nav-element">
+                <!-- Search box solda (mobile-da) -->
                 <li class="search-container">
                     <input type="search" placeholder="search" id="search-box">
                     <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
                     <i class="fa-solid fa-list" id="filterIcon"></i>
+                    <!-- Search results dropdown -->
                     <div class="search-dropdown" id="searchDropdown"></div>
+                    <!-- Enhanced Filter dropdown with hierarchical structure -->
                     <div class="filter-dropdown" id="filterDropdown">
+                        <div class="filter-section">
+                            <h4>Brand</h4>
+                            <div class="filter-options" id="brandOptions"></div>
+                        </div>
+                        <!-- Model Section (dynamically shown) -->
+                        <div class="filter-section model-section" id="modelSection" style="display: none;">
+                            <h4>Models</h4>
+                            <div class="filter-options model-options-container" id="modelOptions"></div>
+                        </div>
+
+                        <!-- Variant Section (dynamically shown for deeper filtering) -->
+                        <div class="filter-section variant-section" id="variantSection" style="display: none;">
+                            <h4>Variants</h4>
+                            <div class="filter-options variant-options-container" id="variantOptions"></div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h4>Price Range</h4>
+                            <div class="price-range">
+                                <input type="number" placeholder="Min Price" id="minPrice" class="range-input">
+                                <input type="number" placeholder="Max Price" id="maxPrice" class="range-input">
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h4>Condition</h4>
+                            <div class="filter-options" id="conditionOptions"></div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h4>Gear Type</h4>
+                            <div class="filter-options" id="gearOptions"></div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h4>Transmission</h4>
+                            <div class="filter-options" id="transmissionOptions"></div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h4>Fuel Type</h4>
+                            <div class="filter-options" id="fuelOptions"></div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h4>Body Type</h4>
+                            <div class="filter-options" id="bodyOptions"></div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h4>Mileage (km)</h4>
+                            <div class="mileage-range">
+                                <input type="number" placeholder="Min" id="minMileage" class="range-input">
+                                <input type="number" placeholder="Max" id="maxMileage" class="range-input">
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h4>Engine Capacity (L)</h4>
+                            <div class="engine-range">
+                                <input type="number" placeholder="Min" id="minEngine" class="range-input" step="0.1">
+                                <input type="number" placeholder="Max" id="maxEngine" class="range-input" step="0.1">
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h4>Year</h4>
+                            <div class="year-range">
+                                <input type="number" placeholder="Min" id="minYear" class="range-input">
+                                <input type="number" placeholder="Max" id="maxYear" class="range-input">
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h4>Equipment</h4>
+                            <div class="filter-options" id="equipmentOptions"></div>
+                        </div>
+
+                        <div class="filter-buttons">
+                            <button class="apply-btn" id="applyFilters">Apply</button>
+                            <button class="clear-btn" id="clearFilters">Clear</button>
+                        </div>
                     </div>
                 </li>
                 <li><a href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
@@ -40,12 +127,14 @@
                     </a>
                 </li>
                 <li><a href="contact.html"><i class="fa-solid fa-phone"></i>Contact</a></li>
+                <!-- Toggle button sağda (mobile-da) -->
                 <li class="mobile-toggle-container">
                     <div class="mobile-toggle" id="mobileToggle">
                         <i class="fa-solid fa-bars"></i>
                     </div>
                 </li>
             </ul>
+            <!-- Mobile dropdown menu -->
             <div class="mobile-dropdown" id="mobileDropdown">
                 <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
                 <a href="#" id="mobileAccountLink"><i class="fa-solid fa-user"></i>Account</a>

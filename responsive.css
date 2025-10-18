@@ -151,9 +151,14 @@
 }
 
 @media screen and (max-width: 768px) {
+    /* Fix navbar spacing */
+    .content-wrapper {
+        margin-top: 70px !important;
+    }
+
     .navbar {
-        padding: 15px 4%;
-        height: auto;
+        padding: 10px 4%;
+        height: 70px;
         min-height: 70px;
         align-items: center;
         position: relative;
@@ -511,10 +516,15 @@
 }
 
 @media screen and (max-width: 480px) {
+    .content-wrapper {
+        margin-top: 65px !important;
+    }
+
     .navbar {
-        padding: 12px 3%;
-        min-height: 60px;
-        flex-wrap: wrap;
+        padding: 10px 3%;
+        height: 65px;
+        min-height: 65px;
+        flex-wrap: nowrap;
     }
 
     .logo {
@@ -823,10 +833,15 @@
 }
 
 @media screen and (max-width: 360px) {
+    .content-wrapper {
+        margin-top: 60px !important;
+    }
+
     .navbar {
-        padding: 10px 2%;
-        min-height: 55px;
-        flex-wrap: wrap;
+        padding: 8px 2%;
+        height: 60px;
+        min-height: 60px;
+        flex-wrap: nowrap;
     }
 
     .logo {
@@ -2035,3 +2050,480 @@
         font-size: 14px;
     }
 }
+
+/* ========================================
+   CAR DETAILS PAGE RESPONSIVE STYLES
+   ======================================== */
+
+@media screen and (max-width: 1024px) {
+    .detail-body {
+        padding: 30px;
+    }
+
+    .main-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .detail-image img {
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .detail-page-container {
+        padding: 0 15px 30px 15px;
+    }
+
+    .back-button {
+        padding: 10px 20px;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .detail-header {
+        padding: 30px 25px;
+    }
+
+    .detail-header h1 {
+        font-size: 24px;
+    }
+
+    .detail-header .car-subtitle {
+        font-size: 14px;
+    }
+
+    .detail-body {
+        padding: 25px;
+    }
+
+    .detail-image img {
+        height: 250px;
+    }
+
+    .price-card {
+        padding: 20px;
+    }
+
+    .price-value {
+        font-size: 24px;
+    }
+
+    .quick-specs {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .quick-spec {
+        padding: 15px;
+    }
+
+    .specs-section {
+        padding: 25px;
+    }
+
+    .section-title {
+        font-size: 18px;
+    }
+
+    .specs-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .buy-btn, .like-btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .detail-page-container {
+        padding: 0 10px 20px 10px;
+    }
+
+    .back-button {
+        padding: 8px 16px;
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+
+    .detail-header {
+        padding: 20px 15px;
+    }
+
+    .detail-header h1 {
+        font-size: 20px;
+    }
+
+    .detail-header .car-subtitle {
+        font-size: 13px;
+    }
+
+    .detail-body {
+        padding: 20px 15px;
+    }
+
+    .detail-image img {
+        height: 200px;
+    }
+
+    .price-card {
+        padding: 15px;
+    }
+
+    .price-value {
+        font-size: 20px;
+    }
+
+    .quick-spec {
+        padding: 12px;
+    }
+
+    .quick-spec i {
+        font-size: 20px;
+    }
+
+    .quick-spec-label {
+        font-size: 11px;
+    }
+
+    .quick-spec-value {
+        font-size: 13px;
+    }
+
+    .specs-section {
+        padding: 20px 15px;
+    }
+
+    .section-title {
+        font-size: 16px;
+    }
+
+    .spec-item {
+        padding: 12px;
+    }
+
+    .spec-label {
+        font-size: 12px;
+    }
+
+    .spec-value {
+        font-size: 13px;
+    }
+
+    .equipment-section {
+        padding: 20px 15px;
+    }
+
+    .equipment-list {
+        gap: 8px;
+    }
+
+    .equipment-tag {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .buy-btn, .like-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+/* ========================================
+   BUY PAGE RESPONSIVE STYLES
+   ======================================== */
+
+@media screen and (max-width: 1024px) {
+    .buy-container {
+        padding: 20px 15px 30px 15px;
+    }
+
+    .buy-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .car-summary-section {
+        position: static;
+        order: -1;
+    }
+
+    .progress-steps {
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .step-line {
+        width: 60px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .buy-container {
+        padding: 15px 10px 25px 10px;
+    }
+
+    .progress-steps {
+        padding: 15px;
+        justify-content: flex-start;
+    }
+
+    .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .step-label {
+        font-size: 12px;
+    }
+
+    .step-line {
+        width: 40px;
+    }
+
+    .car-summary-section h2 {
+        font-size: 20px;
+    }
+
+    .summary-image {
+        height: 200px;
+    }
+
+    .summary-details {
+        padding: 20px;
+    }
+
+    .summary-details h3 {
+        font-size: 18px;
+    }
+
+    .forms-section {
+        padding: 25px 20px;
+    }
+
+    .forms-section h2 {
+        font-size: 24px;
+    }
+
+    .info-grid, .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .payment-methods {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .option-content {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 15px;
+    }
+
+    .option-content i {
+        font-size: 24px;
+    }
+
+    .button-group {
+        flex-direction: column-reverse;
+        gap: 12px;
+    }
+
+    .btn-next, .btn-back, .btn-primary, .btn-secondary {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+
+    .confirmation-card {
+        padding: 30px 20px;
+    }
+
+    .success-icon {
+        font-size: 60px;
+    }
+
+    .confirmation-card h2 {
+        font-size: 26px;
+    }
+
+    .order-details {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .buy-container {
+        padding: 10px 8px 20px 8px;
+    }
+
+    .progress-steps {
+        padding: 12px;
+    }
+
+    .step-number {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .step-label {
+        font-size: 11px;
+    }
+
+    .step-line {
+        width: 30px;
+        margin: 0 5px;
+    }
+
+    .car-summary-section h2 {
+        font-size: 18px;
+    }
+
+    .summary-image {
+        height: 180px;
+    }
+
+    .summary-details {
+        padding: 15px;
+    }
+
+    .summary-details h3 {
+        font-size: 16px;
+    }
+
+    .spec-row, .price-row {
+        font-size: 13px;
+    }
+
+    .price-row.total {
+        font-size: 16px;
+    }
+
+    .forms-section {
+        padding: 20px 15px;
+    }
+
+    .forms-section h2 {
+        font-size: 20px;
+    }
+
+    .info-item label, .form-group label {
+        font-size: 13px;
+    }
+
+    .info-item input, .form-group input {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .option-content {
+        padding: 12px;
+    }
+
+    .option-content i {
+        font-size: 20px;
+    }
+
+    .option-content span {
+        font-size: 13px;
+    }
+
+    .btn-next, .btn-back, .btn-primary, .btn-secondary {
+        padding: 11px 18px;
+        font-size: 14px;
+    }
+
+    .confirmation-card {
+        padding: 25px 15px;
+    }
+
+    .success-icon {
+        font-size: 50px;
+    }
+
+    .confirmation-card h2 {
+        font-size: 22px;
+    }
+
+    .confirmation-card > p {
+        font-size: 14px;
+    }
+
+    .order-details {
+        padding: 15px;
+    }
+
+    .order-row {
+        font-size: 14px;
+    }
+
+    .confirmation-message {
+        padding: 15px;
+        font-size: 13px;
+    }
+}
+
+/* ========================================
+   GENERAL RESPONSIVE FIXES
+   ======================================== */
+
+@media screen and (max-width: 480px) {
+    /* Already handled above - removed duplicate */
+
+    /* Car cards */
+    .car-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px 10px;
+    }
+
+    .car-card {
+        max-width: 100%;
+    }
+
+    /* Banner adjustments */
+    .banner-ad-content {
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 30px;
+    }
+
+    .banner-left h2 {
+        font-size: 28px;
+    }
+
+    .banner-subtitle {
+        font-size: 15px;
+    }
+
+    .banner-features li {
+        font-size: 14px;
+    }
+
+    .banner-right {
+        flex: 0 0 auto;
+    }
+
+    .banner-right img {
+        height: 200px;
+    }
+
+    /* Ads section */
+    .ads-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* Removed duplicate - handled in main 360px breakpoint above */

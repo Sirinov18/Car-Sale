@@ -1,12 +1,15 @@
 .contact-section {
-    max-width: 1400px;
-    margin: 50px auto;
-    padding: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 120px 20px 20px; /* Adjusted top padding */
+    position: relative;
+    z-index: 10;
 }
 
 .contact-section h1 {
     text-align: center;
-    margin-bottom: 40px;
+    margin: 0 0 40px 0;
+    padding: 0;
     color: #333;
     font-size: 2.5rem;
     font-weight: 700;
@@ -467,10 +470,28 @@
     font-size: 14px;
 }
 
+.fixed-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-image: url(../image/nav-image1.png);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
 @media screen and (max-width: 1200px) {
     .contact-section {
+        padding-top: 100px;
         max-width: 1200px;
-        padding: 20px 4%;
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+    .contact-section h1 {
+        font-size: 2.3rem;
+        margin-bottom: 35px;
     }
 
     .contact-main-container {
@@ -498,6 +519,12 @@
 }
 
 @media screen and (max-width: 768px) {
+    .contact-section {
+        padding-top: 90px;
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
     .contact-main-container {
         flex-direction: column;
         gap: 40px;
@@ -554,8 +581,9 @@
 
 @media screen and (max-width: 480px) {
     .contact-section {
-        padding: 20px 3%;
-        margin: 30px auto;
+        padding-top: 80px;
+        padding-left: 3%;
+        padding-right: 3%;
     }
 
     .contact-section h1 {
@@ -617,6 +645,12 @@
 }
 
 @media screen and (max-width: 360px) {
+    .contact-section {
+        padding-top: 75px;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+    
     .contact-section h1 {
         font-size: 1.8rem;
     }

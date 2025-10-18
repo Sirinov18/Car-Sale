@@ -1,4 +1,4 @@
- // Global variables
+// Global variables
         let allCarsData = [];
         let filteredCarsData = [];
         let likedCars = []; // Store liked cars
@@ -14,6 +14,7 @@
             transmissions: [],
             conditions: [],
             equipments: [],
+            colors: [],
             minYear: null,
             maxYear: null,
             minPrice: null,
@@ -596,10 +597,22 @@
             });
             const equipments = Array.from(equipmentSet).sort();
             const equipmentContainer = document.getElementById('equipmentOptions');
-            equipmentContainer.innerHTML = equipments.slice(0, 20).map(equip => 
-                `<span class="filter-option ${activeFilters.equipments.includes(equip) ? 'active' : ''}" 
-                       data-type="equipment" data-value="${equip}">${equip}</span>`
-            ).join('');
+            if (equipmentContainer) {
+                equipmentContainer.innerHTML = equipments.slice(0, 20).map(equip => 
+                    `<span class="filter-option ${activeFilters.equipments.includes(equip) ? 'active' : ''}" 
+                           data-type="equipment" data-value="${equip}">${equip}</span>`
+                ).join('');
+            }
+            
+            // Colors
+            const colors = [...new Set(allCarsData.map(car => car.Color))].sort();
+            const colorContainer = document.getElementById('colorOptions');
+            if (colorContainer) {
+                colorContainer.innerHTML = colors.map(color => 
+                    `<span class="filter-option ${activeFilters.colors.includes(color) ? 'active' : ''}" 
+                           data-type="color" data-value="${color}">${color}</span>`
+                ).join('');
+            }
             
             // Set range input values
             document.getElementById('minYear').value = activeFilters.minYear || '';
@@ -631,6 +644,8 @@
                         toggleFilterValue(activeFilters.conditions, value);
                     } else if (type === 'equipment') {
                         toggleFilterValue(activeFilters.equipments, value);
+                    } else if (type === 'color') {
+                        toggleFilterValue(activeFilters.colors, value);
                     }
                 });
             });
@@ -903,6 +918,7 @@
                 transmissions: [],
                 conditions: [],
                 equipments: [],
+                colors: [],
                 minYear: null,
                 maxYear: null,
                 minPrice: null,
@@ -981,6 +997,11 @@
                 });
             }
             
+            // Apply color filter
+            if (activeFilters.colors.length > 0) {
+                filtered = filtered.filter(car => activeFilters.colors.includes(car.Color));
+            }
+            
             // Apply year range filter
             if (activeFilters.minYear) {
                 filtered = filtered.filter(car => parseInt(car.Year) >= activeFilters.minYear);
@@ -1038,19 +1059,31 @@
         }
 
         function saveLikedCars() {
-            const likedData = likedCars.map(car => ({
-                Marks: car.Marks,
-                Model: car.Model,
-                Year: car.Year
-            }));
-            // Store in memory (no localStorage as per requirements)
-            window.likedCarsData = likedData;
+            // Store full car data in sessionStorage for cross-page sync
+            sessionStorage.setItem('likedCars', JSON.stringify(likedCars));
+            // Also keep in window for current page
+            window.likedCarsData = likedCars;
         }
 
         function loadLikedCars() {
-            // Load from memory if exists
-            if (window.likedCarsData) {
-                // This will be populated after cars are loaded
+            // Load from sessionStorage if exists
+            const storedLikedCars = sessionStorage.getItem('likedCars');
+            if (storedLikedCars) {
+                try {
+                    const parsedCars = JSON.parse(storedLikedCars);
+                    // Match stored cars with current data
+                    likedCars = allCarsData.filter(car => 
+                        parsedCars.some(likedCar => 
+                            likedCar.Marks === car.Marks && 
+                            likedCar.Model === car.Model && 
+                            likedCar.Year === car.Year
+                        )
+                    );
+                    window.likedCarsData = likedCars;
+                    updateLikeCounter();
+                } catch (e) {
+                    console.error('Error loading liked cars:', e);
+                }
             }
         }
 
@@ -1127,7 +1160,7 @@
             likedCount.textContent = likedCars.length;
             
             // Show/hide clear all button based on liked cars count
-            if (likedCars.length > 1) {
+            if (likedCars.length > 0) {
                 clearAllBtn.style.display = 'flex';
             } else {
                 clearAllBtn.style.display = 'none';
@@ -1139,23 +1172,58 @@
                 likedCarsList.innerHTML = '';
                 likedCars.forEach((car, index) => {
                     const card = document.createElement('div');
-                    card.classList.add('car-card'); // Use same class as main cards
+                    card.classList.add('car-card');
+                    card.style.cursor = 'pointer';
                     
                     card.innerHTML = `
-                        <img src="${car.image}" alt="${car.Marks} ${car.Model}" 
-                             onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=250&fit=crop'">
-                        <button class="delete-btn" data-delete-index="${index}" title="Remove from favorites">
-                            <i class="fa-solid fa-times"></i>
-                        </button>
-                        <h3>${car.Marks} ${car.Model}</h3>
-                        <p class="car-price">$${typeof car.Price === 'number' ? car.Price.toLocaleString() : car.Price}</p>
-                        <div class="card-actions">
-                            <i class="fa-solid fa-heart heart-icon liked" data-liked-index="${index}"></i>
-                            <button class="details-btn" data-liked-car="${index}">Details</button>
+                        <div class="car-image-container">
+                            <img src="${car.image}" alt="${car.Marks} ${car.Model}" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=250&fit=crop'">
+                            <button class="delete-btn" data-delete-index="${index}" title="Remove from favorites">
+                                <i class="fa-solid fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="car-info">
+                            <h3 class="car-title">${car.Marks} ${car.Model}</h3>
+                            <div class="car-details">
+                                <div class="car-detail-item">
+                                    <i class="fa-solid fa-calendar"></i>
+                                    <span>${car.Year}</span>
+                                </div>
+                                <div class="car-detail-item">
+                                    <i class="fa-solid fa-gas-pump"></i>
+                                    <span>${car.FuelType}</span>
+                                </div>
+                                <div class="car-detail-item">
+                                    <i class="fa-solid fa-road"></i>
+                                    <span>${car.Milage}</span>
+                                </div>
+                            </div>
+                            <div class="car-price">$${typeof car.Price === 'number' ? car.Price.toLocaleString() : car.Price}</div>
+                            <div class="card-actions">
+                                <i class="fa-solid fa-heart heart-icon liked" data-liked-index="${index}"></i>
+                                <button class="buy-btn" data-buy-liked="${index}">Buy Now</button>
+                            </div>
                         </div>
                     `;
                     
                     likedCarsList.appendChild(card);
+                    
+                    // Make liked card clickable to navigate to detail page
+                    card.addEventListener('click', function(e) {
+                        // Don't navigate if clicking on delete, heart, or buy button
+                        if (!e.target.classList.contains('delete-btn') &&
+                            !e.target.classList.contains('heart-icon') && 
+                            !e.target.classList.contains('buy-btn') &&
+                            !e.target.closest('.delete-btn') &&
+                            !e.target.closest('.heart-icon') &&
+                            !e.target.closest('.buy-btn')) {
+                            // Store car data and navigate
+                            sessionStorage.setItem('selectedCar', JSON.stringify(car));
+                            sessionStorage.setItem('selectedCarIndex', index);
+                            window.location.href = 'car-details.html';
+                        }
+                    });
                 });
                 
                 // Add event listeners for delete buttons (no confirmation)
@@ -1169,18 +1237,20 @@
                 
                 // Add event listeners for heart icons (remove from liked)
                 document.querySelectorAll('[data-liked-index]').forEach(icon => {
-                    icon.addEventListener('click', function() {
+                    icon.addEventListener('click', function(e) {
+                        e.stopPropagation();
                         const index = parseInt(this.dataset.likedIndex);
                         removeLikedCarDirectly(index);
                     });
                 });
                 
-                // Add event listeners for details buttons (show inline details)
-                document.querySelectorAll('[data-liked-car]').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const index = parseInt(this.dataset.likedCar);
+                // Add event listeners for buy buttons in liked cars
+                document.querySelectorAll('[data-buy-liked]').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const index = parseInt(this.dataset.buyLiked);
                         const car = likedCars[index];
-                        showInlineCarDetails(car, index);
+                        handleBuyNow(car);
                     });
                 });
             }
@@ -1365,6 +1435,7 @@
             carsToShow.forEach((car, index) => {
                 const card = document.createElement('div');
                 card.classList.add('car-card');
+                card.style.cursor = 'pointer';
 
                 const isLiked = isCarLiked(car);
                 const globalIndex = startIndex + index;
@@ -1393,12 +1464,26 @@
                         <div class="car-price">$${typeof car.Price === 'number' ? car.Price.toLocaleString() : car.Price}</div>
                         <div class="card-actions">
                             <i class="fa-solid fa-heart heart-icon ${isLiked ? 'liked' : ''}" data-index="${globalIndex}"></i>
-                            <a href="car-details.html?id=${globalIndex}" class="details-btn">Details</a>
+                            <button class="buy-btn" data-buy-index="${globalIndex}">Buy Now</button>
                         </div>
                     </div>
                 `;
 
                 container.appendChild(card);
+                
+                // Make card clickable to navigate to detail page
+                card.addEventListener('click', function(e) {
+                    // Don't navigate if clicking on heart icon or buy button
+                    if (!e.target.classList.contains('heart-icon') && 
+                        !e.target.classList.contains('buy-btn') &&
+                        !e.target.closest('.heart-icon') &&
+                        !e.target.closest('.buy-btn')) {
+                        // Store car data in sessionStorage and navigate
+                        sessionStorage.setItem('selectedCar', JSON.stringify(car));
+                        sessionStorage.setItem('selectedCarIndex', globalIndex);
+                        window.location.href = 'car-details.html';
+                    }
+                });
             });
             
             displayedCars = endIndex;
@@ -1414,10 +1499,21 @@
 
             // Heart icon click with like functionality
             document.querySelectorAll('.heart-icon').forEach(icon => {
-                icon.addEventListener('click', function() {
+                icon.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     const carIndex = parseInt(this.dataset.index);
                     const car = data[carIndex];
                     toggleLike(car, this);
+                });
+            });
+            
+            // Buy button click functionality
+            document.querySelectorAll('.buy-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const carIndex = parseInt(this.dataset.buyIndex);
+                    const car = data[carIndex];
+                    handleBuyNow(car);
                 });
             });
         }
@@ -1442,6 +1538,40 @@
             document.getElementById('modalColor').textContent = car.Color;
             
             modal.style.display = 'flex';
+        }
+        
+        function handleBuyNow(car) {
+            // Store car data and navigate to buy page
+            sessionStorage.setItem('selectedCar', JSON.stringify(car));
+            window.location.href = 'buy.html';
+        }
+
+        // Modal close functionality
+        const carModal = document.getElementById('carModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalBuyBtn = document.getElementById('modalBuyBtn');
+
+        if (closeModal) {
+            closeModal.addEventListener('click', function() {
+                carModal.style.display = 'none';
+            });
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === carModal) {
+                carModal.style.display = 'none';
+            }
+        });
+
+        // Buy button in modal
+        if (modalBuyBtn) {
+            modalBuyBtn.addEventListener('click', function() {
+                // Get current car data from modal
+                const carName = document.getElementById('modalTitle').textContent;
+                const carPrice = document.getElementById('modalPrice').textContent;
+                alert(`Initiating purchase for ${carName}\nPrice: ${carPrice}\n\nThank you for your interest!`);
+            });
         }
 
         // Add event listener for clear all button
@@ -1476,6 +1606,10 @@
                 allCarsData = data;
                 filteredCarsData = [...data];
                 buildBrandModelHierarchy();
+                
+                // Load liked cars from sessionStorage after data is loaded
+                loadLikedCars();
+                
                 renderCars(filteredCarsData);
                 updateLikeCounter(); // Initialize counter
                 

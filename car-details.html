@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <title>Car Details - CarSale</title>
+    <link rel="icon" href="../image/car-logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <style>
+        body {
+            background: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        .content-wrapper {
+            padding-top: 20px;
+        }
+
+        .detail-page-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px 40px 20px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #ff8c00, #ff6b00);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, #ff6b00, #ff5500);
+            transform: translateX(-5px);
+            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+        }
+
+        .detail-content {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .detail-header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 40px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .detail-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 140, 0, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .detail-header h1 {
+            margin: 0 0 8px 0;
+            font-size: 32px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .detail-header .car-subtitle {
+            font-size: 16px;
+            opacity: 0.8;
+            font-weight: 400;
+            position: relative;
+        }
+
+        .detail-body {
+            padding: 50px;
+        }
+
+        .main-section {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .image-section {
+            position: relative;
+        }
+
+        .detail-image {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            position: relative;
+        }
+
+        .detail-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+            pointer-events: none;
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .price-card {
+            background: linear-gradient(135deg, #ff8c00 0%, #ff6b00 100%);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.25);
+            color: white;
+            text-align: center;
+        }
+
+        .price-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .price-value {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .quick-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .quick-spec {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .quick-spec:hover {
+            background: #fff3e0;
+            transform: translateY(-3px);
+        }
+
+        .quick-spec i {
+            font-size: 24px;
+            color: #ff8c00;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .quick-spec-label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .quick-spec-value {
+            font-size: 15px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-buttons .buy-btn {
+            flex: 2;
+            background: linear-gradient(135deg, #ff8c00, #ff6b00);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .action-buttons .buy-btn:hover {
+            background: linear-gradient(135deg, #ff6b00, #ff5500);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+        }
+
+        .action-buttons .like-btn {
+            flex: 1;
+            background: white;
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .action-buttons .like-btn:hover {
+            background: #e74c3c;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .action-buttons .like-btn.liked {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .specs-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: #ff8c00;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .spec-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .spec-item:hover {
+            border-color: #ff8c00;
+            transform: translateY(-2px);
+        }
+
+        .spec-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff8c00, #ff6b00);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .spec-details {
+            flex: 1;
+        }
+
+        .spec-label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .spec-value {
+            font-size: 15px;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .equipment-section {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+        }
+
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .equipment-tag {
+            background: #f8f9fa;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .equipment-tag:hover {
+            background: #fff3e0;
+            border-color: #ff8c00;
+        }
+
+        .equipment-tag i {
+            color: #ff8c00;
+            font-size: 14px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .detail-image img {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .detail-header {
+                padding: 30px 25px;
+            }
+
+            .detail-header h1 {
+                font-size: 24px;
+            }
+
+            .detail-body {
+                padding: 30px 25px;
+            }
+
+            .detail-image img {
+                height: 300px;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-specs {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .price-value {
+                font-size: 28px;
+            }
+
+            .specs-section,
+            .equipment-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Fixed Navbar -->
+    <nav class="fixed-navbar">
+        <div class="navbar">
+            <div class="logo">
+                <h1><a href="index.html">Cars.com</a></h1>
+            </div>
+            <ul class="nav-element">
+                <!-- Search box -->
+                <li class="search-container">
+                    <input type="search" placeholder="search" id="search-box">
+                    <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
+                    <i class="fa-solid fa-list" id="filterIcon"></i>
+                    <!-- Search results dropdown -->
+                    <div class="search-dropdown" id="searchDropdown"></div>
+                </li>
+                <li><a href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
+                <li class="account-container">
+                    <a href="#" id="accountLink"><i class="fa-solid fa-user"></i>Account</a>
+                </li>
+                <li>
+                    <a href="index.html#liked" id="likeLink">
+                        <i class="fa-solid fa-heart"></i>Like
+                        <span class="like-counter" id="likeCounter">0</span>
+                    </a>
+                </li>
+                <li><a href="contact.html"><i class="fa-solid fa-phone"></i>Contact</a></li>
+                <!-- Mobile toggle -->
+                <li class="mobile-toggle-container">
+                    <div class="mobile-toggle" id="mobileToggle">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </li>
+            </ul>
+            <!-- Mobile dropdown menu -->
+            <div class="mobile-dropdown" id="mobileDropdown">
+                <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+                <a href="#" id="mobileAccountLink"><i class="fa-solid fa-user"></i>Account</a>
+                <a href="index.html#liked" id="mobileLikeLink"><i class="fa-solid fa-heart"></i>Like</a>
+                <a href="contact.html"><i class="fa-solid fa-phone"></i>Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Wrapper -->
+    <div class="content-wrapper">
+        <div class="detail-page-container">
+            <a href="index.html" class="back-button">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Listings
+            </a>
+
+            <div class="detail-content">
+                <div class="detail-header">
+                    <h1 id="carTitle">Loading...</h1>
+                    <p class="car-subtitle" id="carSubtitle"></p>
+                </div>
+
+                <div class="detail-body">
+                    <!-- Main Section: Image + Info -->
+                    <div class="main-section">
+                        <div class="image-section">
+                            <div class="detail-image">
+                                <img id="carImage" src="" alt="Car Image">
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <div class="price-card">
+                                <div class="price-label">Price</div>
+                                <div class="price-value" id="carPrice">$0</div>
+                            </div>
+
+                            <div class="quick-specs" id="quickSpecs">
+                                <!-- Quick specs will be populated by JavaScript -->
+                            </div>
+
+                            <div class="action-buttons">
+                                <button class="buy-btn" id="buyBtn">
+                                    <i class="fa-solid fa-shopping-cart"></i> Buy Now
+                                </button>
+                                <button class="like-btn" id="likeBtn">
+                                    <i class="fa-solid fa-heart"></i> <span id="likeBtnText">Like</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Specifications -->
+                    <div class="specs-section">
+                        <h2 class="section-title">
+                            <i class="fa-solid fa-car-side"></i>
+                            Detailed Specifications
+                        </h2>
+                        <div class="specs-grid" id="specsGrid">
+                            <!-- Detailed specs will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Equipment & Features -->
+                    <div class="equipment-section">
+                        <h2 class="section-title">
+                            <i class="fa-solid fa-list-check"></i>
+                            Equipment & Features
+                        </h2>
+                        <div class="equipment-list" id="equipmentList">
+                            <!-- Equipment will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Liked Cars Modal -->
+    <div id="likedModal" class="modal">
+        <div class="modal-content">
+            <span id="closeLikedModal" class="close">&times;</span>
+            <div class="liked-modal-header">
+                <h2>Liked Cars (<span id="likedCount">0</span>)</h2>
+                <button id="clearAllLiked" class="clear-all-btn" style="display: none;">
+                    <i class="fa-solid fa-trash-can"></i> Clear All
+                </button>
+            </div>
+            <div id="likedCarsList" class="liked-cars-grid"></div>
+        </div>
+    </div>
+
+    <!-- Account Modal -->
+    <div id="accountModal" class="modal">
+        <div class="modal-content account-modal-content">
+            <span id="closeAccountModal" class="close">&times;</span>
+            <div class="account-dropdown-header">
+                <h3 id="formTitle">Login</h3>
+            </div>
+
+            <!-- Login Form -->
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">
+                        <i class="fa-solid fa-user"></i> Username
+                    </label>
+                    <input type="text" id="username" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fa-solid fa-lock"></i> Password
+                    </label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit" class="login-btn">
+                    <i class="fa-solid fa-right-to-bracket"></i> Login
+                </button>
+                <div class="signup-link">
+                    Don't have an account? <a href="#" id="showSignupLink">Sign Up</a>
+                </div>
+            </form>
+
+            <!-- Signup Form -->
+            <form class="signup-form" id="signupForm" style="display: none;">
+                <div class="form-group">
+                    <label for="signupUsername">
+                        <i class="fa-solid fa-user"></i> Username
+                    </label>
+                    <input type="text" id="signupUsername" placeholder="Choose username" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">
+                        <i class="fa-solid fa-envelope"></i> Email
+                    </label>
+                    <input type="email" id="signupEmail" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">
+                        <i class="fa-solid fa-lock"></i> Password
+                    </label>
+                    <input type="password" id="signupPassword" placeholder="Create password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">
+                        <i class="fa-solid fa-lock"></i> Confirm Password
+                    </label>
+                    <input type="password" id="signupConfirmPassword" placeholder="Confirm password" required>
+                </div>
+                <button type="submit" class="login-btn">
+                    <i class="fa-solid fa-user-plus"></i> Sign Up
+                </button>
+                <div class="signup-link">
+                    Already have an account? <a href="#" id="showLoginLink">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Load car details from sessionStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const carData = sessionStorage.getItem('selectedCar');
+            
+            if (!carData) {
+                // If no car data, redirect to home
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const car = JSON.parse(carData);
+            displayCarDetails(car);
+        });
+
+        function displayCarDetails(car) {
+            // Set title and subtitle
+            document.getElementById('carTitle').textContent = `${car.Marks} ${car.Model}`;
+            document.getElementById('carSubtitle').textContent = car.Name;
+            document.title = `${car.Marks} ${car.Model} - CarSale`;
+
+            // Set image
+            const carImage = document.getElementById('carImage');
+            carImage.src = car.image;
+            carImage.alt = `${car.Marks} ${car.Model}`;
+            carImage.onerror = function() {
+                this.src = 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=600&fit=crop';
+            };
+
+            // Set price
+            const price = typeof car.Price === 'number' ? car.Price.toLocaleString() : car.Price;
+            document.getElementById('carPrice').textContent = `$${price}`;
+
+            // Create quick specs (top 4 important specs)
+            const quickSpecs = document.getElementById('quickSpecs');
+            const quickSpecsData = [
+                { label: 'Year', value: car.Year, icon: 'fa-calendar' },
+                { label: 'Mileage', value: car.Milage, icon: 'fa-road' },
+                { label: 'Fuel', value: car.FuelType, icon: 'fa-gas-pump' },
+                { label: 'Condition', value: car.Condition, icon: 'fa-certificate' }
+            ];
+
+            quickSpecs.innerHTML = quickSpecsData.map(spec => `
+                <div class="quick-spec">
+                    <i class="fa-solid ${spec.icon}"></i>
+                    <div class="quick-spec-label">${spec.label}</div>
+                    <div class="quick-spec-value">${spec.value}</div>
+                </div>
+            `).join('');
+
+            // Create detailed specs grid
+            const specsGrid = document.getElementById('specsGrid');
+            const specs = [
+                { label: 'Year', value: car.Year, icon: 'fa-calendar' },
+                { label: 'Condition', value: car.Condition, icon: 'fa-certificate' },
+                { label: 'Fuel Type', value: car.FuelType, icon: 'fa-gas-pump' },
+                { label: 'Body Type', value: car.BanType, icon: 'fa-car' },
+                { label: 'Gear Type', value: car.GearType, icon: 'fa-gears' },
+                { label: 'Transmission', value: car.Transmission, icon: 'fa-cog' },
+                { label: 'Mileage', value: car.Milage, icon: 'fa-road' },
+                { label: 'Engine', value: car.EngineCapacity, icon: 'fa-engine' },
+                { label: 'Power', value: car.PowerHp, icon: 'fa-bolt' },
+                { label: 'Color', value: car.Color, icon: 'fa-palette' }
+            ];
+
+            specsGrid.innerHTML = specs.map(spec => `
+                <div class="spec-item">
+                    <div class="spec-icon">
+                        <i class="fa-solid ${spec.icon}"></i>
+                    </div>
+                    <div class="spec-details">
+                        <div class="spec-label">${spec.label}</div>
+                        <div class="spec-value">${spec.value}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Create equipment list
+            const equipmentList = document.getElementById('equipmentList');
+            if (car.Equipment) {
+                const equipmentItems = car.Equipment.split(',').map(item => item.trim());
+                equipmentList.innerHTML = equipmentItems.map(item => `
+                    <div class="equipment-tag">
+                        <i class="fa-solid fa-check"></i>
+                        ${item}
+                    </div>
+                `).join('');
+            } else {
+                equipmentList.innerHTML = '<p>No equipment information available</p>';
+            }
+
+            // Buy button - Navigate to buy page
+            document.getElementById('buyBtn').addEventListener('click', function() {
+                // Car data is already in sessionStorage from navigation
+                window.location.href = 'buy.html';
+            });
+
+            // Like button - sync with main page using sessionStorage
+            const likeBtn = document.getElementById('likeBtn');
+            const likeBtnText = document.getElementById('likeBtnText');
+            const likeCounter = document.getElementById('likeCounter');
+            
+            // Load liked cars from sessionStorage
+            let likedCars = [];
+            const storedLikedCars = sessionStorage.getItem('likedCars');
+            if (storedLikedCars) {
+                try {
+                    likedCars = JSON.parse(storedLikedCars);
+                } catch (e) {
+                    console.error('Error loading liked cars:', e);
+                    likedCars = [];
+                }
+            }
+            
+            // Check if current car is already liked
+            const isLiked = likedCars.some(likedCar => 
+                likedCar.Marks === car.Marks && 
+                likedCar.Model === car.Model && 
+                likedCar.Year === car.Year
+            );
+
+            if (isLiked) {
+                likeBtn.classList.add('liked');
+                likeBtnText.textContent = 'Liked';
+            }
+            
+            // Update like counter
+            if (likeCounter) {
+                likeCounter.textContent = likedCars.length;
+            }
+
+            likeBtn.addEventListener('click', function() {
+                if (this.classList.contains('liked')) {
+                    // Remove from liked
+                    likedCars = likedCars.filter(likedCar => 
+                        !(likedCar.Marks === car.Marks && 
+                          likedCar.Model === car.Model && 
+                          likedCar.Year === car.Year)
+                    );
+                    this.classList.remove('liked');
+                    likeBtnText.textContent = 'Like';
+                } else {
+                    // Add to liked - store full car object
+                    likedCars.push(car);
+                    this.classList.add('liked');
+                    likeBtnText.textContent = 'Liked';
+                }
+                
+                // Save to sessionStorage for cross-page sync
+                sessionStorage.setItem('likedCars', JSON.stringify(likedCars));
+                
+                // Update counter
+                if (likeCounter) {
+                    likeCounter.textContent = likedCars.length;
+                }
+            });
+        }
+        
+        // Initialize like counter on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const likeCounter = document.getElementById('likeCounter');
+            if (likeCounter) {
+                const storedLikedCars = sessionStorage.getItem('likedCars');
+                if (storedLikedCars) {
+                    try {
+                        const likedCars = JSON.parse(storedLikedCars);
+                        likeCounter.textContent = likedCars.length;
+                    } catch (e) {
+                        likeCounter.textContent = '0';
+                    }
+                } else {
+                    likeCounter.textContent = '0';
+                }
+            }
+        });
+
+        // Liked Cars Modal functionality
+        const likeLink = document.getElementById('likeLink');
+        const mobileLikeLink = document.getElementById('mobileLikeLink');
+        const likedModal = document.getElementById('likedModal');
+        const closeLikedModal = document.getElementById('closeLikedModal');
+
+        if (likeLink) {
+            likeLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showLikedCarsModal();
+            });
+        }
+
+        if (mobileLikeLink) {
+            mobileLikeLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showLikedCarsModal();
+            });
+        }
+
+        if (closeLikedModal) {
+            closeLikedModal.addEventListener('click', function() {
+                likedModal.style.display = 'none';
+            });
+        }
+
+        window.addEventListener('click', function(e) {
+            if (e.target === likedModal) {
+                likedModal.style.display = 'none';
+            }
+            if (e.target === accountModal) {
+                accountModal.style.display = 'none';
+            }
+        });
+
+        function showLikedCarsModal() {
+            const likedCountSpan = document.getElementById('likedCount');
+            const likedCarsList = document.getElementById('likedCarsList');
+            const clearAllBtn = document.getElementById('clearAllLiked');
+            
+            // Load liked cars from sessionStorage
+            let likedCars = [];
+            const storedLikedCars = sessionStorage.getItem('likedCars');
+            if (storedLikedCars) {
+                try {
+                    likedCars = JSON.parse(storedLikedCars);
+                } catch (e) {
+                    likedCars = [];
+                }
+            }
+            
+            likedCountSpan.textContent = likedCars.length;
+            
+            // Show/hide clear all button
+            if (likedCars.length > 0) {
+                clearAllBtn.style.display = 'flex';
+            } else {
+                clearAllBtn.style.display = 'none';
+            }
+            
+            if (likedCars.length === 0) {
+                likedCarsList.innerHTML = '<div class="no-results">No liked cars yet. Start exploring and like your favorites!</div>';
+            } else {
+                likedCarsList.innerHTML = '';
+                likedCars.forEach((car, index) => {
+                    const card = document.createElement('div');
+                    card.classList.add('car-card');
+                    card.style.cursor = 'pointer';
+                    
+                    card.innerHTML = `
+                        <div class="car-image-container">
+                            <img src="${car.image}" alt="${car.Marks} ${car.Model}" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=250&fit=crop'">
+                            <button class="delete-btn" data-delete-index="${index}" title="Remove from favorites">
+                                <i class="fa-solid fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="car-info">
+                            <h3 class="car-title">${car.Marks} ${car.Model}</h3>
+                            <div class="car-details">
+                                <div class="car-detail-item">
+                                    <i class="fa-solid fa-calendar"></i>
+                                    <span>${car.Year}</span>
+                                </div>
+                                <div class="car-detail-item">
+                                    <i class="fa-solid fa-gas-pump"></i>
+                                    <span>${car.FuelType}</span>
+                                </div>
+                                <div class="car-detail-item">
+                                    <i class="fa-solid fa-road"></i>
+                                    <span>${car.Milage}</span>
+                                </div>
+                            </div>
+                            <div class="car-price">$${typeof car.Price === 'number' ? car.Price.toLocaleString() : car.Price}</div>
+                            <div class="card-actions">
+                                <i class="fa-solid fa-heart heart-icon liked" data-liked-index="${index}"></i>
+                                <button class="buy-btn" data-buy-liked="${index}">Buy Now</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    likedCarsList.appendChild(card);
+                    
+                    // Make card clickable
+                    card.addEventListener('click', function(e) {
+                        if (!e.target.classList.contains('delete-btn') &&
+                            !e.target.classList.contains('heart-icon') && 
+                            !e.target.classList.contains('buy-btn') &&
+                            !e.target.closest('.delete-btn') &&
+                            !e.target.closest('.heart-icon') &&
+                            !e.target.closest('.buy-btn')) {
+                            sessionStorage.setItem('selectedCar', JSON.stringify(car));
+                            window.location.href = 'car-details.html';
+                        }
+                    });
+                });
+                
+                // Delete button listeners
+                document.querySelectorAll('[data-delete-index]').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const index = parseInt(this.dataset.deleteIndex);
+                        removeLikedCar(index);
+                    });
+                });
+                
+                // Heart icon listeners
+                document.querySelectorAll('[data-liked-index]').forEach(icon => {
+                    icon.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const index = parseInt(this.dataset.likedIndex);
+                        removeLikedCar(index);
+                    });
+                });
+                
+                // Buy button listeners
+                document.querySelectorAll('[data-buy-liked]').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const index = parseInt(this.dataset.buyLiked);
+                        const car = likedCars[index];
+                        const price = typeof car.Price === 'number' ? car.Price.toLocaleString() : car.Price;
+                        alert(`Initiating purchase for ${car.Marks} ${car.Model}\nPrice: $${price}\n\nThank you for your interest!`);
+                    });
+                });
+            }
+            
+            likedModal.style.display = 'flex';
+        }
+
+        function removeLikedCar(index) {
+            let likedCars = [];
+            const storedLikedCars = sessionStorage.getItem('likedCars');
+            if (storedLikedCars) {
+                likedCars = JSON.parse(storedLikedCars);
+            }
+            
+            likedCars.splice(index, 1);
+            sessionStorage.setItem('likedCars', JSON.stringify(likedCars));
+            
+            // Update counter
+            const likeCounter = document.getElementById('likeCounter');
+            if (likeCounter) {
+                likeCounter.textContent = likedCars.length;
+            }
+            
+            showLikedCarsModal(); // Refresh modal
+        }
+
+        // Clear all liked cars
+        const clearAllBtn = document.getElementById('clearAllLiked');
+        if (clearAllBtn) {
+            clearAllBtn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to remove all cars from your favorites?')) {
+                    sessionStorage.setItem('likedCars', JSON.stringify([]));
+                    const likeCounter = document.getElementById('likeCounter');
+                    if (likeCounter) {
+                        likeCounter.textContent = '0';
+                    }
+                    showLikedCarsModal();
+                }
+            });
+        }
+
+        // Account Modal functionality
+        const accountLink = document.getElementById('accountLink');
+        const mobileAccountLink = document.getElementById('mobileAccountLink');
+        const accountModal = document.getElementById('accountModal');
+        const closeAccountModal = document.getElementById('closeAccountModal');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const showSignupLink = document.getElementById('showSignupLink');
+        const showLoginLink = document.getElementById('showLoginLink');
+        const formTitle = document.getElementById('formTitle');
+
+        function showAccountModal(e) {
+            e.preventDefault();
+            accountModal.style.display = 'flex';
+        }
+
+        if (accountLink) {
+            accountLink.addEventListener('click', showAccountModal);
+        }
+
+        if (mobileAccountLink) {
+            mobileAccountLink.addEventListener('click', showAccountModal);
+        }
+
+        if (closeAccountModal) {
+            closeAccountModal.addEventListener('click', function() {
+                accountModal.style.display = 'none';
+            });
+        }
+
+        if (showSignupLink) {
+            showSignupLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                formTitle.textContent = 'Sign Up';
+            });
+        }
+
+        if (showLoginLink) {
+            showLoginLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                signupForm.style.display = 'none';
+                loginForm.style.display = 'block';
+                formTitle.textContent = 'Login';
+            });
+        }
+
+        if (loginForm) {
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = document.getElementById('username').value;
+                alert(`Welcome, ${username}!`);
+                accountModal.style.display = 'none';
+                loginForm.reset();
+            });
+        }
+
+        if (signupForm) {
+            signupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = document.getElementById('signupUsername').value;
+                const password = document.getElementById('signupPassword').value;
+                const confirmPassword = document.getElementById('signupConfirmPassword').value;
+                
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+                
+                alert(`Account created successfully! Welcome, ${username}!`);
+                accountModal.style.display = 'none';
+                signupForm.reset();
+                signupForm.style.display = 'none';
+                loginForm.style.display = 'block';
+                formTitle.textContent = 'Login';
+            });
+        }
+    </script>
+</body>
+
+</html>

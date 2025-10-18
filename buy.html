@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <title>Complete Purchase - CarSale</title>
+    <link rel="icon" href="../image/car-logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="buy-page.css">
+</head>
+<body>
+    <!-- Fixed Navbar -->
+    <nav class="fixed-navbar">
+        <div class="navbar">
+            <div class="logo">
+                <h1><a href="index.html">Cars.com</a></h1>
+            </div>
+            <ul class="nav-element">
+                <li><a href="index.html"><i class="fa-solid fa-arrow-left"></i>Back to Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="buy-container">
+            <!-- Progress Steps -->
+            <div class="progress-steps">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Vehicle Info</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Personal Details</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Payment</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+
+            <div class="buy-content">
+                <!-- Left: Car Summary -->
+                <div class="car-summary-section">
+                    <h2>Order Summary</h2>
+                    <div class="summary-card">
+                        <div class="summary-image">
+                            <img id="summaryImage" src="" alt="Car">
+                        </div>
+                        <div class="summary-details">
+                            <h3 id="summaryTitle">Loading...</h3>
+                            <div class="summary-specs">
+                                <div class="spec-row">
+                                    <span class="spec-label">Year:</span>
+                                    <span class="spec-value" id="summaryYear">-</span>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-label">Condition:</span>
+                                    <span class="spec-value" id="summaryCondition">-</span>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-label">Mileage:</span>
+                                    <span class="spec-value" id="summaryMileage">-</span>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-label">Fuel Type:</span>
+                                    <span class="spec-value" id="summaryFuel">-</span>
+                                </div>
+                            </div>
+                            <div class="price-breakdown">
+                                <div class="price-row">
+                                    <span>Vehicle Price:</span>
+                                    <span id="vehiclePrice">$0</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>Tax (10%):</span>
+                                    <span id="taxAmount">$0</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>Registration Fee:</span>
+                                    <span id="regFee">$500</span>
+                                </div>
+                                <div class="price-row total">
+                                    <span>Total Amount:</span>
+                                    <span id="totalAmount">$0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Forms -->
+                <div class="forms-section">
+                    <!-- Step 1: Vehicle Info (Read-only) -->
+                    <div class="form-step active" id="step1">
+                        <h2>Vehicle Information</h2>
+                        <div class="form-card">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <label>Brand & Model</label>
+                                    <input type="text" id="carBrand" readonly>
+                                </div>
+                                <div class="info-item">
+                                    <label>Year</label>
+                                    <input type="text" id="carYear" readonly>
+                                </div>
+                                <div class="info-item">
+                                    <label>Body Type</label>
+                                    <input type="text" id="carBody" readonly>
+                                </div>
+                                <div class="info-item">
+                                    <label>Transmission</label>
+                                    <input type="text" id="carTransmission" readonly>
+                                </div>
+                                <div class="info-item full-width">
+                                    <label>Engine Capacity</label>
+                                    <input type="text" id="carEngine" readonly>
+                                </div>
+                            </div>
+                            <button class="btn-next" onclick="nextStep(2)">Continue to Personal Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Personal Details -->
+                    <div class="form-step" id="step2">
+                        <h2>Personal Information</h2>
+                        <div class="form-card">
+                            <form id="personalForm">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Full Name *</label>
+                                        <input type="text" id="fullName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email Address *</label>
+                                        <input type="email" id="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone Number *</label>
+                                        <input type="tel" id="phone" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Date of Birth *</label>
+                                        <input type="date" id="dob" required>
+                                    </div>
+                                    <div class="form-group full-width">
+                                        <label>Address *</label>
+                                        <input type="text" id="address" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>City *</label>
+                                        <input type="text" id="city" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>ZIP Code *</label>
+                                        <input type="text" id="zip" required>
+                                    </div>
+                                </div>
+                                <div class="button-group">
+                                    <button type="button" class="btn-back" onclick="prevStep(1)">Back</button>
+                                    <button type="submit" class="btn-next">Continue to Payment</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Payment -->
+                    <div class="form-step" id="step3">
+                        <h2>Payment Information</h2>
+                        <div class="form-card">
+                            <div class="payment-methods">
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="card" checked>
+                                    <div class="option-content">
+                                        <i class="fa-solid fa-credit-card"></i>
+                                        <span>Credit/Debit Card</span>
+                                    </div>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="bank">
+                                    <div class="option-content">
+                                        <i class="fa-solid fa-building-columns"></i>
+                                        <span>Bank Transfer</span>
+                                    </div>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="finance">
+                                    <div class="option-content">
+                                        <i class="fa-solid fa-money-bill-trend-up"></i>
+                                        <span>Financing</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <form id="paymentForm">
+                                <div class="form-grid">
+                                    <div class="form-group full-width">
+                                        <label>Card Number *</label>
+                                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Expiry Date *</label>
+                                        <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>CVV *</label>
+                                        <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+                                    </div>
+                                    <div class="form-group full-width">
+                                        <label>Cardholder Name *</label>
+                                        <input type="text" id="cardName" required>
+                                    </div>
+                                </div>
+                                <div class="button-group">
+                                    <button type="button" class="btn-back" onclick="prevStep(2)">Back</button>
+                                    <button type="submit" class="btn-next">Complete Purchase</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Confirmation -->
+                    <div class="form-step" id="step4">
+                        <div class="confirmation-card">
+                            <div class="success-icon">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+                            <h2>Purchase Successful!</h2>
+                            <p>Thank you for your purchase. Your order has been confirmed.</p>
+                            <div class="order-details">
+                                <div class="order-row">
+                                    <span>Order ID:</span>
+                                    <strong id="orderId">-</strong>
+                                </div>
+                                <div class="order-row">
+                                    <span>Vehicle:</span>
+                                    <strong id="orderVehicle">-</strong>
+                                </div>
+                                <div class="order-row">
+                                    <span>Total Paid:</span>
+                                    <strong id="orderTotal">-</strong>
+                                </div>
+                            </div>
+                            <p class="confirmation-message">
+                                A confirmation email has been sent to your email address. 
+                                Our team will contact you within 24 hours to arrange delivery.
+                            </p>
+                            <div class="button-group">
+                                <a href="index.html" class="btn-primary">Back to Home</a>
+                                <button class="btn-secondary" onclick="window.print()">Print Receipt</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="buy-page.js"></script>
+</body>
+</html>
