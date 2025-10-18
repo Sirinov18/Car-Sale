@@ -39,6 +39,7 @@
         const slides = document.querySelectorAll('.carousel-slide');
         const indicators = document.querySelectorAll('.indicator');
         const totalSlides = slides.length;
+        let videoPlayed = false;
 
         function showSlide(index) {
             slides.forEach(slide => slide.classList.remove('active'));
@@ -49,6 +50,26 @@
             }
             if (indicators[index]) {
                 indicators[index].classList.add('active');
+            }
+
+            // Handle video slide
+            const currentSlideElement = slides[index];
+            const video = currentSlideElement.querySelector('video');
+            
+            if (video && index === 0 && !videoPlayed) {
+                // First time on video slide - wait for video to end
+                stopAutoPlay();
+                video.currentTime = 0; // Reset video to start
+                video.play();
+                
+                video.onended = function() {
+                    videoPlayed = true;
+                    nextSlide();
+                    startAutoPlay();
+                };
+            } else if (video && index === 0 && videoPlayed) {
+                // Video already played, use normal timing
+                video.play();
             }
         }
 

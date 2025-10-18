@@ -437,6 +437,7 @@
     }
 
     .liked-cars-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         justify-content: flex-start;
         gap: 15px;
         max-height: 55vh;
@@ -729,6 +730,7 @@
     }
 
     .liked-cars-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
         justify-content: center;
         gap: 15px;
         max-height: 50vh;
@@ -1005,6 +1007,7 @@
     }
 
     .liked-cars-grid {
+        grid-template-columns: 1fr;
         justify-content: center;
         gap: 12px;
         max-height: 45vh;

@@ -152,28 +152,41 @@
         <!-- Carousel Section -->
         <section class="hero-carousel">
             <div class="carousel-container">
+                <!-- Video Slide - First Slide -->
                 <div class="carousel-slide active" data-slide="0">
+                    <div class="carousel-video-container">
+                        <video autoplay muted playsinline>
+                            <source src="../video/carvideo1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="carousel-content">
+                        <h2>Welcome to Cars.com</h2>
+                        <p>Your premier destination for luxury vehicles</p>
+                    </div>
+                </div>
+                <div class="carousel-slide" data-slide="1">
                     <img src="../image/Premium.png" alt="Luxury Cars">
                     <div class="carousel-content">
                         <h2>Premium Luxury Cars</h2>
                         <p>Discover our exclusive collection of luxury vehicles</p>
                     </div>
                 </div>
-                <div class="carousel-slide" data-slide="1">
+                <div class="carousel-slide" data-slide="2">
                     <img src="../image/luxury.png" alt="Sports Cars">
                     <div class="carousel-content">
                         <h2>High Performance Sports Cars</h2>
                         <p>Experience the thrill of speed and precision</p>
                     </div>
                 </div>
-                <div class="carousel-slide" data-slide="2">
+                <div class="carousel-slide" data-slide="3">
                     <img src="../image/Vip.png" alt="SUVs">
                     <div class="carousel-content">
                         <h2>Powerful SUVs</h2>
                         <p>Adventure awaits with our premium SUV collection</p>
                     </div>
                 </div>
-                <div class="carousel-slide" data-slide="3">
+                <div class="carousel-slide" data-slide="4">
                     <img src="../image/Future.png" alt="Electric Cars">
                     <div class="carousel-content">
                         <h2>Future of Driving</h2>
@@ -198,6 +211,7 @@
                 <span class="indicator" data-slide="1"></span>
                 <span class="indicator" data-slide="2"></span>
                 <span class="indicator" data-slide="3"></span>
+                <span class="indicator" data-slide="4"></span>
             </div>
         </section>
 
@@ -231,7 +245,13 @@
                         </div>
                     </div>
                     <div class="banner-right">
-                        <img src="../image/luxury1.png" alt="Luxury Car">
+                        <!-- Banner Video Container -->
+                        <div class="banner-media-container">
+                            <video autoplay muted loop playsinline class="banner-video">
+                                <source src="../video/videocar.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <div class="banner-price-tag">
                             <span class="price-label">Starting from</span>
                             <span class="price-amount">$249,999</span>
