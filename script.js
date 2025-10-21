@@ -86,7 +86,7 @@
         let autoPlayInterval;
 
         function startAutoPlay() {
-            autoPlayInterval = setInterval(nextSlide, 5000);
+            autoPlayInterval = setInterval(nextSlide, 4000);
         }
 
         function stopAutoPlay() {
@@ -255,6 +255,13 @@
             });
         }
 
+        // Search functionality - Declare variables first
+        const searchBox = document.getElementById('search-box');
+        const searchIcon = document.getElementById('searchIcon');
+        const filterIcon = document.getElementById('filterIcon');
+        const searchDropdown = document.getElementById('searchDropdown');
+        const filterDropdown = document.getElementById('filterDropdown');
+
         // Enhanced mobile menu functionality
         const mobileToggle = document.getElementById('mobileToggle');
         const mobileDropdown = document.getElementById('mobileDropdown');
@@ -307,20 +314,13 @@
                 if (window.innerWidth > 768) {
                     closeMobileMenu();
                     // Reset mobile search state on desktop
-                    if (searchBox.classList.contains('expanded')) {
+                    if (searchBox && searchBox.classList.contains('expanded')) {
                         searchBox.classList.remove('expanded');
                         searchIcon.classList.remove('active');
                     }
                 }
             });
         }
-
-        // Search functionality
-        const searchBox = document.getElementById('search-box');
-        const searchIcon = document.getElementById('searchIcon');
-        const filterIcon = document.getElementById('filterIcon');
-        const searchDropdown = document.getElementById('searchDropdown');
-        const filterDropdown = document.getElementById('filterDropdown');
 
         // Mobile search toggle functionality
         function isMobileView() {
