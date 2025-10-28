@@ -855,7 +855,6 @@ main {
     background: rgba(255, 255, 255, 0.7);
 }
 
-/* Carousel Video Styles */
 .carousel-video-container {
     width: 100%;
     height: 100%;
@@ -930,7 +929,6 @@ main {
     margin-right: 20px;
 }
 
-/* ===== FIXED NAVBAR STYLES ===== */
 .fixed-navbar {
     position: fixed;
     top: 0;
@@ -948,7 +946,6 @@ main {
     z-index: 1;
 }
 
-/* Enhanced Car Cards with Buy Button */
 .car-card {
     position: relative;
     background: white;
@@ -1083,7 +1080,6 @@ main {
     background: #e67e00;
 }
 
-/* Modal Actions */
 .modal-actions {
     display: flex;
     justify-content: center;
@@ -1097,9 +1093,6 @@ main {
     flex: none;
 }
 
-/* Liked Cars Grid styles moved to enhanced section below */
-
-/* Enhanced Banner Animation */
 .banner-ad-wrapper {
     width: 100%;
     overflow: hidden;
@@ -1200,15 +1193,11 @@ main {
     }
 }
 
-/* Responsive adjustments moved to enhanced section below */
-
-/* Prevent heart icon from triggering card click */
 .heart-icon {
     position: relative;
     z-index: 3;
 }
 
-/* Enhanced Car Cards Styling */
 .car-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1332,7 +1321,6 @@ main {
     color: #e74c3c;
 }
 
-/* Load More Button */
 .load-more-container {
     display: flex;
     justify-content: center;
@@ -1361,7 +1349,6 @@ main {
     cursor: not-allowed;
 }
 
-/* Car Details Page */
 .car-details-page {
     max-width: 1200px;
     margin: 30px auto;
@@ -1584,7 +1571,6 @@ main {
     color: orange;
 }
 
-/* Enhanced Liked Cars Modal Styling */
 #likedModal .modal-content {
     max-width: 1000px;
     max-height: 85vh;
@@ -1600,13 +1586,13 @@ main {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid orange;
-    padding: 20px 25px;
+    padding: 25px 30px;
     margin-bottom: 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     position: sticky;
     top: 0;
     z-index: 10;
-    gap: 15px;
+    gap: 20px;
     flex-wrap: wrap;
     min-height: fit-content;
     flex-shrink: 0;
@@ -1653,6 +1639,7 @@ main {
     gap: 8px;
     flex-shrink: 0;
     white-space: nowrap;
+    margin-top: 10px;
 }
 
 .clear-all-btn:hover {
@@ -1686,12 +1673,11 @@ main {
     transform: scale(1.2);
 }
 
-/* Enhanced Liked Cars Grid - FIXED SIZE CARDS */
 .liked-cars-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
-    padding: 25px;
+    padding: 30px 25px 25px 25px;
     max-height: calc(85vh - 120px);
     overflow-y: auto;
     overflow-x: hidden;
@@ -1699,7 +1685,6 @@ main {
     flex: 1;
 }
 
-/* Compact Liked Car Cards - FIXED SIZE */
 .liked-cars-grid .car-card {
     background: white;
     border-radius: 12px;
@@ -1874,7 +1859,6 @@ main {
     box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4);
 }
 
-/* Empty State Styling */
 .liked-cars-grid .no-results {
     grid-column: 1 / -1;
     text-align: center;
@@ -1896,7 +1880,6 @@ main {
     opacity: 0.5;
 }
 
-/* Scrollbar Styling for Liked Cars Grid */
 .liked-cars-grid::-webkit-scrollbar {
     width: 8px;
 }
@@ -1915,7 +1898,6 @@ main {
     background: #e67e00;
 }
 
-/* Responsive Design for Liked Cars Modal */
 @media screen and (max-width: 1024px) {
     .liked-cars-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -2042,7 +2024,6 @@ main {
     }
 }
 
-/* Animation for liked cards */
 @keyframes slideInUp {
     from {
         opacity: 0;
@@ -2321,8 +2302,6 @@ main {
     font-weight: 500;
 }
 
-/* Duplicate banner styles removed - see Enhanced Banner Animation section above */
-
 .banner-left {
     flex: 1;
     color: white;
@@ -2451,7 +2430,6 @@ main {
     z-index: 10;
 }
 
-/* Banner Media Container - supports both image and video */
 .banner-media-container {
     width: 100%;
     height: 300px;
@@ -2476,7 +2454,6 @@ main {
     border-radius: 20px;
 }
 
-/* Keep original img selector for backward compatibility */
 .banner-right img {
     width: 100%;
     height: 350px;

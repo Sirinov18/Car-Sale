@@ -1,7 +1,6 @@
-// Global variables
-        let allCarsData = [];
+let allCarsData = [];
         let filteredCarsData = [];
-        let likedCars = []; // Store liked cars
+        let likedCars = [];
         let activeFilters = {
             brands: [],
             models: [],
@@ -29,12 +28,10 @@
         let currentSelectedBrand = null;
         let currentSelectedModel = null;
 
-        // Load More functionality
         let currentPage = 1;
         const carsPerPage = 12;
         let displayedCars = 0;
 
-        // Carousel functionality
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
         const indicators = document.querySelectorAll('.indicator');
@@ -52,14 +49,12 @@
                 indicators[index].classList.add('active');
             }
 
-            // Handle video slide
             const currentSlideElement = slides[index];
             const video = currentSlideElement.querySelector('video');
             
             if (video && index === 0 && !videoPlayed) {
-                // First time on video slide - wait for video to end
                 stopAutoPlay();
-                video.currentTime = 0; // Reset video to start
+                video.currentTime = 0;
                 video.play();
                 
                 video.onended = function() {
@@ -68,7 +63,6 @@
                     startAutoPlay();
                 };
             } else if (video && index === 0 && videoPlayed) {
-                // Video already played, use normal timing
                 video.play();
             }
         }
@@ -93,7 +87,6 @@
             clearInterval(autoPlayInterval);
         }
 
-        // Initialize carousel when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             const nextBtn = document.getElementById('nextBtn');
             const prevBtn = document.getElementById('prevBtn');
@@ -131,17 +124,14 @@
                 carousel.addEventListener('mouseleave', startAutoPlay);
             }
 
-            // Load liked cars from storage on page load
             loadLikedCars();
             
-            // Load More button event listener
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             if (loadMoreBtn) {
                 loadMoreBtn.addEventListener('click', loadMoreCars);
             }
         });
 
-        // Account modal functionality
         const accountLink = document.getElementById('accountLink');
         const mobileAccountLink = document.getElementById('mobileAccountLink');
         const accountModal = document.getElementById('accountModal');
@@ -152,12 +142,10 @@
         const showLoginLink = document.getElementById('showLoginLink');
         const formTitle = document.getElementById('formTitle');
 
-        // Function to show account modal
         function showAccountModal(e) {
             e.preventDefault();
             accountModal.style.display = 'flex';
             
-            // Close mobile menu if open
             if (mobileDropdown && mobileDropdown.classList.contains('show')) {
                 closeMobileMenu();
             }
@@ -177,14 +165,12 @@
             });
         }
 
-        // Close modal when clicking outside
         window.addEventListener('click', function(e) {
             if (e.target === accountModal) {
                 accountModal.style.display = 'none';
             }
         });
 
-        // Switch to signup form
         if (showSignupLink) {
             showSignupLink.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -194,7 +180,6 @@
             });
         }
 
-        // Switch to login form
         if (showLoginLink) {
             showLoginLink.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -204,7 +189,6 @@
             });
         }
 
-        // Handle login form submission
         if (loginForm) {
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -212,19 +196,15 @@
                 const password = document.getElementById('password').value;
                 const rememberMe = document.getElementById('rememberMe').checked;
                 
-                // Here you would normally send credentials to a server
                 console.log('Login attempt:', { username, rememberMe });
                 
-                // Show success message (you can customize this)
                 alert(`Welcome, ${username}!`);
                 
-                // Close modal and reset form
                 accountModal.style.display = 'none';
                 loginForm.reset();
             });
         }
 
-        // Handle signup form submission
         if (signupForm) {
             signupForm.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -233,40 +213,32 @@
                 const password = document.getElementById('signupPassword').value;
                 const confirmPassword = document.getElementById('signupConfirmPassword').value;
                 
-                // Validate passwords match
                 if (password !== confirmPassword) {
                     alert('Passwords do not match!');
                     return;
                 }
                 
-                // Here you would normally send registration data to a server
                 console.log('Signup attempt:', { username, email });
                 
-                // Show success message
                 alert(`Account created successfully! Welcome, ${username}!`);
                 
-                // Close modal and reset form
                 accountModal.style.display = 'none';
                 signupForm.reset();
-                // Switch back to login form
                 signupForm.style.display = 'none';
                 loginForm.style.display = 'block';
                 formTitle.textContent = 'Login';
             });
         }
 
-        // Search functionality - Declare variables first
         const searchBox = document.getElementById('search-box');
         const searchIcon = document.getElementById('searchIcon');
         const filterIcon = document.getElementById('filterIcon');
         const searchDropdown = document.getElementById('searchDropdown');
         const filterDropdown = document.getElementById('filterDropdown');
 
-        // Enhanced mobile menu functionality
         const mobileToggle = document.getElementById('mobileToggle');
         const mobileDropdown = document.getElementById('mobileDropdown');
 
-        // Function to close mobile menu (global scope)
         function closeMobileMenu() {
             if (mobileDropdown && mobileToggle) {
                 mobileDropdown.classList.remove('show');
@@ -279,7 +251,6 @@
         }
 
         if (mobileToggle && mobileDropdown) {
-            // Toggle mobile menu
             mobileToggle.addEventListener('click', (e) => {
                 e.stopPropagation();
                 mobileDropdown.classList.toggle('show');
@@ -287,7 +258,6 @@
                 
                 if (mobileDropdown.classList.contains('show')) {
                     icon.classList.replace('fa-bars', 'fa-times');
-                    // Add active state to toggle button
                     mobileToggle.classList.add('active');
                 } else {
                     icon.classList.replace('fa-times', 'fa-bars');
@@ -295,25 +265,21 @@
                 }
             });
 
-            // Close mobile menu when clicking outside
             document.addEventListener('click', (e) => {
                 if (!mobileToggle.contains(e.target) && !mobileDropdown.contains(e.target)) {
                     closeMobileMenu();
                 }
             });
 
-            // Close mobile menu when clicking on menu items
             mobileDropdown.addEventListener('click', (e) => {
                 if (e.target.tagName === 'A') {
                     closeMobileMenu();
                 }
             });
 
-            // Close mobile menu on window resize to desktop
             window.addEventListener('resize', () => {
                 if (window.innerWidth > 768) {
                     closeMobileMenu();
-                    // Reset mobile search state on desktop
                     if (searchBox && searchBox.classList.contains('expanded')) {
                         searchBox.classList.remove('expanded');
                         searchIcon.classList.remove('active');
@@ -322,7 +288,6 @@
             });
         }
 
-        // Mobile search toggle functionality
         function isMobileView() {
             return window.innerWidth <= 768;
         }
@@ -332,28 +297,23 @@
                 const isExpanded = searchBox.classList.contains('expanded');
                 
                 if (isExpanded) {
-                    // If search box is expanded and has content, perform search
                     const searchTerm = searchBox.value.trim().toLowerCase();
                     if (searchTerm) {
                         performSearch(searchTerm);
                         hideSearchDropdown();
                     } else {
-                        // If empty, just collapse it
                         searchBox.classList.remove('expanded');
                         searchIcon.classList.remove('active');
                         hideSearchDropdown();
                     }
                 } else {
-                    // Expand search box with animation
                     searchBox.classList.add('expanded');
                     searchIcon.classList.add('active');
-                    // Focus on search box after animation
                     setTimeout(() => {
                         searchBox.focus();
                     }, 100);
                 }
             } else {
-                // Desktop behavior - just perform search
                 const searchTerm = searchBox.value.trim().toLowerCase();
                 if (searchTerm) {
                     performSearch(searchTerm);
@@ -362,7 +322,6 @@
             }
         }
 
-        // Close search box when clicking outside on mobile
         function handleOutsideClick(e) {
             if (isMobileView() && searchBox.classList.contains('expanded')) {
                 if (!searchBox.contains(e.target) && 
@@ -380,13 +339,11 @@
             modelVariantHierarchy = {};
             
             allCarsData.forEach(car => {
-                // Build brand -> model hierarchy
                 if (!brandModelHierarchy[car.Marks]) {
                     brandModelHierarchy[car.Marks] = new Set();
                 }
                 brandModelHierarchy[car.Marks].add(car.Model);
                 
-                // Build model -> variant (Name) hierarchy
                 const modelKey = `${car.Marks}|${car.Model}`;
                 if (!modelVariantHierarchy[modelKey]) {
                     modelVariantHierarchy[modelKey] = new Set();
@@ -394,7 +351,6 @@
                 modelVariantHierarchy[modelKey].add(car.Name);
             });
             
-            // Convert Sets to sorted Arrays (automatically removes duplicates)
             Object.keys(brandModelHierarchy).forEach(brand => {
                 brandModelHierarchy[brand] = Array.from(brandModelHierarchy[brand]).sort();
             });
@@ -539,12 +495,10 @@
             if (!filterIcon.contains(e.target) && !filterDropdown.contains(e.target)) {
                 hideFilterDropdown();
             }
-            // Close account dropdown when clicking on search/filter areas
             const accountDropdown = document.getElementById('accountDropdown');
             if (accountDropdown && (searchBox.contains(e.target) || filterIcon.contains(e.target))) {
                 accountDropdown.classList.remove('show');
             }
-            // Handle mobile search outside click
             handleOutsideClick(e);
         });
 
@@ -553,7 +507,6 @@
         }
 
         function showFilterDropdown() {
-            // Always regenerate filter options from current data
             buildBrandModelHierarchy();
             generateFilterOptions();
             filterDropdown.style.display = 'block';
@@ -564,10 +517,8 @@
         }
 
         function generateFilterOptions() {
-            // Regenerate brand options first
             generateBrandOptions();
             
-            // Fuel Types
             const fuelTypes = [...new Set(allCarsData.map(car => car.FuelType))].sort();
             const fuelContainer = document.getElementById('fuelOptions');
             fuelContainer.innerHTML = fuelTypes.map(fuel => 
@@ -575,7 +526,6 @@
                        data-type="fuel" data-value="${fuel}">${fuel}</span>`
             ).join('');
             
-            // Body Types
             const bodyTypes = [...new Set(allCarsData.map(car => car.BanType))].sort();
             const bodyContainer = document.getElementById('bodyOptions');
             bodyContainer.innerHTML = bodyTypes.map(body => 
@@ -583,7 +533,6 @@
                        data-type="body" data-value="${body}">${body}</span>`
             ).join('');
             
-            // Gear Types
             const gearTypes = [...new Set(allCarsData.map(car => car.GearType))].sort();
             const gearContainer = document.getElementById('gearOptions');
             gearContainer.innerHTML = gearTypes.map(gear => 
@@ -591,7 +540,6 @@
                        data-type="gear" data-value="${gear}">${gear}</span>`
             ).join('');
             
-            // Transmissions
             const transmissions = [...new Set(allCarsData.map(car => car.Transmission))].sort();
             const transmissionContainer = document.getElementById('transmissionOptions');
             transmissionContainer.innerHTML = transmissions.map(trans => 
@@ -599,7 +547,6 @@
                        data-type="transmission" data-value="${trans}">${trans}</span>`
             ).join('');
             
-            // Conditions
             const conditions = [...new Set(allCarsData.map(car => car.Condition))].sort();
             const conditionContainer = document.getElementById('conditionOptions');
             conditionContainer.innerHTML = conditions.map(cond => 
@@ -607,11 +554,9 @@
                        data-type="condition" data-value="${cond}">${cond}</span>`
             ).join('');
             
-            // Equipment - Extract unique equipment keywords
             const equipmentSet = new Set();
             allCarsData.forEach(car => {
                 if (car.Equipment) {
-                    // Split equipment by common delimiters and extract keywords
                     const items = car.Equipment.split(/[,;]/).map(item => item.trim()).filter(item => item.length > 0);
                     items.forEach(item => equipmentSet.add(item));
                 }
