@@ -438,6 +438,9 @@ let allCarsData = [];
         }
 
         function performSearch(searchTerm) {
+            // Store the last search term
+            sessionStorage.setItem('lastSearchTerm', searchTerm);
+            
             const results = allCarsData.filter(car => 
                 car.Marks.toLowerCase().includes(searchTerm) ||
                 car.Model.toLowerCase().includes(searchTerm) ||
@@ -1444,10 +1447,8 @@ let allCarsData = [];
                         !e.target.classList.contains('buy-btn') &&
                         !e.target.closest('.heart-icon') &&
                         !e.target.closest('.buy-btn')) {
-                        // Store car data in sessionStorage and navigate
-                        sessionStorage.setItem('selectedCar', JSON.stringify(car));
-                        sessionStorage.setItem('selectedCarIndex', globalIndex);
-                        window.location.href = 'car-details.html';
+                        // Use the showCarDetails function to handle navigation
+                        showCarDetails(car);
                     }
                 });
             });
@@ -1485,27 +1486,48 @@ let allCarsData = [];
         }
 
         function showCarDetails(car) {
-            const modal = document.getElementById('carModal');
+            // Special case for Range Rover SV - redirect to dedicated page
+            if (car.Marks === 'Land Rover' && car.Model === 'Range Rover SV') {
+                window.location.href = 'range-rover-sv.html';
+                return;
+            }
+
+            // Find the index of the car in the allCarsData array
+            const carIndex = allCarsData.findIndex(c => 
+                c.Marks === car.Marks && 
+                c.Model === car.Model && 
+                c.Year === car.Year &&
+                c.Price === car.Price
+            );
             
-            document.getElementById('modalTitle').textContent = `${car.Marks} ${car.Model}`;
-            document.getElementById('modalName').textContent = car.Name;
-            document.getElementById('modalImage').src = car.image;
-            document.getElementById('modalYear').textContent = car.Year;
-            document.getElementById('modalFuel').textContent = car.FuelType;
-            document.getElementById('modalBan').textContent = car.BanType;
-            document.getElementById('modalGear').textContent = car.GearType;
-            document.getElementById('modalMilage').textContent = car.Milage;
-            document.getElementById('modalCondition').textContent = car.Condition;
-            document.getElementById('modalEngine').textContent = car.EngineCapacity;
-            document.getElementById('modalPower').textContent = car.PowerHp;
-            document.getElementById('modalTransmission').textContent = car.Transmission;
-            document.getElementById('modalEquipment').textContent = car.Equipment;
-            document.getElementById('modalPrice').textContent = typeof car.Price === 'number' ? `$${car.Price.toLocaleString()}` : car.Price;
-            document.getElementById('modalColor').textContent = car.Color;
-            
-            modal.style.display = 'flex';
+            if (carIndex !== -1) {
+                // Store the car data in sessionStorage as a fallback
+                sessionStorage.setItem('selectedCar', JSON.stringify(car));
+                // Redirect to car details page with index
+                window.location.href = `car-details.html?car=${carIndex}`;
+            } else {
+                console.error('Car not found in the main data array');
+                // Fallback to showing modal if car not found in main array
+                document.getElementById('modalTitle').textContent = `${car.Marks} ${car.Model}`;
+                document.getElementById('modalName').textContent = car.Name;
+                document.getElementById('modalImage').src = car.image;
+                document.getElementById('modalYear').textContent = car.Year;
+                document.getElementById('modalFuel').textContent = car.FuelType;
+                document.getElementById('modalBan').textContent = car.BanType;
+                document.getElementById('modalGear').textContent = car.GearType;
+                document.getElementById('modalMilage').textContent = car.Milage;
+                document.getElementById('modalCondition').textContent = car.Condition;
+                document.getElementById('modalEngine').textContent = car.EngineCapacity;
+                document.getElementById('modalPower').textContent = car.PowerHp;
+                document.getElementById('modalTransmission').textContent = car.Transmission;
+                document.getElementById('modalEquipment').textContent = car.Equipment;
+                document.getElementById('modalPrice').textContent = typeof car.Price === 'number' ? `$${car.Price.toLocaleString()}` : car.Price;
+                
+                // Show the modal if the car isn't found in the main array
+                document.getElementById('carModal').style.display = 'flex';
+            }
         }
-        
+
         function handleBuyNow(car) {
             // Store car data and navigate to buy page
             sessionStorage.setItem('selectedCar', JSON.stringify(car));
@@ -1570,6 +1592,16 @@ let allCarsData = [];
             .then(response => response.json())
             .then(data => {
                 allCarsData = data;
+                
+                // Check for search term in URL or sessionStorage
+                const urlParams = new URLSearchParams(window.location.search);
+                const searchTerm = urlParams.get('search') || sessionStorage.getItem('lastSearchTerm') || '';
+                
+                // If there's a search term, perform the search
+                if (searchTerm) {
+                    searchBox.value = searchTerm;
+                    performSearch(searchTerm.toLowerCase());
+                }
                 filteredCarsData = [...data];
                 buildBrandModelHierarchy();
                 

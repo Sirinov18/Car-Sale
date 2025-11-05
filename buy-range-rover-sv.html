@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <title>Purchase Range Rover SV - CarSale</title>
+    <link rel="icon" href="image/car-logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="buy-page.css">
+</head>
+<body>
+    <nav class="fixed-navbar">
+        <div class="navbar">
+            <div class="logo">
+                <h1><a href="index.html">Cars.com</a></h1>
+            </div>
+            <ul class="nav-element">
+                <li><a href="range-rover-sv.html"><i class="fa-solid fa-arrow-left"></i>Back to Vehicle</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="buy-container">
+            <div class="progress-steps">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Vehicle Info</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Personal Details</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Payment</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+
+            <div class="buy-content">
+                <div class="car-summary-section">
+                    <h2>Order Summary</h2>
+                    <div class="summary-card">
+                        <div class="summary-image">
+                            <img id="summaryImage" src="https://alsabercars.com/public/storage/Images/Cars/webstdy_1742642686File3.jpg" alt="2025 Land Rover Range Rover SV">
+                        </div>
+                        <div class="summary-details">
+                            <h3>2025 Land Rover Range Rover SV</h3>
+                            <div class="summary-specs">
+                                <div class="spec-row">
+                                    <span class="spec-label">Year:</span>
+                                    <span class="spec-value">2025</span>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-label">Condition:</span>
+                                    <span class="spec-value">New</span>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-label">Mileage:</span>
+                                    <span class="spec-value">0 km</span>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-label">Fuel Type:</span>
+                                    <span class="spec-value">Hybrid</span>
+                                </div>
+                            </div>
+                            <div class="price-breakdown">
+                                <div class="price-row">
+                                    <span>Vehicle Price:</span>
+                                    <span id="vehiclePrice">$249,999</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>Tax (10%):</span>
+                                    <span id="taxAmount">$25,000</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>Registration Fee:</span>
+                                    <span id="regFee">$500</span>
+                                </div>
+                                <div class="price-row total">
+                                    <span>Total Amount:</span>
+                                    <span id="totalAmount">$275,499</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="forms-section">
+                    <!-- Step 1: Vehicle Information -->
+                    <div class="form-step active" id="step1">
+                        <h2>Vehicle Information</h2>
+                        <div class="form-card">
+                            <div class="form-group">
+                                <label for="carBrand">Make & Model</label>
+                                <input type="text" id="carBrand" value="2025 Land Rover Range Rover SV" readonly>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="carYear">Year</label>
+                                    <input type="text" id="carYear" value="2025" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="carBody">Body Type</label>
+                                    <input type="text" id="carBody" value="SUV" readonly>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="carTransmission">Transmission</label>
+                                    <input type="text" id="carTransmission" value="Automatic" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="carEngine">Engine</label>
+                                    <input type="text" id="carEngine" value="4.4L V8 Hybrid - 615 HP" readonly>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn-next" onclick="nextStep(2)">Continue to Personal Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Personal Details -->
+                    <div class="form-step" id="step2">
+                        <h2>Personal Information</h2>
+                        <div class="form-card">
+                            <form id="personalForm">
+                                <div class="form-group">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" id="fullName" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input type="text" id="address" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <input type="text" id="city" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="zip">ZIP Code</label>
+                                        <input type="text" id="zip" required>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn-prev" onclick="prevStep(2)">Back</button>
+                                    <button type="submit" class="btn-next">Continue to Payment</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Payment Information -->
+                    <div class="form-step" id="step3">
+                        <h2>Payment Information</h2>
+                        <div class="form-card">
+                            <form id="paymentForm">
+                                <div class="payment-methods">
+                                    <label class="payment-option">
+                                        <input type="radio" name="paymentMethod" value="credit" checked>
+                                        <i class="fa-regular fa-credit-card"></i> Credit/Debit Card
+                                    </label>
+                                    <label class="payment-option">
+                                        <input type="radio" name="paymentMethod" value="bank">
+                                        <i class="fa-solid fa-building-columns"></i> Bank Transfer
+                                    </label>
+                                    <label class="payment-option">
+                                        <input type="radio" name="paymentMethod" value="paypal">
+                                        <i class="fa-brands fa-cc-paypal"></i> PayPal
+                                    </label>
+                                </div>
+
+                                <div id="creditCardForm" class="payment-details">
+                                    <div class="form-group">
+                                        <label for="cardNumber">Card Number</label>
+                                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" pattern="[0-9\s]{13,19}" maxlength="19">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="expiryDate">Expiry Date</label>
+                                            <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cvv">CVV</label>
+                                            <input type="text" id="cvv" placeholder="123" maxlength="4">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cardName">Name on Card</label>
+                                        <input type="text" id="cardName" placeholder="JOHN DOE">
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" class="btn-prev" onclick="prevStep(3)">Back</button>
+                                    <button type="submit" class="btn-submit">Complete Purchase</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Confirmation -->
+                    <div class="form-step" id="step4">
+                        <div class="confirmation-card">
+                            <div class="success-icon">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+                            <h2>Thank You for Your Purchase!</h2>
+                            <p>Your order for the <strong>2025 Land Rover Range Rover SV</strong> has been received and is being processed.</p>
+                            <div class="order-details">
+                                <p><strong>Order Number:</strong> <span id="orderNumber">LRRSV-2025-XXXX</span></p>
+                                <p><strong>Total Amount:</strong> <span id="finalAmount">$275,499</span></p>
+                                <p>We've sent a confirmation email with all the details.</p>
+                            </div>
+                            <div class="confirmation-actions">
+                                <a href="index.html" class="btn-home">Back to Home</a>
+                                <a href="#" class="btn-print" onclick="window.print()">Print Receipt</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functions
+        function nextStep(stepNumber) {
+            document.querySelector('.form-step.active').classList.remove('active');
+            document.getElementById('step' + stepNumber).classList.add('active');
+            updateProgress(stepNumber);
+        }
+
+        function prevStep(stepNumber) {
+            document.querySelector('.form-step.active').classList.remove('active');
+            document.getElementById('step' + (stepNumber - 1)).classList.add('active');
+            updateProgress(stepNumber - 1);
+        }
+
+        // Update progress indicators
+        function updateProgress(currentStep) {
+            const steps = document.querySelectorAll('.step');
+            steps.forEach((step, index) => {
+                if (index + 1 < currentStep) {
+                    step.classList.add('completed');
+                    step.classList.remove('active');
+                } else if (index + 1 === currentStep) {
+                    step.classList.add('active');
+                    step.classList.remove('completed');
+                } else {
+                    step.classList.remove('active', 'completed');
+                }
+            });
+        }
+
+        // Form submission handlers
+        document.getElementById('personalForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            nextStep(3);
+        });
+
+        document.getElementById('paymentForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Generate random order number
+            const orderNumber = 'LRRSV-' + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('orderNumber').textContent = orderNumber;
+            nextStep(4);
+        });
+
+        // Format card number input
+        document.getElementById('cardNumber')?.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s+/g, '');
+            if (value.length > 0) {
+                value = value.match(new RegExp('.{1,4}', 'g')).join(' ');
+            }
+            e.target.value = value;
+        });
+
+        // Format expiry date input
+        document.getElementById('expiryDate')?.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress(1);
+            
+            // Set current year for footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Handle payment method changes
+            const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+            paymentMethods.forEach(method => {
+                method.addEventListener('change', function() {
+                    // In a real app, you would show different forms based on payment method
+                    document.querySelector('.payment-details').style.display = 'block';
+                });
+            });
+        });
+
+        // Prevent accidental navigation away
+        window.addEventListener('beforeunload', function(e) {
+            const currentStep = document.querySelector('.form-step.active');
+            if (currentStep && currentStep.id !== 'step4' && currentStep.id !== 'step1') {
+                e.preventDefault();
+                e.returnValue = 'Are you sure you want to leave? Your progress will not be saved.';
+                return e.returnValue;
+            }
+        });
+    </script>
+</body>
+</html>

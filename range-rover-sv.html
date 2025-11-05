@@ -487,9 +487,9 @@
                             </div>
 
                             <div class="action-buttons">
-                                <button class="buy-btn" id="buyBtn">
-                                    <i class="fa-solid fa-shopping-cart"></i> Buy Now
-                                </button>
+                                <a href="buy-range-rover-sv.html" class="buy-btn" id="buyBtn">
+                                <i class="fa-solid fa-shopping-cart"></i> Buy Now
+                            </a>
                                 <button class="like-btn" id="likeBtn">
                                     <i class="fa-solid fa-heart"></i> <span id="likeBtnText">Like</span>
                                 </button>
@@ -611,60 +611,30 @@
     </div>
 
     <script>
-        // Function to load and display car details
-        async function loadCarDetails() {
-            const urlParams = new URLSearchParams(window.location.search);
-            let carIndex = urlParams.get('car');
-            
-            // Try to get car index from sessionStorage if not in URL
-            if (carIndex === null) {
-                carIndex = sessionStorage.getItem('selectedCarIndex');
-                if (carIndex === null) {
-                    console.error('No car index found in URL or sessionStorage');
-                    window.location.href = 'index.html';
-                    return;
-                }
-            }
+        // Range Rover SV data
+        const rangeRoverSV = {
+            "Marks": "Land Rover",
+            "Model": "Range Rover SV",
+            "Name": "2025 Land Rover Range Rover SV",
+            "Year": 2025,
+            "Price": 249999,
+            "Milage": "0 km",
+            "FuelType": "Hybrid",
+            "Condition": "New",
+            "BanType": "SUV",
+            "GearType": "Automatic",
+            "Transmission": "Automatic",
+            "EngineCapacity": "4.4L V8 Hybrid",
+            "PowerHp": "615 HP",
+            "Color": "Black",
+            "image": "https://alsabercars.com/public/storage/Images/Cars/webstdy_1742642686File3.jpg",
+            "Equipment": "Premium Leather Seats, Panoramic Sunroof, Heated Seats, Ventilated Seats, Massage Seats, Heated Steering Wheel, 360° Camera, Adaptive Cruise Control, Blind Spot Monitoring, Lane Keep Assist, Wireless Charging, Apple CarPlay, Android Auto, Premium Sound System, 4-Zone Climate Control, Ambient Lighting"
+        };
 
-            try {
-                // Fetch cars data
-                const response = await fetch('cars.json');
-                if (!response.ok) {
-                    throw new Error('Failed to load car data');
-                }
-                
-                const allCars = await response.json();
-                const index = parseInt(carIndex);
-                
-                // Validate index
-                if (isNaN(index) || index < 0 || index >= allCars.length) {
-                    throw new Error(`Invalid car index: ${index}`);
-                }
-                
-                const car = allCars[index];
-                
-                // Store car data for future use
-                sessionStorage.setItem('selectedCar', JSON.stringify(car));
-                sessionStorage.setItem('selectedCarIndex', index);
-                
-                // Display the car details
-                displayCarDetails(car);
-                
-            } catch (error) {
-                console.error('Error loading car details:', error);
-                // Try to load from sessionStorage as fallback
-                const carData = sessionStorage.getItem('selectedCar');
-                if (carData) {
-                    try {
-                        displayCarDetails(JSON.parse(carData));
-                        return;
-                    } catch (e) {
-                        console.error('Error parsing stored car data:', e);
-                    }
-                }
-                // If all else fails, redirect to index
-                window.location.href = 'index.html';
-            }
+        // Function to load and display car details
+        function loadCarDetails() {
+            // Display the car details directly
+            displayCarDetails(rangeRoverSV);
         }
 
         // Initialize when DOM is loaded
@@ -677,7 +647,7 @@
             if (backButton) {
                 backButton.addEventListener('click', function(e) {
                     e.preventDefault();
-                    window.history.back();
+                    window.location.href = 'index.html';
                 });
             }
         });
